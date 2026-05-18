@@ -58,6 +58,25 @@
             border-color: #319795;
             box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
+        .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mendorong tanda panah ke kanan, teks ke kiri */
+    padding: 10px; /* Jarak aman di dalam menu */
+    text-decoration: none;
+    color: #333; /* Warna teks sesuai kebutuhan */
+}
+
+.menu-content {
+    display: flex;
+    align-items: center;
+    gap: -30px; /* Memberikan jarak 10px antara gambar dan teks */
+}
+
+.menu-content img {
+    height: 25px;
+    width: auto;
+}
 
         .icon {
             font-size: 1.5rem;
@@ -104,6 +123,20 @@
             <span>🏠 Doa Harian</span>
             <span class="icon">➜</span>
         </a>
+        
+        <a href="kumpulan-doa.html" class="menu-item">
+            <span>🤲 Kumpulan Doa</span>
+            <span class="icon">➜</span>
+        </a>
+        
+        <a href="bacaan-shalat.html" class="menu-item">
+    <span class="menu-content">
+        <img src="img/icon-shalat.png" alt="Icon Shalat"> 
+        Bacaan Shalat
+    </span>
+    <span class="icon">➜</span>
+</a>
+
     </div>
 
     <footer>

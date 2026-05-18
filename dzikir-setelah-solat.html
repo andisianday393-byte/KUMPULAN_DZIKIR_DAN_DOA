@@ -49,7 +49,7 @@
         .dzikir-card {
             background: #fff;
             border: 1px solid #e2e8f0;
-            border-right: 6px solid #319795;
+            border-right: 6px solid #319795; /* Garis pembatas hijau dipertahankan */
             margin-bottom: 25px;
             padding: 25px;
             border-radius: 12px;
@@ -136,16 +136,38 @@
             direction: ltr;
         }
 
+        /* OPTIMASI LAYAR PENUH UNTUK HP */
         @media (max-width: 600px) {
-            .arabic { font-size: 1.4rem; }
-            .container { padding: 20px; }
-            h1 { font-size: 1.8rem; }
+            body {
+                padding: 0; /* Menghilangkan sisa jarak di luar area aplikasi */
+                background-color: #ffffff; /* Mengubah warna luar agar menyatu penuh */
+            }
+            .container { 
+                padding: 15px 10px; /* Mempersempit padding samping agar teks memanjang maksimal */
+                border-radius: 0; /* Menghilangkan sudut melengkung layar desktop */
+                box-shadow: none; /* Menghilangkan bayangan tepi */
+            }
+            .dzikir-card {
+                padding: 15px; /* Mengurangi ruang dalam kotak agar teks memenuhi area baca */
+                margin-bottom: 15px;
+                border-radius: 8px; /* Tepi melengkung yang lebih serasi untuk HP */
+            }
+            .arabic { 
+                font-size: 1.6rem; /* Ukuran teks arab disesuaikan agar pas di resolusi ponsel */
+                line-height: 2;
+            }
+            h1 { 
+                font-size: 1.8rem; 
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div style="text-align: left; direction: ltr; margin-bottom: 20px;">
+    <div style="text-align: left; direction: ltr; margin-bottom: 20px; padding: 0 5px;">
         <a href="./index.html" style="text-decoration: none; background: #319795; color: white; padding: 8px 15px; border-radius: 10px; font-family: sans-serif; font-size: 0.9rem; font-weight: bold;">⬅ Beranda</a>
     </div>
 
@@ -154,112 +176,126 @@
         <p class="subtitle">Dzikir Setelah Shalat Fardhu</p>
     </header>
 
-    <!-- [1] Istighfar & Allahumma Antassalam -->
-    <div class="dzikir-card">
-        <span class="arabic">أَسْتَغْفِرُ اللهَ (٣×) <br> اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ ذَا الْجَلاَلِ وَالإِكْرَام (٣×)ِ</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Aku memohon ampun kepada Allah (3x). Ya Allah, Engkau Mahasejahtera dan dari-Mu kesejahteraan, Maha Berkah Engkau wahai Rabb pemilik keagungan dan kemuliaan (3x)."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Dibaca langsung setelah salam</span>
-            <span class="ref-number">1</span>
+    <div class="dzikir-content">
+        <!-- [1] Istighfar & Allahumma Antassalam -->
+        <div class="dzikir-card">
+            <span class="arabic">أَسْتَغْفِرُ اللهَ (٣×) <br> اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ ذَا الْجَلاَلِ وَالإِكْرَامِ (٣×)</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Aku memohon ampun kepada Allah (3x). Ya Allah, Engkau Mahasejahtera dan dari-Mu kesejahteraan, Maha Berkah Engkau wahai Rabb pemilik keagungan dan kemuliaan (3x)."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Dibaca langsung setelah salam</span>
+                <span class="ref-number">1</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [2] Tauhid 1 -->
-    <div class="dzikir-card">
-        <span class="arabic">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُᠪ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ، اللَّهُمَّ لاَ مَانِعَ لِمَا أَعْطَيْتَ، وَلاَ مُعْطِيَ لِمَا مَنَعْتَ، وَلاَ يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala puji. Dan Dia Maha Kuasa atas segala sesuatu. Ya Allah, tidak ada yang mencegah apa yang Engkau beri, dan tidak ada yang memberi apa yang Engkau cegah. Tidak bermanfaat kekayaan bagi pemiliknya dari azab-Mu."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Dibaca 1x</span>
-            <span class="ref-number">2</span>
+        <!-- [2] Tauhid 1 -->
+        <div class="dzikir-card">
+            <span class="arabic">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ، اللَّهُمَّ لاَ مَانِعَ لِمَا أَعْطَيْتَ، وَلاَ مُعْطِيَ لِمَا مَنَعْتَ، وَلاَ يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala puji. Dan Dia Maha Kuasa atas segala sesuatu. Ya Allah, tidak ada yang mencegah apa yang Engkau beri, dan tidak ada yang memberi apa yang Engkau cegah. Tidak bermanfaat kekayaan bagi pemiliknya dari azab-Mu."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Dibaca 1x</span>
+                <span class="ref-number">2</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [3] Tauhid 2 -->
-    <div class="dzikir-card">
-        <span class="arabic">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ. لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللهِ، لاَ إِلَهَ إِلاَّ اللهُ وَلاَ نَعْبُدُ إِلاَّ إِيَّاهُ، لَهُ النِّعْمَةُ وَلَهُ الْفَضْلُ وَلَهُ الثَّنَاءُ الْحَسَنُ، لاَ إِلَهَ إِلاَّ اللهُ مُخْلِصِيْنَ لَهُ الدِّيْنَ وَلَوْ كَرِهَ الْكَافِرُوْنَ</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Tiada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala puji. Dia Mahakuasa atas segala sesuatu. Tiada daya dan kekuatan kecuali dengan pertolongan Allah. Tiada ilah yang berhak disembah kecuali Allah. Kami tidak menyembah kecuali kepada-Nya. Bagi-Nya nikmat, anugerah, dan pujian yang baik. Tiada ilah yang berhak disembah kecuali Allah dengan mengikhlaskan agama bagi-Nya, sekalipun orang-orang kafir membencinya."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Dibaca 1x</span>
-            <span class="ref-number">3</span>
+        <!-- [3] Tauhid 2 -->
+        <div class="dzikir-card">
+            <span class="arabic">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ. لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللهِ، لاَ إِلَهَ إِلاَّ اللهُ وَلاَ نَعْبُدُ إِلاَّ إِيَّاهُ، لَهُ النِّعْمَةُ وَلَهُ الْفَضْلُ وَلَهُ الثَّنَاءُ الْحَسَنُ، لاَ إِلَهَ إِلاَّ اللهُ مُخْلِصِيْنَ لَهُ الدِّيْنَ وَلَوْ كَرِهَ الْكَافِرُوْنَ</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Tiada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala puji. Dia Mahakuasa atas segala sesuatu. Tiada daya dan kekuatan kecuali dengan pertolongan Allah. Tiada ilah yang berhak disembah kecuali Allah. Kami tidak menyembah kecuali kepada-Nya. Bagi-Nya nikmat, anugerah, dan pujian yang baik. Tiada ilah yang berhak disembah kecuali Allah dengan mengikhlaskan agama bagi-Nya, sekalipun orang-orang kafir membencinya."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Dibaca 1x</span>
+                <span class="ref-number">3</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [4] Tasbih, Tahmid, Takbir -->
-    <div class="dzikir-card">
-        <span class="arabic">سُبْحَانَ اللهِ (٣٣×) <br> الْحَمْدُ لِلَّهِ (٣٣×) <br> اللهُ أَكْبَرُ (٣٣×)</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Maha Suci Allah (33x). Segala puji bagi Allah (33x). Allah Maha Besar (33x)."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Ulangi masing-masing 33x</span>
-            <span class="ref-number">4</span>
+        <!-- [4] Tasbih, Tahmid, Takbir -->
+        <div class="dzikir-card">
+            <span class="arabic">سُبْحَانَ اللهِ (٣٣×) <br> الْحَمْدُ لِلَّهِ (٣٣×) <br> اللهُ أَكْبَرُ (٣٣×)</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Maha Suci Allah (33x). Segala puji bagi Allah (33x). Allah Maha Besar (33x)."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Ulangi masing-masing 33x</span>
+                <span class="ref-number">4</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [5] Penutup Tasbih -->
-    <div class="dzikir-card">
-        <span class="arabic">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرٌ</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan bagi-Nya segala puji. Dan Dia Maha Kuasa atas segala sesuatu."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Genapkan hitungan menjadi 100</span>
-            <span class="ref-number">5</span>
+        <!-- [5] Penutup Tasbih -->
+        <div class="dzikir-card">
+            <span class="arabic">لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرُ</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan bagi-Nya segala puji. Dan Dia Maha Kuasa atas segala sesuatu."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Genapkan hitungan menjadi 100</span>
+                <span class="ref-number">5</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [6] Ayat Kursi -->
-    <div class="dzikir-card">
-        <span class="arabic">اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلاَّ بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Allah, tidak ada Tuhan (yang berhak disembah) melainkan Dia Yang Hidup kekal lagi terus menerus mengurus (makhluk-Nya); tidak mengantuk dan tidak tidur. Kepunyaan-Nya apa yang di langit dan di bumi. Tiada yang dapat memberi syafa’at di sisi Allah tanpa izin-Nya. Allah mengetahui apa-apa yang di hadapan mereka dan di belakang mereka, dan mereka tidak mengetahui apa-apa dari ilmu Allah melainkan apa yang dikehendaki-Nya. Kursi Allah meliputi langit dan bumi. Dan Allah tidak merasa berat memelihara keduanya, dan Allah Maha Tinggi lagi Maha Besar."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Dibaca 1x</span>
-            <span class="ref-number">6</span>
+        <!-- [6] Ayat Kursi -->
+        <div class="dzikir-card">
+            <span class="arabic">اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلاَّ بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَأَلاَرْضَ وَلاَ يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Allah, tidak ada Tuhan (yang berhak disembah) melainkan Dia Yang Hidup kekal lagi terus menerus mengurus (makhluk-Nya); tidak mengantuk dan tidak tidur. Kepunyaan-Nya apa yang di langit dan di bumi. Tiada yang dapat memberi syafa’at di sisi Allah tanpa izin-Nya. Allah mengetahui apa-apa yang di hadapan mereka dan di belakang mereka, dan mereka tidak mengetahui apa-apa dari ilmu Allah melainkan apa yang dikehendaki-Nya. Kursi Allah meliputi langit dan bumi. Dan Allah tidak merasa berat memelihara keduanya, dan Allah Maha Tinggi lagi Maha Besar."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Dibaca 1x</span>
+                <span class="ref-number">6</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [7] Al-Ikhlas, Al-Falaq, An-Naas -->
-    <div class="dzikir-card">
-        <span class="arabic">سُورَةُ الإِخْلَاصِ <br> سُورَةُ الْفَلَقِ <br> سُورَةُ النَّاسِ</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">Membaca surah Al-Ikhlas, Al-Falaq, dan An-Naas secara utuh.</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">1x (3x pada Subuh & Maghrib)</span>
-            <span class="ref-number">7</span>
+        <!-- [7] Al-Ikhlas, Al-Falaq, An-Naas -->
+        <div class="dzikir-card">
+            <span class="arabic">سُورَةُ الإِخْلَاصِ <br> سُورَةُ الْفَلَقِ <br> سُورَةُ النَّاسِ</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">Membaca surah Al-Ikhlas, Al-Falaq, dan An-Naas secara utuh.</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">1x (3x pada Subuh & Maghrib)</span>
+                <span class="ref-number">7</span>
+            </div>
         </div>
-    </div>
 
-    <!-- [8] Khusus Subuh -->
-    <div class="dzikir-card">
-        <span class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً</span>
-        <details>
-            <summary>Tampilkan Artinya</summary>
-            <span class="translation">"Ya Allah, sesungguhnya aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima."</span>
-        </details>
-        <div class="info-row">
-            <span class="instruction">Khusus setelah Shalat Subuh</span>
-            <span class="ref-number">8</span>
+        <!-- [8] Khusus Subuh -->
+        <div class="dzikir-card">
+            <span class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Ya Allah, sesungguhnya aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Khusus setelah Shalat Subuh</span>
+                <span class="ref-number">8</span>
+            </div>
+        </div>
+        
+        <div class="dzikir-card">
+          <span class="arabic">لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</span>
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Tidak ada sesembahan yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Bagi-Nya kerajaan dan bagi-Nya segala puji. Dia yang menghidupkan dan yang mematikan, dan Dia Mahakuasa atas segala sesuatu."</span>
+            </details>
+            <div class="info-row">
+                <span class="instruction">Dibaca 10x pada Subuh dan Maghrib</span>
+                <span class="ref-number">9</span>
+            </div>
         </div>
     </div>
 
     <footer>
-        &copy; 2024 Kumpulan Dzikir - Sumber: Bekal Islam
+        &copy; 2026 Kumpulan Dzikir - Sumber: Bekal Islam
     </footer>
 </div>
 </body>

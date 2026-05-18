@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumpulan Doa - Bacaan Shalat Fardhu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f0f4f8;
+            color: #2d3748;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px double #319795;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #2c7a7b;
+            font-size: 2.5rem;
+            margin: 0;
+            direction: ltr;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            direction: ltr;
+        }
+
+        .dzikir-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-right: 6px solid #319795; /* Garis aksen hijau di kanan */
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column; /* Memaksa konten menyusun dari atas ke bawah */
+}
+
+
+        .arabic {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a202c;
+            display: block;
+            margin-bottom: 10px;
+            line-height: 2.2;
+        }
+
+        .nested-arabic {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2d3748;
+            display: block;
+            margin: 15px 0 10px 0;
+            line-height: 2;
+            direction: rtl;
+            text-align: right;
+        }
+
+        details {
+            direction: ltr;
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        summary {
+            cursor: pointer;
+            color: #319795;
+            font-weight: 600;
+            font-size: 0.9rem;
+            outline: none;
+            user-select: none;
+            margin-bottom: 8px;
+        }
+
+        summary:hover {
+            color: #2c7a7b;
+            text-decoration: underline;
+        }
+
+        .translation {
+            display: block;
+            padding: 10px 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #4a5568;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .nested-box {
+            padding: 5px 15px 15px 15px;
+            background: #f8fafc;
+            border-left: 3px solid #cbd5e1;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #e2e8f0; /* Garis pembatas tepat di bawah judul/nomor */
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    direction: ltr; /* Memastikan nomor di kiri dan teks di kanan */
+    width: 100%;
+}
+
+        .instruction {
+            color: #c53030;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .ref-number {
+            background: #319795;
+            color: white;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-family: sans-serif;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: -15px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            color: #718096;
+            direction: ltr;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+                background-color: #ffffff;
+            }
+            .container { 
+                padding: 15px 10px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .dzikir-card {
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 8px;
+            }
+            .arabic { 
+                font-size: 1.6rem;
+                line-height: 2;
+            }
+            .nested-arabic {
+                font-size: 1.4rem;
+            }
+            h1 { 
+                font-size: 1.8rem; 
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div style="text-align: left; direction: ltr; margin-bottom: 20px; padding: 0 5px;">
+        <a href="index.html" style="text-decoration: none; background: #319795; color: white; padding: 8px 15px; border-radius: 10px; font-family: sans-serif; font-size: 0.9rem; font-weight: bold;">⬅ Beranda</a>
+    </div>
+
+    <header>
+        <h1>Panduan Bacaan Shalat</h1>
+        <p class="subtitle">Bacaan Gerakan Shalat Fardhu Sesuai Sunnah</p>
+    </header>
+
+    <!-- [1] Takbiratul Ihram -->
+<div class="dzikir-card">
+    <!-- Info row diletakkan paling atas sebagai kepala kartu -->
+    <div class="info-row">
+        <span class="instruction">Takbiratul Ihram & Setiap Perpindahan Gerakan</span>
+        <span class="ref-number">1</span>
+    </div>
+    
+    <!-- Teks Arab berada di bawah info-row -->
+    <span class="arabic">اللهُ أَكْبَرُ</span>
+    
+    <!-- Arti berada di paling bawah -->
+    <details>
+        <summary>Tampilkan Artinya</summary>
+        <span class="translation">"Allah Maha Besar."</span>
+    </details>
+</div>
+
+
+        <!-- [2] Doa Istiftah -->
+        <div class="dzikir-card">
+          <div class="info-row">
+                <span class="instruction">Doa Istiftah (Dibaca setelah Takbiratul Ihram Rakaat Pertama)</span>
+                <span class="ref-number">2</span>
+            </div>
+            <span class="arabic">اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْ خَطَايَايَ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Ya Allah, jauhkanlah antara aku dan kesalahan-kesalahanku, sebagaimana Engkau menjauhkan antara timur dan barat. Ya Allah, bersihkanlah aku dari kesalahan-kesalahanku sebagaimana baju putih dibersihkan dari kotoran. Ya Allah, cucilah kesalahan-kesalahanku dengan air, salju dan air es."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Doa iftitah lainnya</summary>
+                <div class="nested-box">
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
+                    <span class="nested-arabic">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلَا إِلَهَ غَيْرُكَ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Engkau ya Allah, aku memuji-Mu. Maha Berkah nama-Mu, Maha Tinggi keagungan-Mu, dan tidak ada sesembahan yang berhak disembah selain Engkau."</span>
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
+                    <span class="nested-arabic">اللهُ أَكْبَرُ كَبِيرًا، وَالْحَمْدُ لِلَّهِ كَثِيرًا، وَسُبْحَانَ اللهِ بُكْرَةً وَأَصِيلًا</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Allah Maha Besar dengan segala kebesaran, segala puji bagi Allah dengan pujian yang banyak, dan Maha Suci Allah di waktu pagi dan petang."</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- [3] Bacaan Ruku -->
+        <div class="dzikir-card">
+          <div class="info-row">
+                <span class="instruction">Dibaca saat posisi Ruku</span>
+                <span class="ref-number">3</span>
+            </div>
+            <span class="arabic">سُبْحَانَ رَبِّىَ الْعَظِيمِ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Maha Suci Rabbku Yang Maha Agung."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan ruku lainnya</summary>
+                <div class="nested-box">
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
+                    <span class="nested-arabic">سُبْحَانَ رَبِّىَ الْعَظِيمِ وَبِحَمْدِهِ (٣×)</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Tuhanku Yang Maha Agung dan dengan memuji-Nya (3x)."</span>
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
+                    <span class="nested-arabic">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu ya Allah, ampunilah aku."</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- [4] I'tidal (Bangkit dari Ruku) -->
+        <div class="dzikir-card">
+          <div class="info-row">
+                <span class="instruction">Dibaca saat bangkit dari ruku menuju i'tidal</span>
+                <span class="ref-number">4</span>
+            </div>
+            <span class="arabic">سَمِعَ اللهُ لِمَنْ حَمِدَهُ</span>
+            
+            <details>
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Allah mendengar orang yang memuji-Nya."</span>
+            </details>
+        </div>
+
+        <!-- [5] Doa I'tidal -->
+        <div class="dzikir-card">
+          <div class="info-row">
+                <span class="instruction">Dibaca saat berdiri tegak (I'tidal)</span>
+                <span class="ref-number">5</span>
+            </div>
+            <!-- Doa 1 (Bagian Utama) -->
+            <span class="arabic">رَبَّنَا لَكَ الْحَمْدُ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Wahai Rabb kami, bagi-Mu segala puji."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Doa i'tidal lainnya</summary>
+                <div class="nested-box">
+                    <!-- Doa 2 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
+                    <span class="nested-arabic">رَبَّنَا وَلَكَ الْحَمْدُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabb kami, dan bagi-Mu segala puji."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 3 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
+                    <span class="nested-arabic">اللَّهُمَّ رَبَّنَا لَكَ الْحَمْدُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, wahai Rabb kami, bagi-Mu segala puji."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 4 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
+                    <span class="nested-arabic">اللَّهُمَّ رَبَّنَا وَلَكَ الْحَمْدُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, wahai Rabb kami, dan bagi-Mu segala puji."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 5 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4 (Versi Panjang):</strong>
+                    <span class="nested-arabic">رَبَّنَا لَكَ الْحَمْدُ مِلْءُ السَّمَاوَاتِ وَمِلْءُ الْأَرْضِ وَمِلْءُ مَا شِئْتَ مِنْ شَيْءٍ بَعْدُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabb kami, bagi-Mu segala puji sepenuh langit dan bumi, dan sepenuh apa yang Engkau kehendaki dari sesuatu setelah itu."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+
+                    <!-- Pilihan 5 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 5:</strong>
+                    <span class="nested-arabic">رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabb kami, bagi-Mu segala puji, aku memuji-Mu dengan pujian yang banyak, yang baik dan penuh dengan berkah."</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- [6] Bacaan Sujud -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Dibaca saat posisi Sujud</span>
+                <span class="ref-number">6</span>
+            </div>
+            <!-- Doa Pertama (Bagian Utama - Dibaca 1x) -->
+            <span class="arabic">سُبْحَانَ رَبِّيَ الأَعْلَى</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Maha Suci Rabbku Yang Maha Tinggi."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan sujud lainnya</summary>
+                <div class="nested-box">
+                    <!-- Doa Kedua (Dibaca 3x) -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
+                    <span class="nested-arabic">سُبْحَانَ رَبِّىَ الأَعْلَى وَبِحَمْدِهِ (٣×)</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Tuhanku Yang Maha Tinggi dan dengan memuji-Nya (3x)."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa Ketiga -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
+                    <span class="nested-arabic">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu ya Allah, ampunilah aku."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa Keempat -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
+                    <span class="nested-arabic">سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci, Maha Kudus, Rabbnya para malaikat dan ruh (Malaikat Jibril)."</span>
+                
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa Keempat -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
+                    <span class="nested-arabic">سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci, Maha Kudus, Rabbnya para malaikat dan ruh (Malaikat Jibril)."</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- [7] Duduk di Antara Dua Sujud -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Dibaca saat duduk di antara dua sujud</span>
+                <span class="ref-number">7</span>
+            </div>
+            <!-- Doa 1 (Bagian Utama) -->
+            <span class="arabic">رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Wahai Rabbku ampunilah aku, wahai Rabbku ampunilah aku."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan duduk antara dua sujud lainnya</summary>
+                <div class="nested-box">
+                    <!-- Doa 2 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
+                    <span class="nested-arabic">رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْزُقْنِي، وَارْفَعْنِي</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabbku ampunilah aku, sayangilah aku, cukupilah kekuranganku, berilah aku rezeki, dan tinggikanlah derajatku."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 3 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
+                    <span class="nested-arabic">اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَاهْدِنِي، وَارْزُقْنِي</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, ampunilah aku, sayangilah aku, cukupilah kekuranganku, berilah aku petunjuk, dan berilah aku rezeki."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 4 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
+                    <span class="nested-arabic">رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْفَعْنِي، وَارْزُقْنِي، وَاهْدِنِي</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabbku ampunilah aku, sayangilah aku, cukupilah kekuranganku, tinggikanlah derajatku, berilah aku rezeki, dan berilah aku petunjuk."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 5 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4:</strong>
+                    <span class="nested-arabic">اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَعَافِنِي وَارْزُقْنِي</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, ampunilah aku, sayangilah aku, berilah aku petunjuk, selamatkanlah aku (dari berbagai penyakit/penderitaan), dan berilah aku rezeki."</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- [8] Tasyahud (Tahiyyat) Awal & Akhir -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Dibaca saat Tasyahud (Tahiyyat) Awal & Akhir</span>
+                <span class="ref-number">8</span>
+            </div>
+            <!-- Doa 1 (Bagian Utama - Versi Ibnu Mas'ud) --><span class="arabic">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Segala ucapan selamat, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan tasyahud versi lainnya</summary>
+                <div class="nested-box">
+                    <!-- Doa 2 (Versi Ibnu Abbas) -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 (Versi Ibnu Abbas - Riwayat Muslim):</strong>
+                    <span class="nested-arabic">التَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللهِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Segala ucapan selamat yang penuh berkah, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah, dan aku bersaksi bahwa Muhammad adalah utusan Allah."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Doa 3 (Versi Abu Musa Al-Asy'ari) -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 (Versi Abu Musa Al-Asy'ari - Riwayat Muslim):</strong><span class="nested-arabic">التَّحِيَّاتُ الطَّيِّبَاتُ الصَّلَوَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</span>
+  <span class="translation" style="direction: ltr; text-align: left;">"Segala ucapan selamat, kebaikan, dan shalawat adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."</span>
+                </div>
+            </details>
+        </div>
+
+        <!-- [9] Shalawat Nabi (Tasyahud Akhir) -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Dibaca pada Tasyahud Akhir setelah bacaan tasyahud</span>
+                <span class="ref-number">9</span>
+            </div>
+            <span class="arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Ya Allah, berilah shalawat kepada Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberi shalawat kepada Ibrahim dan keluarga Ibrahim, sesungguhnya Engkau Maha Terpuji lagi Maha Mulia. Dan berkahilah Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberkahi Ibrahim dan keluarga Ibrahim, sesungguhnya Engkau Maha Terpuji lagi Maha Mulia."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan shalawat lainnya</summary>
+                <div class="nested-box">
+                  <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
+                  <span class="nested-arabic">
+                    اللهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، وَبَارِكْ عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ فِي الْعَالَمِينَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</span>
+
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, limpahkanlah rahmat kepada Muhammad dan kepada keluarga Muhammad, dan berkahilah Muhammad serta keluarga Muhammad, sebagaimana Engkau telah memberkahi Ibrahim di seluruh alam. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia.".</span>
+                
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                
+                  <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 2 (Lebih ringkas):</strong>
+                    <span class="nested-arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, berilah shalawat (pujian) kepada Muhammad dan keluarga Muhammad." (Bacaan standar minimal shalawat yang sah dalam tasyahud akhir).</span>
+                </div>
+                </div>
+            </details>
+
+                <!-- [10] Doa Sebelum Salam -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Dibaca di akhir Tasyahud Akhir sebelum Salam</span>
+                <span class="ref-number">10</span>
+            </div>
+            <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Ya Allah, sesungguhnya aku berlindung kepada-Mu dari azab neraka Jahannam, dari azab kubur, dari fitnah kehidupan dan kematian, serta dari keburukan fitnah Al-Masih Ad-Dajjal."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Doa sebelum salam lainnya</summary>
+                <div class="nested-box">
+                    <!-- Pilihan 1 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 (Doa Abu Bakar):</strong>
+                    <span class="nested-arabic">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, sesungguhnya aku telah banyak menzhalimi diriku sendiri, dan tidak ada yang dapat mengampuni dosa-dosa kecuali Engkau. Maka ampunilah aku dengan ampunan dari sisi-Mu, dan sayangilah aku. Sesungguhnya Engkau Maha Pengampun lagi Maha Penyayang."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 2 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 :</strong>
+                    <span class="nested-arabic">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Dzat yang membolak-balikkan hati, teguhkanlah hatiku di atas agama-Mu."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 3 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3 :</strong>
+                    <span class="nested-arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, tolonglah aku untuk senantiasa mengingat-Mu (berdzikir), bersyukur kepada-Mu, dan beribadah dengan baik kepada-Mu."</span>
+                </div>
+            </details>
+            </div>
+            
+            <!-- [11] Pilihan Istiadzah / Ta'awudz -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Dibaca sebelum membaca Al-Fatihah pada rakaat pertama</span>
+                <span class="ref-number">11</span>
+            </div>
+            <span class="arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Aku berlindung kepada Allah dari godaan setan yang terkutuk."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Variasi Istiadzah / Ta'awudz lainnya</summary>
+                <div class="nested-box">
+                    <!-- Pilihan 1 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 :</strong>
+                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 2 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 :</strong>
+                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ؛ مِنْ هَمْزِهِ، وَنَفْخِهِ، وَنَفْثِهِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah dari godaan setan yang terkutuk; dari kegilaannya, kesombongannya, dan hembusan mantra jahatnya."</span>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 3 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3 :</strong>
+                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ؛ مِنْ هَمْزِهِ، وَنَفْخِهِ، وَنَفْثِهِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk; dari kegilaannya, kesombongannya, dan hembusan mantra jahatnya."</span>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 4 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4 :</strong>
+                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ إِنَّهُ هُوَ السَّمِيعُ الْعَلِيمُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk, sesungguhnya Dia-lah Yang Maha Mendengar lagi Maha Mengetahui."</span>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 5 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 5 :</strong>
+                    <span class="nested-arabic">أَسْتَعِيذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Aku memohon perlindungan kepada Allah dari godaan setan yang terkutuk."</span>
+                </div>
+            </details>
+        </div>
+        
+        <!-- [12] Pilihan Doa-Doa dalam Sujud -->
+        <div class="dzikir-card">
+          
+            <div class="info-row">
+                <span class="instruction">Disunnahkan dibaca saat posisi Sujud (setelah bacaan tasbih utama)</span>
+                <span class="ref-number">12</span>
+            </div>
+            <span class="arabic">اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ دِقَّهُ، وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ وَعَلَانِيَتَهُ وَسِرَّهُ</span>
+            
+            <details style="margin-bottom: -8px;">
+                <summary>Tampilkan Artinya</summary>
+                <span class="translation">"Ya Allah, ampunilah seluruh dosaku, yang kecil maupun yang besar, yang awal maupun yang akhir, yang terang-terangan maupun yang rahasia."</span>
+            </details>
+
+            <details>
+                <summary style="color: #2c7a7b; font-weight: bold;">✨ Pilihan doa dalam sujud lainnya</summary>
+                <div class="nested-box">
+                    <!-- Pilihan 1 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 :</strong>
+                    <span class="nested-arabic">اللَّهُمَّ اغْفِرْ لِي مَا أَسْرَرْتُ وَمَا أَعْلَنْتُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, ampunilah aku atas dosa yang aku sembunyikan dan yang aku tampakkan."</span>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 2 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 :</strong>
+                    <span class="nested-arabic">رَبِّ اغْفِرْ لِي مَا أَسْرَرْتُ وَمَا أَعْلَنْتُ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabbku, ampunilah aku atas dosa yang aku sembunyikan dan yang aku tampakkan."</span>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 3 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3 (Doa Memohon Cahaya):</strong>
+                    <span class="nested-arabic">اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا، وَفِي سَمْعِي نُورًا، وَفِي بَصَرِي نُورًا، وَعَنْ يَمِينِي نُورًا، وَعَنْ شِمَالِي نُورًا، وَأَمَامِي نُورًا، وَخَلْفِي نُورًا، وَفَوْقِي نُورًا، وَتَحْتِي نُورًا، وَاجْعَلْ لِي نُورًا</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, jadikanlah cahaya di hatiku, cahaya di pendengaranku, cahaya di penglihatanku, cahaya di sebelah kananku, cahaya di sebelah kiriku, cahaya di depanku, cahaya di belakangku, cahaya di atasku, cahaya di bawahku, dan limpahkanlah cahaya kepadaku."</span>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
+                    
+                    <!-- Pilihan 4 -->
+                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4 :</strong>
+                    <span class="nested-arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِرِضَاكَ مِنْ سَخَطِكَ، وَبِمُعَافَاتِكَ مِنْ عُقُوبَتِكَ، وَأَعُوذُ بِكَ مِنْكَ، لَا أُحْصِي ثَنَاءً عَلَيْكَ، أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ</span>
+                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, sesungguhnya aku berlindung dengan keridhaan-Mu dari kemurkaan-Mu, dengan keselamatan-Mu dari siksaan-Mu, dan aku berlindung kepada-Mu dari (siksaan)-Mu. Aku tidak mampu menghitung pujian atas-Mu, Engkau adalah sebagaimana Engkau memuji diri-Mu sendiri."</span>
+                </div>
+            </details>
+        </div>
+    </div>
+    <footer>
+        &copy; 2026 Kumpulan Bacaan Shalat - Sumber resmi: <a href="https://bekalislam.online/" target="_blank" rel="noopener noreferrer">Bekal Islam oleh Ustadz Firanda Andirja</a>
+    </footer>
+</div>
+</body>
+</html>
+
+
+
