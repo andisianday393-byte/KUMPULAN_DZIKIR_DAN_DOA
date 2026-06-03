@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hafalan - Kumpulan Doa & Dzikir</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Menggunakan variabel yang sama dengan index agar senada */
+        :root {
+            --bg-color: #f0f4f8;
+            --text-color: #2d3748;
+            --header-bg: #319795;
+            --header-text: white;
+            --card-bg: white;
+            --card-shadow: rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --header-bg: #2c7a7b;
+            --card-bg: #2d3748;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding-bottom: 80px;
+            transition: 0.3s;
+        }
+
+        /* Header Style */
+        .header {
+            background: var(--header-bg);
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        /* Container List */
+        .list-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .item-card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--header-bg);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2>Hafalan</h2>
+        <p>Mari menguatkan hafalan kita</p>
+    </div>
+
+    <div class="list-container">
+        <a href="#" class="item-card">
+            <div class="icon-box"><i class="fa-solid fa-book-quran"></i></div>
+            <div>
+                <strong>Surah Al-Fatihah</strong>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Progress: 100%</p>
+            </div>
+        </a>
+
+        <a href="#" class="item-card">
+            <div class="icon-box"><i class="fa-solid fa-star"></i></div>
+            <div>
+                <strong>Ayat Kursi</strong>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Progress: Belum dihafal</p>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Ambil theme dari localStorage agar sinkron dengan index
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    </script>
+</body>
+</html>

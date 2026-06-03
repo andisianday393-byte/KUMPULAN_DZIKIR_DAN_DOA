@@ -4,156 +4,507 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumpulan Doa - Kegiatan Sehari-hari</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600&display=swap');
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============================================
+   1. RESET & GLOBAL STYLES
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600&display=swap');
 
-        body {
-            font-family: 'Amiri', serif;
-            background-color: #f0f4f8;
-            color: #2d3748;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.8;
-            direction: rtl;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px double #319795;
-            padding-bottom: 20px;
-        }
+/* ============================================
+   2. CSS VARIABLES (THEMING)
+   ============================================ */
+/* Light Mode (default) */
+:root {
+    --bg-color: #f0f4f8;
+    --text-color: #2d3748;
+    --header-bg: #319795;
+    --header-text: white;
+    --menu-bg: white;
+    --menu-text: #2d3748;
+    --menu-hover-border: #319795;
+    --menu-shadow: rgba(0,0,0,0.05);
+    --menu-hover-shadow: rgba(0,0,0,0.1);
+    --icon-bg: #e6fffa;
+    --icon-color: #319795;
+    --footer-text: #a0aec0;
+    --toggle-bg: #e2e8f0;
+    --toggle-circle: white;
+}
 
-        h1 {
-            color: #2c7a7b;
-            font-size: 2.5rem;
-            margin: 0;
-            direction: ltr;
-        }
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --header-bg: #2c7a7b;
+    --header-text: white;
+    --menu-bg: #2d3748;
+    --menu-text: #e2e8f0;
+    --menu-hover-border: #4fd1c5;
+    --menu-shadow: rgba(0,0,0,0.3);
+    --menu-hover-shadow: rgba(0,0,0,0.5);
+    --icon-bg: #2c7a7b;
+    --icon-color: #4fd1c5;
+    --footer-text: #718096;
+    --toggle-bg: #4fd1c5;
+    --toggle-circle: #1a202c;
+}
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #4a5568;
-            direction: ltr;
-        }
+/* ============================================
+   3. BODY STYLES
+   ============================================ */
+body {
+    font-family: 'Amiri', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.8;
+    direction: rtl;
+}
 
-        .dzikir-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-right: 6px solid #319795; /* Pembatas warna hijau dipertahankan */
-            margin-bottom: 25px;
-            padding: 25px;
-            border-radius: 12px;
-            position: relative;
-        }
+/* ============================================
+   4. HEADER FIXED (FREEZE)
+   ============================================ */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 60px;
+    background: var(--header-bg);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    direction: ltr;
+}
 
-        .arabic {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a202c;
-            display: block;
-            margin-bottom: 15px;
-            line-height: 2.2;
-        }
+/* ============================================
+   5. TOP BAR (SEARCH + BUTTONS)
+   ============================================ */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 40px;
+}
 
-        .doa-title {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            color: #2c7a7b;
-            margin-bottom: 10px;
-            direction: ltr;
-            text-align: left;
-        }
+/* Back Button (jika ada di HTML nanti) */
+.back-container {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        details {
-            direction: ltr;
-            margin-top: 10px;
-            font-family: 'Inter', sans-serif;
-        }
+.back-button {
+    width: 14px;
+    height: 14px;
+    border-left: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    transform: rotate(45deg);
+    border-radius: 2px;
+}
 
-        summary {
-            cursor: pointer;
-            color: #319795;
-            font-weight: 600;
-            font-size: 0.9rem;
-            outline: none;
-            user-select: none;
-            margin-bottom: 8px;
-        }
+/* ============================================
+   6. SEARCH BOX
+   ============================================ */
+.search-box {
+    flex: 1;
+    max-width: none;
+    position: relative;
+}
 
-        summary:hover {
-            color: #2c7a7b;
-            text-decoration: underline;
-        }
+.search-box input {
+    width: 100%;
+    height: 38px;
+    border: none;
+    outline: none;
+    border-radius: 999px;
+    padding: 0 40px 0 15px;
+    font-size: 14px;
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+}
 
-        .translation {
-            display: block;
-            padding: 10px 15px;
-            background: #f7fafc;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            color: #4a5568;
-            line-height: 1.6;
-            font-style: italic;
-        }
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: #319795;
+    font-size: 16px;
+    pointer-events: none;
+}
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            color: #718096;
-            font-size: 0.9rem;
-            border-top: 1px solid #e2e8f0;
-            direction: ltr;
-        }
+/* ============================================
+   7. BUTTONS (THEME TOGGLE & CONTROL)
+   ============================================ */
+.theme-toggle,
+.control-btn {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #319795;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 18px;
+}
 
-        /* OPTIMASI TAMPILAN FULL LAYAR UNTUK HP */
-        @media (max-width: 600px) {
-            body {
-                padding: 0; /* Menghilangkan sisa space luar di screen HP */
-                background-color: #ffffff; /* Mengubah background dasar menjadi putih bersih */
-            }
-            .container { 
-                padding: 15px 10px; /* Memperkecil padding samping agar teks melebar maksimal */
-                border-radius: 0; /* Menghilangkan sudut melengkung container di HP */
-                box-shadow: none; /* Menghilangkan shadow tepi container */
-            }
-            .dzikir-card {
-                padding: 15px; /* Memaksimalkan ruang di dalam kartu doa */
-                margin-bottom: 15px;
-                border-radius: 8px; /* Kelengkungan sudut yang disesuaikan untuk layar kecil */
-            }
-            .arabic { 
-                font-size: 1.6rem; /* Ukuran font arab disesuaikan agar pas dan nyaman dibaca */
-                line-height: 2;
-            }
-            h1 { 
-                font-size: 1.8rem; 
-            }
-            .subtitle {
-                font-size: 1rem;
-            }
-        }
-    </style>
+.theme-toggle:hover,
+.control-btn:hover {
+    transform: scale(1.05);
+}
+
+.toggle-icon {
+    font-size: 18px;
+}
+
+/* ============================================
+   8. CONTAINER UTAMA
+   ============================================ */
+.container {
+    max-width: 850px;
+    margin: 50px auto 20px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* ============================================
+   9. HEADER HALAMAN (JUDUL)
+   ============================================ */
+header {
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 3px double #319795;
+    padding-bottom: 5px;
+}
+
+h1 {
+    color: #319795;
+    font-size: 2.5rem;
+    margin: 0;
+    direction: ltr;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #4a5568;
+    direction: ltr;
+}
+
+/* ============================================
+   10. DZIKIR CARD
+   ============================================ */
+.dzikir-card {
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-right: 6px solid #319795;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.doa-title{
+    display: block;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: -10px 0 5px;
+    line-height: 1.4;
+}
+
+.arabic {
+    direction: rtl;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #1a202c;
+    display: block;
+    margin-bottom: 15px;
+    line-height: 2.2;
+}
+
+/* ============================================
+   11. TRANSLATION (DETAILS/SUMMARY)
+   ============================================ */
+details {
+    direction: ltr;
+    margin-top: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+summary {
+    cursor: pointer;
+    color: #319795;
+    font-weight: 600;
+    font-size: 0.9rem;
+    outline: none;
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+summary:hover {
+    color: #2c7a7b;
+    text-decoration: underline;
+}
+
+.translation {
+    display: block;
+    padding: 10px 15px;
+    background: #f7fafc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* ============================================
+   12. INFO ROW (INSTRUKSI & REFERENCE)
+   ============================================ */
+.info-row {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px dashed #e2e8f0;
+}
+
+.instruction {
+    color: #c53030;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.ref-number {
+    background: #319795;
+    color: white;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-family: sans-serif;
+}
+
+/* ============================================
+   13. FOOTER
+   ============================================ */
+footer {
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 20px;
+    color: #718096;
+    font-size: 0.9rem;
+    border-top: 1px solid #e2e8f0;
+    direction: ltr;
+}
+
+/* ============================================
+   14. FONT SLIDER (POPUP)
+   ============================================ */
+.font-slider-box {
+    position: absolute;
+    top: 65px;
+    right: 60px;
+
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+    display: none;
+    align-items: center;
+    gap: 10px;
+
+    z-index: 9999;
+}
+
+.font-slider-box input[type="range"] {
+    width: 120px;
+    accent-color: #319795;
+}
+
+.font-slider-box span {
+    font-size: 12px;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* ============================================
+   15. DARK MODE OVERRIDES
+   ============================================ */
+[data-theme="dark"] body {
+    background: #1a202c;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .container {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .dzikir-card {
+    background: #1f2937;
+    border-color: #2c7a7b;
+}
+
+[data-theme="dark"] .arabic {
+    color: #fff;
+}
+
+[data-theme="dark"] .translation {
+    background: #374151;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] summary {
+    color: #4fd1c5;
+}
+
+[data-theme="dark"] .top-header {
+    background: #2c7a7b;
+}
+
+[data-theme="dark"] .search-box input {
+    background: #1f2937;
+    color: #fff;
+}
+
+[data-theme="dark"] .search-box input::placeholder {
+    color: rgba(255,255,255,.7);
+}
+
+[data-theme="dark"] .theme-toggle,
+[data-theme="dark"] .control-btn {
+    background: #1f2937;
+    color: #4fd1c5;
+}
+
+[data-theme="dark"] .font-slider-box {
+    background: #2d3748;
+    color: #fff;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] p {
+    color: #4fd1c5;
+}
+
+[data-theme="dark"] .doa-title {
+    color: #4fd1c5;
+}
+
+/* ============================================
+   16. RESPONSIVE MOBILE (HP)
+   ============================================ */
+@media (max-width: 600px) {
+    body {
+        padding: 0;
+        background-color: #ffffff;
+    }
+
+    .container {
+        padding: 15px 10px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .dzikir-card {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    .arabic {
+        font-size: 1.6rem;
+        line-height: 2;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+}
+</style>
 </head>
 <body>
-<div class="container">
-    <div style="text-align: left; direction: ltr; margin-bottom: 20px; padding: 0 5px;">
-        <a href="./index.html" style="text-decoration: none; background: #319795; color: white; padding: 8px 15px; border-radius: 10px; font-family: sans-serif; font-size: 0.9rem; font-weight: bold;">⬅ Beranda</a>
+    <div class="top-header">
+    <div class="back-container" onclick="goBack()">
+        <div class="back-button"></div>
     </div>
 
+    <div class="top-bar">
+        <div class="search-box">
+            <input type="text" placeholder="Cari doa atau dzikir">
+            <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle" title="Dark Mode">
+            <i class="fa-solid fa-sun toggle-icon"></i>
+        </button>
+
+        <div id="fontSliderBox" class="font-slider-box">
+            <input type="range" id="fontSlider" min="1.2" max="3.2" step="0.1" value="1.8">
+            <span id="fontValue">1.8</span>
+        </div>
+
+        <button id="fontSizeBtn" class="control-btn" title="Ukuran Teks">
+            <i class="fa-solid fa-maximize"></i>
+        </button>
+
+        <button id="boldBtn" class="control-btn" title="Bold Arab">
+            <b style="font-size: 20px;">B</b>
+        </button>
+    </div>
+</div>
+<div class="container">
     <header>
-        <h1>Kunpulan Doa</h1>
+        <h1>Kumpulan Doa</h1>
         <p class="subtitle">Adab & Kegiatan Harian Muslim</p>
     </header>
 
@@ -161,7 +512,8 @@
         <!-- Doa Bangun Tidur -->
                 <!-- Doa untuk Kedua Orang Tua -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa untuk Kedua Orang Tua</span>
+          <div class="info-row">             <span class="doa-title">Doa untuk Kedua Orang Tua</span>
+            </div>
             <span class="arabic">رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَارْحَمْهُمَا كَمَا رَبَّيَانِيْ صَغِيْرًا</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
@@ -170,8 +522,8 @@
         </div>
                 <!-- Doa Sapu Jagat (QS. Al-Baqarah: 201) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Sapu Jagat (Mohon Kebaikan Dunia & Akhirat)</span>
-            <span class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</span>
+            <div class="info-row">             <span class="doa-title">Doa Sapu Jagat (Mohon Kebaikan Dunia & Akhirat)</span>
+            </div>             <span class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan lindungilah kami dari azab neraka."</span>
@@ -179,8 +531,8 @@
         </div>
         <!-- Doa Selamat / Keselamatan Dunia Akhirat -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Keselamatan Dunia dan Akhirat (Doa Selamat)</span>
-            <span class="arabic">اللَّهُمَّ إِنَّا نَسْأَلُكَ سَلَامَةً فِي الدِّينِ، وَعَافِيَةً فِي الْجَسَدِ، وَزِيَادَةً فِي الْعِلْمِ، وَبَرَكَةً فِي الرِّزْقِ، وَتَوْبَةً قَبْلَ الْمَوْتِ، وَرَحْمَةً عِنْدَ الْمَوْتِ، وَمَغْفِرَةً بَعْدَ الْمَوْتِ، اللَّهُمَّ هَوِّنْ عَلَيْنَا فِي سَكَرَاتِ الْمَوْتِ، وَالنَّجَاةَ مِنَ النَّارِ، وَالْعَفْوَعِنْدَ الْحِسَابِ</span>
+            <div class="info-row">             <span class="doa-title">Doa Keselamatan Dunia dan Akhirat (Doa Selamat)</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنَّا نَسْأَلُكَ سَلَامَةً فِي الدِّينِ، وَعَافِيَةً فِي الْجَسَدِ، وَزِيَادَةً فِي الْعِلْمِ، وَبَرَكَةً فِي الرِّزْقِ، وَتَوْبَةً قَبْلَ الْمَوْتِ، وَرَحْمَةً عِنْدَ الْمَوْتِ، وَمَغْفِرَةً بَعْدَ الْمَوْتِ، اللَّهُمَّ هَوِّنْ عَلَيْنَا فِي سَكَرَاتِ الْمَوْتِ، وَالنَّجَاةَ مِنَ النَّارِ، وَالْعَفْوَعِنْدَ الْحِسَابِ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya kami memohon kepada-Mu keselamatan dalam agama, kesehatan pada tubuh, bertambahnya ilmu, keberkahan pada rezeki, taubat sebelum mati, rahmat ketika mati, dan ampunan setelah mati. Ya Allah, mudahkanlah kami dalam sakaratul maut, selamatkanlah kami dari api neraka, dan berilah kami kemaafan ketika hari perhitungan (hisab)."</span>
@@ -188,8 +540,8 @@
         </div>
                 <!-- Doa Mohon Keturunan Saleh (QS. As-Saffat: 100) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Keturunan yang Saleh (Nabi Ibrahim)</span>
-            <span class="arabic">رَبِّ هَبْ لِي مِنَ الصَّالِحِينَ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Keturunan yang Saleh (Nabi Ibrahim)</span>
+            </div>             <span class="arabic">رَبِّ هَبْ لِي مِنَ الصَّالِحِينَ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhanku, anugerahkanlah kepadaku (seorang anak) yang termasuk orang-orang yang saleh."</span>
@@ -197,8 +549,8 @@
         </div>
                 <!-- Doa Mohon Keluarga Sakinah & Keturunan Saleh (QS. Al-Furqan: 74) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Kesalehan Keluarga & Keturunan (Qurrota A'yun)</span>
-            <span class="arabic">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</span>
+            <div class="info-row">             <span class="doa-title">Doa Kesalehan Keluarga & Keturunan (Qurrota A'yun)</span>
+            </div>             <span class="arabic">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhan kami, anugerahkanlah kepada kami pasangan kami dan keturunan kami sebagai penyejuk hati (kami), dan jadikanlah kami pemimpin bagi orang-orang yang bertakwa."</span>
@@ -207,8 +559,8 @@
 
         <!-- Doa Perlindungan dari Syirik & Riya' -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Berlindung dari Sifat Syirik dan Riya'</span>
-            <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُشْرِكَ بِكَ وَأَنَا أَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ</span>
+            <div class="info-row">             <span class="doa-title">Doa Berlindung dari Sifat Syirik dan Riya'</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُشْرِكَ بِكَ وَأَنَا أَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya aku berlindung kepada-Mu dari mempersekutukan-Mu dengan sesuatu yang aku ketahui, dan aku memohon ampunan kepada-Mu dari apa yang tidak aku ketahui."</span>
@@ -217,8 +569,8 @@
         
         <!-- Doa Pembuka Mustajab (Ismul A'zham) -->
         <div class="dzikir-card">
-            <span class="doa-title">Pembuka Doa dengan Nama Agung Allah (Ismul A'zham)</span>
-            <span class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنَّ لَكَ الْحَمْدَ لَا إِلَهَ إِلَّا أَنْتَ الْمَنَّانُ بَدِيعُ السَّمَاوَاتِ وَالْأَرْضِ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ يَا حَيُّ يَا قَيُّومُ</span>
+            <div class="info-row">             <span class="doa-title">Pembuka Doa dengan Nama Agung Allah (Ismul A'zham)</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنَّ لَكَ الْحَمْدَ لَا إِلَهَ إِلَّا أَنْتَ الْمَنَّانُ بَدِيعُ السَّمَاوَاتِ وَالْأَرْضِ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ يَا حَيُّ يَا قَيُّومُ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya aku memohon kepada-Mu karena segala puji hanya milik-Mu, tidak ada sesembahan yang berhak disembah selain Engkau, Yang Maha Pemberi Karunia, Pencipta langit dan bumi, Wahai Dzat Yang Memiliki Keagungan dan Kemuliaan, Wahai Dzat Yang Maha Hidup lagi senantiasa mengurusi makhluk-Nya."</span>
@@ -226,8 +578,8 @@
         </div>
         <!-- Doa Taubat Nabi Adam (QS. Al-A'raf: 23) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Taubat & Pengakuan Dosa (Nabi Adam)</span>
-            <span class="arabic">رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</span>
+            <div class="info-row">             <span class="doa-title">Doa Taubat & Pengakuan Dosa (Nabi Adam)</span>
+            </div>             <span class="arabic">رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhan kami, kami telah menzalimi diri kami sendiri. Jika Engkau tidak mengampuni kami dan memberi rahmat kepada kami, niscaya kami termasuk orang-orang yang rugi."</span>
@@ -235,8 +587,8 @@
         </div>
         <!-- Doa Keteguhan Iman (QS. Ali 'Imran: 8) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Keteguhan Iman & Hidayah (QS. Ali 'Imran: 8)</span>
-            <span class="arabic">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً ۚ إِنَّكَ أَنْتَ الْوَهَّابُ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Keteguhan Iman & Hidayah (QS. Ali 'Imran: 8)</span>
+            </div>             <span class="arabic">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً ۚ إِنَّكَ أَنْتَ الْوَهَّابُ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhan kami, janganlah Engkau jadikan hati kami condong kepada kesesatan sesudah Engkau beri petunjuk kepada kami, dan karuniakanlah kepada kami rahmat dari sisi-Mu; karena sesungguhnya Engkau-lah Maha Pemberi (karunia)."</span>
@@ -244,8 +596,8 @@
         </div>
         <!-- Doa Berlindung dari Api Neraka -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Perlindungan dari Api Neraka</span>
-            <span class="arabic">اللَّهُمَّ أَجِرْنَا مِنَ النَّارِ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Perlindungan dari Api Neraka</span>
+            </div>             <span class="arabic">اللَّهُمَّ أَجِرْنَا مِنَ النَّارِ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, lindungilah kami dari siksa api neraka." (Dibaca 7x setelah Shubuh & Maghrib)</span>
@@ -254,8 +606,8 @@
         
         <!-- Doa Berlindung dari Kesedihan & Hutang -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Perlindungan dari Kesedihan, Kemalasan, & Hutang</span>
-            <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ</span>
+            <div class="info-row">             <span class="doa-title">Doa Perlindungan dari Kesedihan, Kemalasan, & Hutang</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya aku berlindung kepada-Mu dari keluh kesah dan kesedihan, aku berlindung kepada-Mu dari kelemahan dan kemalasan, aku berlindung kepada-Mu dari sifat penakut dan kikir, dan aku berlindung kepada-Mu dari lilitan hutang dan kesewenang-wenangan manusia." (Dibaca Pagi & Petang)</span>
@@ -263,8 +615,8 @@
         </div>
         <!-- Doa Mohon Cukup Rezeki Halal & Bebas Hutang -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Cukup Rezeki Halal & Bebas Hutang</span>
-            <span class="arabic">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Cukup Rezeki Halal & Bebas Hutang</span>
+            </div>             <span class="arabic">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, cukupkanlah aku dengan rezeki-Mu yang halal agar terhindar dari yang haram, dan kayakanlah aku dengan karunia-Mu sehingga aku tidak meminta kepada selain-Mu."</span>
@@ -272,8 +624,8 @@
         </div>
         <!-- Doa Mohon Rezeki, Hati Khusyuk & Lisan Dzikir -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Mohon Rezeki Luas, Hati Khusyuk & Lisan Dzikir</span>
-            <span class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ رِزْقًا وَاسِعًا، وَقَلْبًا خَاشِعًا، وَلِسَانًا ذَاكِرًا، وَعِلْمًا نَافِعًا، وَعَمَلًا مُتَقَبَّلًا</span>
+            <div class="info-row">             <span class="doa-title">Doa Mohon Rezeki Luas, Hati Khusyuk & Lisan Dzikir</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ رِزْقًا وَاسِعًا، وَقَلْبًا خَاشِعًا، وَلِسَانًا ذَاكِرًا، وَعِلْمًا نَافِعًا، وَعَمَلًا مُتَقَبَّلًا</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya aku memohon kepada-Mu rezeki yang luas, hati yang khusyuk, lisan yang senantiasa berdzikir, ilmu yang bermanfaat, dan amal ibadah yang diterima."</span>
@@ -281,8 +633,8 @@
         </div>
         <!-- Doa Mohon Bersyukur & Amal Saleh (QS. An-Naml: 19) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Rasa Syukur & Amal Saleh (QS. An-Naml: 19)</span>
-            <span class="arabic">رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَى وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ وَأَدْخِلْنِي بِرَحْمَتِكَ فِي عِبَادِكَ الصَّالِحِينَ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Rasa Syukur & Amal Saleh (QS. An-Naml: 19)</span>
+            </div>             <span class="arabic">رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَى وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ وَأَدْخِلْنِي بِرَحْمَتِكَ فِي عِبَادِكَ الصَّالِحِينَ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhanku, anugerahkanlah aku ilham untuk tetap menyukuri nikmat-Mu yang telah Engkau anugerahkan kepadaku dan kepada kedua orang tuaku dan agar aku mengerjakan kebajikan yang Engkau ridhai; dan masukkanlah aku dengan rahmat-Mu ke dalam golongan hamba-hamba-Mu yang saleh."</span>
@@ -290,8 +642,8 @@
         </div>
         <!-- Doa Kelapangan Hati & Kemudahan Urusan (QS. Thaha: 25-28) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Kelapangan Hati & Kemudahan Urusan (Nabi Musa)</span>
-            <span class="arabic">رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي يَفْقَهُوا قَوْلِي</span>
+            <div class="info-row">             <span class="doa-title">Doa Kelapangan Hati & Kemudahan Urusan (Nabi Musa)</span>
+            </div>             <span class="arabic">رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي يَفْقَهُوا قَوْلِي</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhanku, lapangkanlah dadaku, dan mudahkanlah untukku urusanku, dan lepaskanlah kekakuan dari lidahku, agar mereka mengerti perkataanku."</span>
@@ -299,8 +651,8 @@
         </div>
         <!-- Doa Berlindung dari Gangguan Syaitan (QS. Al-Mu'minun: 97-98) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Perlindungan dari Gangguan Syaitan</span>
-            <span class="arabic">رَبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ الشَّيَاطِينِ وَأَعُوذُ بِكَ رَبِّ أَنْ يَحْضُرُونِ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Perlindungan dari Gangguan Syaitan</span>
+            </div>             <span class="arabic">رَبِّ أَعُوذُ بِكَ مِنْ هَمَزَاتِ الشَّيَاطِينِ وَأَعُوذُ بِكَ رَبِّ أَنْ يَحْضُرُونِ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Tuhanku, aku berlindung kepada-Mu dari bisikan-bisikan setan, dan aku berlindung (pula) kepada-Mu ya Tuhanku, agar mereka tidak hadir kepadaku."</span>
@@ -308,8 +660,8 @@
         </div>
         <!-- Doa Mohon Ampunan Sebelum Salam (Abu Bakar) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Mohon Ampunan Sebelum Salam (Tasyahud Akhir)</span>
-            <span class="arabic">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</span>
+            <div class="info-row">             <span class="doa-title">Doa Mohon Ampunan Sebelum Salam (Tasyahud Akhir)</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya aku telah menzalimi diriku sendiri dengan kezaliman yang banyak, dan tidak ada yang bisa mengampuni dosa-dosa melainkan Engkau. Maka ampunilah aku dengan ampunan dari sisi-Mu, dan rahmatilah aku. Sesungguhnya Engkau Maha Pengampun lagi Maha Penyayang."</span>
@@ -317,8 +669,8 @@
         </div>
         <!-- Doa Perlindungan dari 4 Fitnah (Tasyahud Akhir) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Berlindung dari 4 Fitnah Besar (Sebelum Salam)</span>
-            <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</span>
+            <div class="info-row">             <span class="doa-title">Doa Berlindung dari 4 Fitnah Besar (Sebelum Salam)</span>
+            </div>             <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, sesungguhnya aku berlindung kepada-Mu dari azab neraka Jahannam, dari azab kubur, dari fitnah kehidupan dan kematian, serta dari keburukan fitnah Al-Masih Ad-Dajjal."</span>
@@ -326,8 +678,8 @@
         </div>
         <!-- Doa Keteguhan Hati (Yaa Muqollibal Qulub) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Memohon Keteguhan Hati di Atas Agama</span>
-            <span class="arabic">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</span>
+            <div class="info-row">             <span class="doa-title">Doa Memohon Keteguhan Hati di Atas Agama</span>
+            </div>             <span class="arabic">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Wahai Dzat yang membolak-balikkan hati, teguhkanlah hatiku di atas agama-Mu."</span>
@@ -335,8 +687,8 @@
         </div>
         <!-- Doa Mohon Pertolongan dalam Beribadah (Wasiat Nabi ke Mu'adz) -->
         <div class="dzikir-card">
-            <span class="doa-title">Doa Mohon Kelancaran Dzikir, Syukur & Ibadah</span>
-            <span class="arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</span>
+            <div class="info-row">             <span class="doa-title">Doa Mohon Kelancaran Dzikir, Syukur & Ibadah</span>
+            </div>             <span class="arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</span>
             <details>
                 <summary>Tampilkan Artinya</summary>
                 <span class="translation">"Ya Allah, tolonglah aku untuk senantiasa mengingat-Mu (berdzikir), bersyukur kepada-Mu, dan beribadah dengan baik kepada-Mu."</span>
@@ -349,5 +701,99 @@
         &copy; 2026 Kumpulan Doa Sehari-hari - Sumber: Bekal Islam
     </footer>
 </div>
+<script>
+function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "/";
+    }
+}
+
+let arabSize = 1.4;
+let sizeState = false;
+let sliderVisible = false;
+let boldState = false;
+
+const fontBtn = document.getElementById("fontSizeBtn");
+const sliderBox = document.getElementById("fontSliderBox");
+const slider = document.getElementById("fontSlider");
+const fontValue = document.getElementById("fontValue");
+const boldBtn = document.getElementById("boldBtn");
+const toggleButton = document.getElementById("themeToggle");
+const htmlElement = document.documentElement;
+
+function initArabFontSize() {
+    if (slider) {
+        slider.value = arabSize;
+        document.querySelectorAll(".arabic").forEach(el => {
+            el.style.fontSize = arabSize + "rem";
+        });
+        if (fontValue) fontValue.textContent = arabSize;
+    }
+}
+
+if (fontBtn && sliderBox) {
+    fontBtn.addEventListener("click", () => {
+        sliderVisible = !sliderVisible;
+        sliderBox.style.display = sliderVisible ? "flex" : "none";
+    });
+}
+
+if (slider) {
+    slider.addEventListener("input", () => {
+        const size = slider.value;
+        document.querySelectorAll(".arabic").forEach(el => {
+            el.style.fontSize = size + "rem";
+        });
+        if (fontValue) fontValue.textContent = size;
+        arabSize = parseFloat(size);
+        sizeState = true;
+    });
+}
+
+if (boldBtn) {
+    boldBtn.addEventListener("click", () => {
+        const arabics = document.querySelectorAll(".arabic");
+        boldState = !boldState;
+        arabics.forEach(el => {
+            el.style.fontWeight = boldState ? "bold" : "normal";
+        });
+    });
+}
+
+const savedTheme = localStorage.getItem("theme") || "light";
+htmlElement.setAttribute("data-theme", savedTheme);
+updateThemeIcon(savedTheme);
+
+if (toggleButton) {
+    toggleButton.addEventListener("click", () => {
+        const current = htmlElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        htmlElement.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        updateThemeIcon(next);
+    });
+}
+
+function updateThemeIcon(theme) {
+    const icon = document.querySelector(".toggle-icon");
+    if (icon) {
+        icon.className = theme === "dark"
+            ? "fa-solid fa-moon toggle-icon"
+            : "fa-solid fa-sun toggle-icon";
+    }
+}
+
+function init() {
+    initArabFontSize();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
+</script>
 </body>
 </html>

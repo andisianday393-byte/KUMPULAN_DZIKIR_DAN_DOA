@@ -4,145 +4,936 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumpulan Doa & Dzikir - Beranda</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#319795">
+<link rel="apple-touch-icon" href="icon-192.png">
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f4f8;
-            color: #2d3748;
-            margin: 0;
-            padding: 20px;
-        }
+    <style>/* ============================================
+   1. RESET & GLOBAL STYLES
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        header {
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #319795;
-            color: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(49, 151, 149, 0.2);
-        }
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;             /* ✅ Hapus margin */
+    padding: 0;            /* ✅ Hapus padding */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        h1 { margin: 0; font-size: 1.8rem; }
+/* ============================================
+   2. CSS VARIABLES (THEMING)
+   ============================================ */
+/* Light Mode (default) */
+:root {
+    --bg-color: #f0f4f8;
+    --text-color: #2d3748;
+    --header-bg: #319795;
+    --header-text: white;
+    --menu-bg: white;
+    --menu-text: #2d3748;
+    --menu-hover-border: #319795;
+    --menu-shadow: rgba(0,0,0,0.05);
+    --menu-hover-shadow: rgba(0,0,0,0.1);
+    --icon-bg: #e6fffa;
+    --icon-color: #319795;
+    --footer-text: #a0aec0;
+    --toggle-bg: #e2e8f0;
+    --toggle-circle: white;
+}
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --header-bg: #2c7a7b;
+    --header-text: white;
+    --menu-bg: #2d3748;
+    --menu-text: #e2e8f0;
+    --menu-hover-border: #4fd1c5;
+    --menu-shadow: rgba(0,0,0,0.3);
+    --menu-hover-shadow: rgba(0,0,0,0.5);
+    --icon-bg: #2c7a7b;
+    --icon-color: #4fd1c5;
+    --footer-text: #718096;
+    --toggle-bg: #4fd1c5;
+    --toggle-circle: #1a202c;
+}
 
-        .menu-item {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #2d3748;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-3px);
-            border-color: #319795;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        }
-        .menu-item {
+/* ============================================
+   3. HEADER & TOP BAR
+   ============================================ */
+.header-wrapper {
+    background: var(--header-bg);
+    padding: 8px 30px;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 99999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+.top-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Mendorong tanda panah ke kanan, teks ke kiri */
-    padding: 10px; /* Jarak aman di dalam menu */
+    gap: 12px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1px auto;
+}
+
+.search-box {
+    flex: 1;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 999px;
+    padding: 0 55px 0 20px;
+    background: #fff;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+[data-theme="dark"] .search-box input {
+    background: #1a202c;
+    color: #fff;
+    border: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .search-box input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+[data-theme="dark"] .search-icon {
+    color: #4fd1c5;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #319795;
+    pointer-events: none;
+}
+
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: #1a202c;
+    color: #4fd1c5;
+    border: 0px solid #4fd1c5;
+}
+
+.toggle-icon {
+    font-size: 18px;
+    transition: transform .3s ease;
+}
+
+/* ============================================
+   4. HERO SECTION (KUBAH)
+   ============================================ */
+.hero-text {
+    position: relative;
+    text-align: center;
+    color: var(--header-text);
+
+    margin: 55px auto 10px; /* tambahkan jarak atas */
+
+    padding: 30px;
+    background: var(--header-bg);
+    border-radius: 15px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.hero-text h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 600;
+}
+
+.hero-text p {
+    margin: 5px 0 0;
+    color: var(--header-text);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   5. PRAYER BOX (JADWAL SHALAT)
+   ============================================ */
+/* 1. Container yang lebih ramping */
+.prayer-box {
+    background: var(--menu-bg);
+    border-radius: 16px;
+    padding: 8px 12px; /* Dibuat lebih tipis */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin: 5px auto;
+    max-width: 420px; /* Lebar dibatasi agar tidak terlalu lebar di layar besar */
+    width: 90%;
+}
+
+/* 2. Header (Waktu & Info) */
+.prayer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.06);
+    padding-bottom: 8px;
+}
+
+#currentTime {
+    font-size: 1.1rem; /* Sedikit diperkecil */
+    font-weight: 700;
+    color: var(--header-bg);
+    margin-right: 10px;
+}
+
+#nextPrayer {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #718096;
+    margin-left: 10px;
+}
+
+#locationName {
+    font-size: 0.65rem;
+    color: #a0aec0;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+/* 3. Grid Waktu yang jauh lebih ringkas */
+.prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px; /* Celah minimal */
+}
+
+.prayer-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+    border-right: 2px solid rgba(0,0,0,0.06);
+}
+.prayer-grid div:last-child {
+    border-right: none;
+}
+.prayer-grid b {
+    font-size: 0.55rem; /* Font label diperkecil */
+    text-transform: uppercase;
+    color: #a0aec0;
+    margin-bottom: 1px;
+}
+
+.prayer-grid span {
+    font-size: 0.68rem; /* Font waktu diperkecil agar tidak berdesakan */
+    font-weight: 600;
+    color: var(--text-color);
+    font-variant-numeric: tabular-nums; /* Menjaga angka tetap rapi */
+}
+
+/* Dark Mode - Prayer Box */
+[data-theme="dark"] .prayer-box {
+    background: #2d3748;
+    border: 0px solid #4fd1c5;
+}
+
+[data-theme="dark"] .prayer-header {
+    background: #1a202c;
+    border-bottom: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .prayer-grid div {
+    border-right: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .prayer-grid div:last-child {
+    border-right: none;
+}
+
+[data-theme="dark"] #nextPrayer,
+[data-theme="dark"] #locationName,
+[data-theme="dark"] #currentTime {
+    color: #4fd1c5;
+}
+
+[data-theme="dark"] #locationName {
+    opacity: 0.8;
+}
+
+/* ============================================
+   6. MENU GRID (PILIHAN DOA & DZIKIR)
+   ============================================ */
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: -5px auto 0;
+}
+
+.menu-item {
     text-decoration: none;
-    color: #333; /* Warna teks sesuai kebutuhan */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
-.menu-content {
+.menu-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--header-bg);
     display: flex;
     align-items: center;
-    gap: -30px; /* Memberikan jarak 10px antara gambar dan teks */
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    transition: all .2s ease;
 }
 
-.menu-content img {
-    height: 25px;
-    width: auto;
+.menu-icon:hover {
+    border-color: var(--menu-hover-border);
+    box-shadow: 0 6px 12px var(--menu-hover-shadow);
+    transform: translateY(-2px);
 }
 
-        .icon {
-            font-size: 1.5rem;
-            background: #e6fffa;
-            padding: 10px;
-            border-radius: 12px;
-            color: #319795;
-        }
+.menu-item:hover .menu-icon {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(49, 151, 149, 0.5);
+}
 
-        footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #a0aec0;
-        }
+.menu-text {
+    color: var(--menu-text);
+    font-weight: 600;
+    font-size: 0.65rem;
+    text-align: center;
+}
+.hadith-slider{
+    width:90%;
+    max-width:420px;
+    margin:20px auto 90px;
+    overflow:hidden;
+}
+
+.hadith-track{
+    display:flex;
+    transition:transform .5s ease;
+}
+
+.hadith-card{
+    min-width:100%;
+    padding:20px;
+    border-radius:20px;
+    background:linear-gradient(
+        135deg,
+        #319795,
+        #2c7a7b
+    );
+    color:white;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.hadith-badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.2);
+    font-size:.7rem;
+    margin-bottom:10px;
+}
+
+.hadith-card h3{
+    font-size:.9rem;
+    margin-bottom:10px;
+}
+
+.hadith-card p{
+    font-size:.85rem;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.hadith-card span{
+    font-size:.75rem;
+    opacity:.9;
+}
+
+[data-theme="dark"] .hadith-card{
+    background:linear-gradient(
+        135deg,
+        #234e52,
+        #1a202c
+    );
+}
+/* ============================================
+   7. FOOTER MENU (NAVIGASI BAWAH)
+   ============================================ */
+.footer-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 7px 10px 8px;
+    box-sizing: border-box;
+    z-index: 1000;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,.15);
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 7px;
+    font-weight: 600;
+    margin-bottom: -5px;
+}
+
+.footer-menu i {
+    font-size: 18px;
+}
+
+[data-theme="dark"] .footer-menu {
+    background: var(--header-bg);
+}
     </style>
 </head>
 <body>
+<!-- ============================================
+     1. HEADER WRAPPER (JADWAL SHALAT + SEARCH)
+     ============================================ -->
+<div class="header-wrapper">
+<div class="top-bar">
+        <div class="search-box">
+            <input type="text" placeholder="Cari doa atau dzikir...">
+            <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+        <button id="themeToggle" class="theme-toggle">
+            <i class="fa-solid fa-sun toggle-icon"></i>
+        </button>
+    </div>
+</div>
+<div class="hero-text">
+    <span class="dome-left"></span>
+    <span class="dome-right"></span>
+    <h1>Kumpulan Doa & Dzikir</h1>
+    <p>Pintu Kebaikan di Setiap Waktu</p>
+</div>    
 
+<div class="prayer-box">
+        <div class="prayer-header">
+            <div class="header-left">
+                <span id="nextPrayer">Memuat...</span>
+                <div id="locationName">Mencari lokasi...</div>
+            </div>
+            <span id="currentTime">00:00</span>
+        </div>
+
+        <div class="prayer-grid">
+            <div><b>Syuruq</b><span id="sunrise">-</span></div>
+            <div><b>Dzuhur</b><span id="dhuhr">-</span></div>
+            <div><b>Ashar</b><span id="asr">-</span></div>
+            <div><b>Magrib</b><span id="maghrib">-</span></div>
+            <div><b>Isya</b><span id="isha">-</span></div>
+            <div><b>Subuh</b><span id="fajr">-</span></div>
+        </div>
+    </div>
+<!-- ============================================
+     3. HERO SECTION (JUDUL HALAMAN)
+     ============================================ -->
+
+
+<!-- ============================================
+     4. CONTAINER MENU UTAMA
+     ============================================ -->
 <div class="container">
-    <header>
-        <h1>Kumpulan Doa & Dzikir</h1>
-        <p>Pintu Kebaikan di Setiap Waktu</p>
-    </header>
-
     <div class="menu-grid">
-        <!-- Hubungkan ke file dzikir pagi -->
+        <!-- ============================================
+             5. MENU GRID (9 ITEM MENU)
+             ============================================ -->
+        
+        <!-- Dzikir Pagi -->
         <a href="./dzikir-pagi.html" class="menu-item">
-            <span>☀️ Dzikir Pagi</span>
-            <span class="icon">➜</span>
+            <span class="menu-icon">
+                <i class="fa-solid fa-sun"></i>
+            </span>
+            <span class="menu-text">Dzikir Pagi</span>
         </a>
 
-        <!-- Menu lainnya (Placeholder) -->
+        <!-- Dzikir Petang -->
         <a href="./dzikir-petang.html" class="menu-item">
-            <span>🌙 Dzikir Petang</span>
-            <span class="icon">➜</span>
+            <span class="menu-icon">
+                <i class="fa-solid fa-moon"></i>
+            </span>
+            <span class="menu-text">Dzikir Petang</span>
         </a>
 
+        <!-- Dzikir Setelah Shalat -->
         <a href="./dzikir-setelah-solat.html" class="menu-item">
-            <span>🕌 Dzikir Setelah Shalat Fardhu</span>
-            <span class="icon">➜</span>
+            <span class="menu-icon">
+                <i class="fa-solid fa-mosque"></i>
+            </span>
+            <span class="menu-text">Dzikir Shalat</span>
         </a>
 
+        <!-- Doa Harian -->
         <a href="doa-harian.html" class="menu-item">
-            <span>🏠 Doa Harian</span>
-            <span class="icon">➜</span>
+            <span class="menu-icon">
+                <i class="fa-solid fa-house"></i>
+            </span>
+            <span class="menu-text">Doa Harian</span>
         </a>
-        
+
+        <!-- Kumpulan Doa -->
         <a href="kumpulan-doa.html" class="menu-item">
-            <span>🤲 Kumpulan Doa</span>
-            <span class="icon">➜</span>
+            <span class="menu-icon">
+                <i class="fa-solid fa-hands-praying"></i>
+            </span>
+            <span class="menu-text">Kumpulan Doa</span>
         </a>
-        
+
+        <!-- Bacaan Shalat -->
         <a href="bacaan-shalat.html" class="menu-item">
-    <span class="menu-content">
-        <img src="icon-shalat.png" alt="Icon Shalat"> 
-        Bacaan Shalat
-    </span>
-    <span class="icon">➜</span>
-</a>
+            <span class="menu-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </span>
+            <span class="menu-text">Bacaan Shalat</span>
+        </a>
+
+        <!-- Juz Amma -->
+        <a href="juz-amma.html" class="menu-item">
+            <span class="menu-icon">
+                <i class="fa-solid fa-book-quran"></i>
+            </span>
+            <span class="menu-text">Juz Amma</span>
+        </a>
+
+        <!-- Kalender Hijriah -->
+        <a href="kalender-hijriah.html" class="menu-item">
+            <span class="menu-icon">
+                <i class="fa-solid fa-calendar-days"></i>
+            </span>
+            <span class="menu-text">Kalender Hijriah</span>
+        </a>
+
+        <!-- Hafalan -->
+        <a href="hafalan.html" class="menu-item">
+            <span class="menu-icon">
+                <i class="fa-solid fa-book-bookmark"></i>
+            </span>
+            <span class="menu-text">Hafalan</span>
+        </a>
+    </div>
+</div>
+<div class="hadith-slider">
+    <div class="hadith-track" id="hadithTrack">
+
+        <div class="hadith-card">
+            <div class="hadith-badge">Hadits Pilihan</div>
+            <h3>Rasulullah ﷺ bersabda</h3>
+            <p>
+                "Barangsiapa menempuh jalan untuk mencari ilmu,
+                Allah akan mudahkan baginya jalan menuju surga."
+            </p>
+            <span>HR. Muslim</span>
+        </div>
+
+        <div class="hadith-card">
+            <div class="hadith-badge">Hadits Pilihan</div>
+            <h3>Rasulullah ﷺ bersabda</h3>
+            <p>
+                "Sebaik-baik manusia adalah yang paling bermanfaat
+                bagi manusia lainnya."
+            </p>
+            <span>HR. Ahmad</span>
+        </div>
+
+        <div class="hadith-card">
+            <div class="hadith-badge">Hadits Pilihan</div>
+            <h3>Rasulullah ﷺ bersabda</h3>
+            <p>
+                "Sesungguhnya amal itu tergantung niatnya."
+            </p>
+            <span>HR. Bukhari & Muslim</span>
+        </div>
 
     </div>
-
-    <footer>
-        &copy; 2024 Aplikasi Kumpulan Doa
-    </footer>
 </div>
+<!-- ============================================
+     6. FOOTER MENU (NAVIGASI BAWAH)
+     ============================================ -->
+<footer class="footer-menu">
+    <a href="tasbih.html">
+    <i class="fa-solid fa-ring"></i>
+    <span>Tasbih</span>
+</a>
+
+    <a href="kisah-nabi.html">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Kisah Nabi</span>
+    </a>
+
+    <a href="#" onclick="window.location='intent://#Intent;package=com.saltanera.hadits;end'; return false;">
+        <i class="fa-solid fa-scroll"></i>
+        <span>Hadits</span>
+    </a>
+
+    <a href="arah-kiblat.html">
+        <i class="fa-solid fa-compass"></i>
+        <span>Kiblat</span>
+    </a>
+</footer>
+
+<script>
+  /* ============================================
+   1. NOTIFICATION SYSTEM
+   ============================================ */
+// Request notification permission pada load
+if ("Notification" in window) {
+    Notification.requestPermission();
+}
+
+// Tampilkan notifikasi waktu shalat
+function showPrayerNotification(prayerName) {
+    const adzan = new Audio("audio/adzan.mp3");
+    adzan.play();
+
+    if (Notification.permission === "granted") {
+        new Notification("🕌 Waktu Shalat Telah Tiba", {
+            body: `Saatnya melaksanakan shalat ${prayerName}`,
+            icon: "img/favicon.png"
+        });
+    }
+}
+
+/* ============================================
+   2. THEME TOGGLE (LIGHT/DARK MODE)
+   ============================================ */
+const toggleButton = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+const toggleIcon = toggleButton.querySelector('.toggle-icon');
+
+// Load theme dari localStorage atau default light
+const currentTheme = localStorage.getItem('theme') || 'light';
+htmlElement.setAttribute('data-theme', currentTheme);
+updateToggleButton(currentTheme);
+
+// Event listener untuk toggle theme
+toggleButton.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateToggleButton(newTheme);
+});
+
+// Update ikon tombol theme (sun/moon dengan animasi)
+function updateToggleButton(theme) {
+    const icon = toggleButton.querySelector('.toggle-icon');
+    icon.style.transform = "rotate(180deg);";
+
+    setTimeout(() => {
+        if (theme === 'dark') {
+            icon.className = "fa-solid fa-moon toggle-icon";
+        } else {
+            icon.className = "fa-solid fa-sun toggle-icon";
+        }
+        icon.style.transform = "rotate(0deg);";
+    }, 150);
+}
+
+/* ============================================
+   3. CLOCK (JAM REAL-TIME)
+   ============================================ */
+// Update jam setiap detik
+function updateClock() {
+    const now = new Date();
+    document.getElementById("currentTime").textContent =
+        now.toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+/* ============================================
+   4. GEOLOCATION & PRAYER TIMES API
+   ============================================ */
+// Object untuk menyimpan tracking notifikasi per hari
+let notifiedToday = {};
+
+// Variable global untuk menyimpan jadwal shalat
+let prayerTimings = null;
+
+// Get user location and fetch prayer times
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        try {
+            // Get location name from OpenStreetMap
+            const geo = await fetch(
+                `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+            );
+            const geoData = await geo.json();
+
+            document.getElementById("locationName").textContent =
+                geoData.address.city ||
+                geoData.address.town ||
+                geoData.address.county ||
+                geoData.address.village ||
+                "Lokasi Anda";
+
+            // Get prayer times from Aladhan API
+            const prayer = await fetch(
+                `https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=11`
+            );
+            const data = await prayer.json();
+            prayerTimings = data.data.timings;
+
+            // Update prayer times display
+            document.getElementById("sunrise").textContent = prayerTimings.Sunrise;
+            document.getElementById("dhuhr").textContent = prayerTimings.Dhuhr;
+            document.getElementById("asr").textContent = prayerTimings.Asr;
+            document.getElementById("maghrib").textContent = prayerTimings.Maghrib;
+            document.getElementById("isha").textContent = prayerTimings.Isha;
+            document.getElementById("fajr").textContent = prayerTimings.Fajr;
+
+            // Start updating next prayer countdown
+            updateNextPrayer(prayerTimings);
+            setInterval(() => updateNextPrayer(prayerTimings), 1000);
+
+            // Start checking for prayer notifications
+            checkPrayerTime(prayerTimings);
+            setInterval(() => checkPrayerTime(prayerTimings), 30000);
+
+        } catch (e) {
+            console.error("Gagal mengambil data lokasi/jadwal", e);
+            document.getElementById("locationName").textContent = "Gagal memuat lokasi";
+        }
+    }, (error) => {
+        console.error("Error geolokasi:", error);
+        document.getElementById("locationName").textContent = "Lokasi ditolak";
+    });
+}
+
+/* ============================================
+   5. NEXT PRAYER COUNTDOWN
+   ============================================ */
+// Hitung dan tampilkan waktu menuju shalat berikutnya
+function updateNextPrayer(timings) {
+    const now = new Date();
+
+    const prayers = [
+        { name: "Subuh", time: timings.Fajr },
+        { name: "Syuruq", time: timings.Sunrise },
+        { name: "Dzuhur", time: timings.Dhuhr },
+        { name: "Ashar", time: timings.Asr },
+        { name: "Magrib", time: timings.Maghrib },
+        { name: "Isya", time: timings.Isha }
+    ];
+
+    let nextPrayer = null;
+
+    // Cari shalat berikutnya yang belum lewat
+    for (const prayer of prayers) {
+        const [hour, minute] = prayer.time.split(":");
+        const prayerDate = new Date();
+        prayerDate.setHours(hour, minute, 0, 0);
+
+        if (prayerDate > now) {
+            nextPrayer = {
+                name: prayer.name,
+                date: prayerDate
+            };
+            break;
+        }
+    }
+
+    // Jika semua sudah lewat, pakai Subuh besok
+    if (!nextPrayer) {
+        const [hour, minute] = timings.Fajr.split(":");
+        const tomorrowFajr = new Date();
+        tomorrowFajr.setDate(tomorrowFajr.getDate() + 1);
+        tomorrowFajr.setHours(hour, minute, 0, 0);
+
+        nextPrayer = {
+            name: "Subuh",
+            date: tomorrowFajr
+        };
+    }
+
+    // Hitung selisih waktu
+    const diff = nextPrayer.date - now;
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("nextPrayer").textContent =
+        `🕒 Menuju ${nextPrayer.name} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+/* ============================================
+   6. PRAYER NOTIFICATION CHECKER
+   ============================================ */
+// Cek apakah waktu shalat tiba (check setiap 30 detik)
+function checkPrayerTime(timings) {
+    const now = new Date();
+
+    const current =
+        String(now.getHours()).padStart(2, '0') +
+        ":" +
+        String(now.getMinutes()).padStart(2, '0');
+
+    const prayers = {
+        "Subuh": timings.Fajr,
+        "Dzuhur": timings.Dhuhr,
+        "Ashar": timings.Asr,
+        "Magrib": timings.Maghrib,
+        "Isya": timings.Isha
+    };
+
+    for (const [name, time] of Object.entries(prayers)) {
+        const key = new Date().toDateString() + "-" + name;
+
+        if (current === time && !notifiedToday[key]) {
+            showPrayerNotification(name);
+            notifiedToday[key] = true;
+        }
+    }
+}
+let currentSlide = 0;
+
+const track =
+document.getElementById("hadithTrack");
+
+const slides =
+document.querySelectorAll(".hadith-card");
+
+setInterval(() => {
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    track.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
+}, 5000);
+const hadiths = [
+{
+text:"Sesungguhnya amal tergantung niatnya",
+source:"HR. Bukhari"
+},
+{
+text:"Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia",
+source:"HR. Ahmad"
+},
+{
+text:"Barangsiapa menempuh jalan mencari ilmu maka Allah mudahkan jalannya ke surga",
+source:"HR. Muslim"
+},
+{
+text:"Orang kuat bukanlah yang menang bergulat tetapi yang mampu menahan amarah",
+source:"HR. Bukhari"
+}
+];
+/* ============================================
+   7. UNUSED FUNCTIONS (DIPINCHO/SIMPAN)
+   ============================================ */
+// Fungsi ini tidak digunakan di HTML, bisa dihapus atau aktifkan jika perlu
+/*
+function openHaditsApp() {
+    window.location.href = "intent://#Intent;package=com.saltanera.hadits;end";
+
+    setTimeout(() => {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.saltanera.hadits";
+    }, 1200);
+}
+*/
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker terdaftar!'));
+  }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalender Hijriah Pro</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 60px;
+    background: var(--header-bg);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    direction: ltr;
+}
+
+/* ============================================
+   5. TOP BAR (SEARCH + BUTTONS)
+   ============================================ */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 40px;
+}
+
+/* Back Button (jika ada di HTML nanti) */
+.back-container {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button {
+    width: 14px;
+    height: 14px;
+    border-left: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    transform: rotate(45deg);
+    border-radius: 2px;
+}
+
+/* ============================================
+   6. SEARCH BOX
+   ============================================ */
+.search-box {
+    flex: 1;
+    max-width: none;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    height: 38px;
+    border: none;
+    outline: none;
+    border-radius: 999px;
+    padding: 0 40px 0 15px;
+    font-size: 14px;
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: #319795;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+/* ============================================
+   7. BUTTONS (THEME TOGGLE & CONTROL)
+   ============================================ */
+.theme-toggle,
+.control-btn {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #319795;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s;
+    font-size: 18px;
+}
+
+.theme-toggle:hover,
+.control-btn:hover {
+    transform: scale(1.05);
+}
+
+.toggle-icon {
+    font-size: 18px;
+    transition: all .3s ease;
+}
+
+:root{
+  --primary:#319795;
+  --bg:#f0f4f8;
+  --card:#fff;
+  --text:#2d3748;
+  --border:#e2e8f0; /* <- TAMBAHKAN KOMA DI SINI */
+  --bg-color: #f0f4f8;
+  --text-color: #2d3748;
+  --header-bg: #319795;
+  --header-text: white;
+  --menu-bg: white;
+  --menu-text: #2d3748;
+  --menu-hover-border: #319795;
+  --menu-shadow: rgba(0,0,0,0.05);
+  --menu-hover-shadow: rgba(0,0,0,0.1);
+  --icon-bg: #e6fffa;
+  --icon-color: #319795;
+  --footer-text: #a0aec0;
+  --toggle-bg: #e2e8f0;
+  --toggle-circle: white;
+}
+
+[data-theme=dark]{
+  --primary:#2c7a7b;
+  --bg:#1a202c;
+  --card:#2d3748;
+  --text:#e2e8f0;
+  --border:#4a5568;  /* <- TAMBAHKAN KOMA DI SINI */
+  --bg-color: #1a202c;
+  --text-color: #e2e8f0;
+  --header-bg: #2c7a7b;
+  --header-text: white;
+  --menu-bg: #2d3748;
+  --menu-text: #e2e8f0;
+  --menu-hover-border: #4fd1c5;
+  --menu-shadow: rgba(0,0,0,0.3);
+  --menu-hover-shadow: rgba(0,0,0,0.5);
+  --icon-bg: #2c7a7b;
+  --icon-color: #4fd1c5;
+  --footer-text: #718096;
+  --toggle-bg: #4fd1c5;
+  --toggle-circle: #1a202c;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
+.header{position:sticky;top:0;background:var(--primary);padding:12px;border-radius:0 0 20px 20px;display:flex;justify-content:space-between;align-items:center;z-index:10}
+.logo{color:#fff;font-weight:700}.btn{border:none;cursor:pointer}
+.iconbtn{width:40px;height:40px;border-radius:50%;background:#fff}
+.tabs {
+  display: flex;
+  margin-top: 70px;
+  padding: 5px;
+  background: var(--card);
+  border-radius: 999px;
+  width: 360px; /* Mengatur lebar sesuai konten */
+  margin-inline: auto; /* Memastikan elemen tetap di tengah secara horizontal */
+}
+
+.tab {
+  flex: 1;
+  padding: 12px;
+  border: 0;
+  background: 0;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.active{background:var(--primary)!important;color:#fff}
+.wrap{max-width:950px;margin:auto;padding:10px}
+.panel{background:var(--card);border-radius:20px;padding:15px}
+.monthhead{display:flex;justify-content:space-between;align-items:center}
+.months{text-align:center}
+.hm{font-size:18px;font-weight:700;color:var(--primary)}
+.gm{opacity:.7}
+.nav{background:var(--primary);color:#fff;width:42px;height:42px;border-radius:50%}
+.week,.grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px; font-size: 12px; /* Sedikit dirapatkan agar lebih kompak */
+}
+.week div{
+  text-align:center;
+  font-weight:700;
+  padding:8px 0
+}
+.day {
+    position: relative; /* PENTING: Agar badge tidak keluar dari kotak */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 2px;
+    background: transparent;
+    min-height: 85px;
+    gap: 2px;
+    overflow: hidden; /* Mencegah badge keluar area */
+}
+
+.day:hover {
+    background: var(--card); /* Muncul latar belakang saat disentuh */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.main {
+    font-size: 1.1rem; /* Sedikit diperkecil agar tidak mendominasi */
+    font-weight: 800;
+    line-height: 1;
+}
+.sub {
+    font-size: 0.65rem; /* Dibuat lebih kecil dari angka */
+    opacity: 0.6;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.today .main{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;margin:auto;display:flex;align-items:center;justify-content:center}
+.badge {
+    position: absolute;
+    bottom: 2px; /* Posisi badge di bawah */
+    left: 2px;
+    right: 2px;
+    font-size: 0.5px; 
+    line-height: 1;
+    color: #c53030;
+    font-weight: 500;
+    text-align: center;
+    white-space: wrap 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 2px;
+}
+.fast {
+    font-size: 7px;
+    color: #319795;
+    white-space: nowrap;
+}
+@media(max-width: 600px) {
+    .day { min-height: 65px; padding: 4px 1px; }
+    .main { font-size: 0.95rem; }
+    .sub { font-size: 0.6rem; }
+}
+.info{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.pill{background:#e6fffa;padding:6px 10px;border-radius:999px;font-size:12px}
+.fade{animation:slide .25s}@keyframes slide{from{opacity:0;transform:translateX(15px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.day{min-height:72px}.main{font-size:18px}}
+.holiday .main{
+    color:#e53e3e;
+    font-weight:800;
+}
+.day.sunday .main {
+    color: #e53e3e !important;
+    font-weight: 800;
+}
+.day.friday .main {
+    color: #50C878 !important;
+    font-weight: 800;
+}
+.day.holiday .main {
+    color: #e53e3e !important;
+    font-weight: 800;
+}
+
+.day.holiday {
+    background-color: #fff5f5;
+}
+
+[data-theme=dark] .day.holiday {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Tanggal libur merah di mode Hijriah (angka Masehi kecil) */
+
+[data-theme="dark"] .search-box input {
+    background: #1f2937;
+    color: #fff;
+}
+
+[data-theme="dark"] .theme-toggle,
+[data-theme="dark"] .control-btn {
+    background: #1f2937;
+    color: #4fd1c5;
+}
+.holiday-info{
+    margin-top:12px;
+    padding:10px;
+    text-align:left;
+    color:#e53e3e;
+    font-size:13px;
+    font-weight:700;
+    border-radius:10px;
+    line-height:1.7;
+}
+
+[data-theme="dark"] .holiday-info{
+    color:#fc8181;
+}
+</style>
+</head>
+<body>
+
+      <div class="top-header">
+        <div class="back-container" onclick="goBack()">
+            <div class="back-button"></div>
+        </div>
+        <div class="top-bar">
+            <div class="search-box">
+                <input type="text" placeholder="Cari doa atau dzikir">
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <button id="themeToggle" class="theme-toggle">
+    <i class="fa-solid fa-sun toggle-icon"></i>
+</button>
+        </div>
+    </div>
+<div class="tabs">
+<button id="hTab" class="tab active">Hijriah</button>
+<button id="gTab" class="tab">Masehi</button>
+</div>
+
+<div class="wrap">
+<div class="panel">
+<div class="monthhead">
+<button id="prev" class="btn nav"><i class="fa fa-chevron-left"></i></button>
+<div class="months">
+<div id="hm" class="hm"></div>
+<div id="gm" class="gm"></div>
+</div>
+<button id="next" class="btn nav"><i class="fa fa-chevron-right"></i></button>
+</div>
+
+<div class="week"><div>Ahad</div><div>Senin</div><div>Selasa</div><div>Rabu</div><div>Kamis</div><div>Jumat</div><div>Sabtu</div></div>
+<div id="grid" class="grid"></div>
+<div id="holidayInfo" class="holiday-info"></div>
+</div>
+</div>
+
+<script>
+let mode = 'hijri';
+let now = new Date();
+let month = now.getMonth() + 1;
+let year = now.getFullYear();
+function updateThemeIcon(theme) {
+    const icon = document.querySelector(".toggle-icon");
+    if (icon) {
+        icon.className = theme === "dark"
+            ? "fa-solid fa-moon toggle-icon"
+            : "fa-solid fa-sun toggle-icon";
+    }
+}
+/* =========================
+   DARK MODE
+========================= */
+if(localStorage.theme === 'dark'){
+    document.documentElement.dataset.theme = 'dark';
+}
+updateThemeIcon(localStorage.theme || "light");
+const themeBtn = document.getElementById("themeToggle");
+const hTab = document.getElementById("hTab");
+const gTab = document.getElementById("gTab");
+
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+const grid = document.getElementById("grid");
+
+const hm = document.getElementById("hm");
+const gm = document.getElementById("gm");
+const holidayInfo =
+    document.getElementById("holidayInfo");
+themeBtn.onclick = () => {
+    const dark =
+        document.documentElement.dataset.theme === "dark";
+
+    document.documentElement.dataset.theme =
+        dark ? "" : "dark";
+
+    const theme =
+        dark ? "light" : "dark";
+
+    localStorage.theme = theme;
+
+    updateThemeIcon(theme);
+};
+
+/* =========================
+   TAB
+========================= */
+function activate(){
+    hTab.classList.toggle("active", mode === "hijri");
+    gTab.classList.toggle("active", mode === "gregorian");
+}
+
+function updateWeekDays() {
+    const weekDiv = document.querySelector('.week');
+    const days = weekDiv.querySelectorAll('div');
+    
+    // Ahad/Minggu
+    if (mode === "gregorian") {
+        days[0].textContent = "Minggu";
+        days[0].style.color = "#e53e3e";
+        days[0].style.fontWeight = "700";
+    } else {
+        days[0].textContent = "Ahad";
+        days[0].style.color = "";
+        days[0].style.fontWeight = "";
+    }
+    
+    // Jumat (index 5)
+    if (mode === "hijri") {
+        days[5].style.color = "#50C878";
+        days[5].style.fontWeight = "700";
+    } else {
+        days[5].style.color = "";
+        days[5].style.fontWeight = "";
+    }
+}
+
+hTab.onclick = () => {
+    mode = "hijri";
+    activate();
+    updateWeekDays();
+    render();
+};
+
+gTab.onclick = () => {
+    mode = "gregorian";
+    activate();
+    updateWeekDays();
+    render();
+};
+
+/* =========================
+   BULAN
+========================= */
+prev.onclick = () => {
+    month--;
+    if(month < 1){
+        month = 12;
+        year--;
+    }
+    render();
+};
+
+next.onclick = () => {
+    month++;
+    if(month > 12){
+        month = 1;
+        year++;
+    }
+    render();
+};
+
+/* =========================
+   LIBUR NASIONAL 2026
+========================= */
+const nationalHolidays = {
+    "2026-01-01": "Tahun Baru 2026 Masehi",
+    "2026-01-16": "Isra Mi'raj Nabi Muhammad SAW",
+    "2026-02-17": "Tahun Baru Imlek 2577",
+    "2026-03-19": "Hari Suci Nyepi",
+    "2026-03-21": "Idul Fitri 1447H",
+    "2026-03-22": "Idul Fitri 1447H",
+    "2026-04-03": "Wafat Yesus Kristus",
+    "2026-04-05": "Paskah",
+    "2026-05-01": "Hari Buruh",
+    "2026-05-14": "Kenaikan Yesus Kristus",
+    "2026-05-27": "Idul Adha 1447H",
+    "2026-05-31": "Hari Raya Waisak",
+    "2026-06-01": "Hari Lahir Pancasila",
+    "2026-06-16": "Tahun Baru Islam 1448H",
+    "2026-08-17": "Hari Kemerdekaan RI",
+    "2026-12-25": "Hari Natal"
+};
+const islamicHolidays = {
+    "1-1": "Tahun Baru Islam",
+    "1-10": "Puasa Asyura",
+    "3-12": "Maulid Nabi Muhammad SAW",
+    "7-27": "Isra Mi'raj",
+    "9-17": "Nuzulul Qur'an",
+    "10-1": "Idul Fitri",
+    "10-2": "Idul Fitri",
+    "12-9": "Wukuf Arafah",
+    "12-10": "Idul Adha",
+    "12-11": "Hari Tasyrik",
+    "12-12": "Hari Tasyrik",
+    "12-13": "Hari Tasyrik"
+};
+/* =========================
+   RENDER KALENDER
+========================= */
+async function render(){
+    try{
+        const res = await fetch(`https://api.aladhan.com/v1/gToHCalendar/${month}/${year}`);
+        const json = await res.json();
+
+        if(!json.data){
+            throw new Error("Data kalender kosong");
+        }
+
+        const data = json.data;
+        grid.className = "grid fade";
+        grid.innerHTML = "";
+
+        if(mode === "hijri"){
+            hm.textContent = `${data[0].hijri.month.en} ${data[0].hijri.year} H`;
+            hm.style.display = "block";
+        } else {
+            hm.style.display = "none";
+        }
+
+        gm.textContent = new Date(year, month - 1, 1).toLocaleDateString("id-ID", {
+            month: "long",
+            year: "numeric"
+        });
+
+        const firstDay = new Date(year, month - 1, 1).getDay();
+
+        for(let i = 0; i < firstDay; i++){
+            grid.appendChild(document.createElement("div"));
+        }
+let holidayList = [];
+        data.forEach(item => {
+
+    const gd = parseInt(item.gregorian.day);
+    const hd = parseInt(item.hijri.day);
+    const hmNum = item.hijri.month.number;
+
+    const el = document.createElement("div");
+
+    const dateKey =
+        `${year}-${String(month).padStart(2,'0')}-${String(gd).padStart(2,'0')}`;
+
+    const nationalHoliday =
+        nationalHolidays[dateKey] || "";
+
+    const islamicHoliday =
+        islamicHolidays[hmNum + "-" + hd] || "";
+
+    /* =========================
+       DAFTAR KETERANGAN BAWAH
+    ========================= */
+    if(mode === "hijri"){
+
+        if(islamicHoliday){
+            holidayList.push(
+                `${hd} ${item.hijri.month.en} - ${islamicHoliday}`
+            );
+        }
+
+    }else{
+
+        if(nationalHoliday){
+
+            const dateText =
+                new Date(year, month - 1, gd)
+                .toLocaleDateString("id-ID",{
+                    day:"numeric",
+                    month:"long"
+                });
+
+            holidayList.push(
+                `${dateText} - ${nationalHoliday}`
+            );
+        }
+
+    }
+
+    el.className = "day";
+
+    if(mode === "gregorian" && nationalHoliday){
+        el.classList.add("holiday");
+    }
+
+    if(mode === "hijri" && islamicHoliday){
+        el.classList.add("holiday");
+    }
+
+    const dayOfWeek =
+        new Date(year, month - 1, gd).getDay();
+
+    if(mode === "hijri" && dayOfWeek === 5){
+        el.classList.add("friday");
+    }
+
+    if(mode === "gregorian" &&
+       dayOfWeek === 0 &&
+       !nationalHoliday){
+        el.classList.add("sunday");
+    }
+
+    if(
+        gd === now.getDate() &&
+        month === now.getMonth()+1 &&
+        year === now.getFullYear()
+    ){
+        el.classList.add("today");
+    }
+
+    let badgeHTML = "";
+
+    const subStyle =
+        mode === "gregorian"
+        ? "display:none"
+        : (
+            nationalHoliday
+            ? "color:#e53e3e;font-weight:700;"
+            : ""
+        );
+
+    el.innerHTML = `
+    <div class="main">
+        ${mode === "hijri" ? hd : gd}
+    </div>
+
+    <div class="sub" style="${subStyle}">
+        ${mode === "hijri" ? gd : hd}
+    </div>
+`;
+
+    grid.appendChild(el);
+
+});
+if(mode === "hijri"){
+
+    holidayInfo.innerHTML =
+        holidayList.length
+        ? "" +
+          holidayList.join("<br>")
+        : "";
+
+}else{
+
+    holidayInfo.innerHTML =
+        holidayList.length
+        ? "" +
+          holidayList.join("<br>")
+        : "";
+
+}
+    } catch(err){
+        console.error(err);
+        grid.innerHTML = `<div style="padding:20px; text-align:center; color:red;">Gagal memuat kalender: ${err.message}</div>`;
+    }
+}
+
+/* =========================
+   SWIPE
+========================= */
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+    startX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", e => {
+    const diff = startX - e.changedTouches[0].screenX;
+    if(diff > 50){
+        next.click();
+    }
+    if(diff < -50){
+        prev.click();
+    }
+});
+
+/* =========================
+   START
+========================= */
+activate();
+updateWeekDays();
+render();
+</script>
+
+<script>
+function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "/";
+    }
+}
+
+let arabSize = 1.8;
+let sizeState = false;
+let sliderVisible = false;
+let boldState = false;
+
+const fontBtn = document.getElementById("fontSizeBtn");
+const sliderBox = document.getElementById("fontSliderBox");
+const slider = document.getElementById("fontSlider");
+const fontValue = document.getElementById("fontValue");
+const boldBtn = document.getElementById("boldBtn");
+const toggleButton = document.getElementById("themeToggle");
+const htmlElement = document.documentElement;
+
+function initArabFontSize() {
+    if (slider) {
+        slider.value = arabSize;
+        document.querySelectorAll(".arabic").forEach(el => {
+            el.style.fontSize = arabSize + "rem";
+        });
+        if (fontValue) fontValue.textContent = arabSize;
+    }
+}
+
+if (fontBtn && sliderBox) {
+    fontBtn.addEventListener("click", () => {
+        sliderVisible = !sliderVisible;
+        sliderBox.style.display = sliderVisible ? "flex" : "none";
+    });
+}
+
+if (slider) {
+    slider.addEventListener("input", () => {
+        const size = slider.value;
+        document.querySelectorAll(".arabic").forEach(el => {
+            el.style.fontSize = size + "rem";
+        });
+        if (fontValue) fontValue.textContent = size;
+        arabSize = parseFloat(size);
+        sizeState = true;
+    });
+}
+
+if (boldBtn) {
+    boldBtn.addEventListener("click", () => {
+        const arabics = document.querySelectorAll(".arabic");
+        boldState = !boldState;
+        arabics.forEach(el => {
+            el.style.fontWeight = boldState ? "bold" : "normal";
+        });
+    });
+}
+
+function init() {
+    initArabFontSize();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
+const icon = document.querySelector(".toggle-icon");
+
+if(icon){
+    icon.style.transform =
+        "rotate(360deg) scale(1.2)";
+
+    setTimeout(() => {
+        icon.style.transform =
+            "rotate(0deg) scale(1)";
+    },150);
+}
+</script>
+</body>
+</html>
