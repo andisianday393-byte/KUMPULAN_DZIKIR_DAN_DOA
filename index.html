@@ -486,17 +486,72 @@ body {
 [data-theme="dark"] .toggle-icon{
     transform: rotate(180deg);
 }
-html{
-    transition: filter .35s ease;
+/* Hapus transisi global yang kasar */
+/* HTML dan body cukup definisikan background-color saja */
+html, body {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s ease;
 }
 
-.theme-changing{
-    filter: brightness(.96);
+/* Gunakan :root untuk transisi variabel agar semua elemen yang menggunakan variabel ikut smooth */
+:root {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.5s ease;
 }
+
+/* Transisi pada elemen spesifik agar tidak berat */
+.header-wrapper, .prayer-box, .hadith-card, .footer-menu {
+    transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.5s ease;
+}
+#theme-overlay{
+position:fixed;
+inset:0;
+z-index:999999;
+pointer-events:none;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#1a202c;
+
+transform:scale(0);
+opacity:0;
+
+transition:
+    transform .7s cubic-bezier(.22,1,.36,1),
+    opacity .4s ease;
+
+}
+
+#theme-overlay.active{
+transform:scale(3);
+opacity:1;
+}
+
+#theme-logo{
+width:90px;
+height:90px;
+border-radius:20px;
+
+transform:scale(.7);
+transition:transform .4s ease;
+
+}
+
+#theme-overlay.active #theme-logo{
+transform:scale(1);
+}
+
     </style>
 </head>
 
 <body>
+<div id="theme-overlay">
+    <img src="icon-192.png" id="theme-logo" alt="Logo">
+</div>
   
 <!-- ============================================
      1. HEADER WRAPPER (JADWAL SHALAT + SEARCH)
@@ -696,33 +751,63 @@ html{
 </audio>
 
 <script>
-  // 1. Theme Initialization (paling atas)
-  const toggleButton = document.getElementById('themeToggle');
-  const htmlElement = document.documentElement;
-  const icon = toggleButton.querySelector("i");
-  
-  const savedTheme = localStorage.getItem("theme") || "light";
-  htmlElement.setAttribute("data-theme", savedTheme);
-  icon.className = savedTheme === "dark" 
-    ? "fa-solid fa-moon toggle-icon" 
-    : "fa-solid fa-sun toggle-icon";
+const toggleButton = document.getElementById("themeToggle");
+const overlay = document.getElementById("theme-overlay");
+const htmlElement = document.documentElement;
+const icon = toggleButton.querySelector("i");
 
-  toggleButton.addEventListener("click", () => {
-    document.documentElement.classList.add("theme-changing");
-    setTimeout(() => {
-      document.documentElement.classList.remove("theme-changing");
-    }, 350);
+// Ambil tema tersimpan
+const savedTheme = localStorage.getItem("theme") || "light";
 
-    const currentTheme = htmlElement.getAttribute("data-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    
-    htmlElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    
-    icon.className = newTheme === "dark" 
-      ? "fa-solid fa-moon toggle-icon" 
-      : "fa-solid fa-sun toggle-icon";
-  });
+htmlElement.setAttribute("data-theme", savedTheme);
+
+icon.className =
+    savedTheme === "dark"
+        ? "fa-solid fa-moon toggle-icon"
+        : "fa-solid fa-sun toggle-icon";
+
+// Toggle Theme
+toggleButton.addEventListener("click", () => {
+
+const currentTheme =
+    htmlElement.getAttribute("data-theme");
+
+const newTheme =
+    currentTheme === "dark"
+        ? "light"
+        : "dark";
+
+overlay.style.background =
+    newTheme === "dark"
+        ? "#1a202c"
+        : "#f0f4f8";
+
+overlay.classList.add("active");
+
+setTimeout(() => {
+
+    htmlElement.setAttribute(
+        "data-theme",
+        newTheme
+    );
+
+    localStorage.setItem(
+        "theme",
+        newTheme
+    );
+
+    icon.className =
+        newTheme === "dark"
+        ? "fa-solid fa-moon toggle-icon"
+        : "fa-solid fa-sun toggle-icon";
+
+}, 350);
+
+setTimeout(() => {
+    overlay.classList.remove("active");
+}, 900);
+
+});
 
   // 2. Register Service Worker
 if ("serviceWorker" in navigator) {
@@ -774,16 +859,30 @@ navigator.serviceWorker.addEventListener(
   }
   document.addEventListener('click', enableAudio);
 
-  // 5. Fungsi Notifikasi
-  function showPrayerNotification(prayerName) {
-      adzan.play().catch(e => console.warn("Gagal putar audio:", e));
-      if (Notification.permission === "granted") {
-          new Notification("🕌 Waktu Shalat Telah Tiba", {
-              body: `Saatnya melaksanakan shalat ${prayerName}`,
-              icon: "img/favicon.png"
-          });
-      }
-  }
+// 5. Fungsi Notifikasi
+function showPrayerNotification(prayerName) {
+    const adzan = document.getElementById("adzanAudio");
+    
+    // Putar audio
+    adzan.play().catch(e => console.warn("Gagal putar audio:", e));
+    
+    // Tampilkan notifikasi visual
+    if (Notification.permission === "granted") {
+        new Notification("🕌 Waktu Shalat Telah Tiba", {
+            body: `Saatnya melaksanakan shalat ${prayerName}`,
+            icon: "img/favicon.png"
+        });
+    }
+
+    // Mengatur durasi adzan (contoh: 30 detik = 30000 milidetik)
+    // Jika Anda ingin durasi lain, ubah angka 30000 sesuai kebutuhan
+    setTimeout(() => {
+        adzan.pause();
+        adzan.currentTime = 0; // Mengembalikan audio ke detik ke-0
+        console.log("Audio adzan dihentikan otomatis.");
+    }, 30000); 
+}
+
 
   // 6. Clock
   function updateClock() {
