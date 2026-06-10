@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jurnal Ibadah & Aktivitas</title>
+<style>
+:root{
+--bg:#f0f4f8;--card:#fff;--primary:#319795;--text:#2d3748;
+}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+.header{background:var(--primary);color:#fff;padding:18px;text-align:center;border-radius:0 0 16px 16px}
+.wrap{max-width:700px;margin:auto;padding:15px}
+.card{background:var(--card);padding:15px;border-radius:14px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.progress{height:14px;background:#ddd;border-radius:20px;overflow:hidden}
+.bar{height:100%;background:var(--primary);width:0%}
+.item{display:flex;gap:10px;padding:6px 0}
+textarea,input{width:100%;padding:10px;box-sizing:border-box}
+button{background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer}
+.badge{display:inline-block;padding:6px 10px;background:#e6fffa;border-radius:999px;margin:4px}
+</style>
+</head>
+<body>
+<div class="header">
+
+</div>
+<h2>📖 Jurnal Ibadah & Aktivitas</h2>
+<p>Catatan harian, target dan pencapaian</p>
+<div class="wrap">
+<div class="card">
+<h3>Progress Hari Ini</h3>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p id="percent">0%</p>
+</div>
+
+<div class="card">
+<h3>🕌 Tracker Ibadah</h3>
+<div id="ibadah"></div>
+</div>
+
+<div class="card">
+<h3>📝 Catatan Harian</h3>
+<input id="judul" placeholder="Judul catatan">
+<br><br>
+<textarea id="isi" rows="4" placeholder="Tulis kegiatan hari ini..."></textarea>
+<br><br>
+<button onclick="simpanCatatan()">Simpan Catatan</button>
+<div id="catatan"></div>
+</div>
+
+<div class="card">
+<h3>🎯 Target Mingguan</h3>
+<textarea id="mingguan"></textarea>
+</div>
+
+<div class="card">
+<h3>📅 Target Bulanan</h3>
+<textarea id="bulanan"></textarea>
+</div>
+
+<div class="card">
+<h3>🏆 Pencapaian</h3>
+<div id="badge"></div>
+</div>
+
+<div class="card">
+<button onclick="exportData()">Export Data</button>
+<input type="file" onchange="importData(event)">
+</div>
+</div>
+
+<script>
+const items=["Subuh","Dzuhur","Ashar","Magrib","Isya","Dhuha","Tahajud","Tilawah","Dzikir Pagi","Dzikir Petang","Sedekah"];
+const box=document.getElementById("ibadah");
+
+function load(){
+ let data=JSON.parse(localStorage.getItem("jurnal")||"{}");
+ box.innerHTML="";
+ items.forEach(x=>{
+  let c=document.createElement("div");
+  c.className="item";
+  c.innerHTML=`<input type="checkbox" ${data[x]?"checked":""} onchange="toggle('${x}',this.checked)"> ${x}`;
+  box.appendChild(c);
+ });
+ update();
+ document.getElementById("catatan").innerHTML=localStorage.getItem("catatanHtml")||"";
+ document.getElementById("mingguan").value=localStorage.getItem("mingguan")||"";
+ document.getElementById("bulanan").value=localStorage.getItem("bulanan")||"";
+}
+
+function toggle(n,v){
+ let d=JSON.parse(localStorage.getItem("jurnal")||"{}");
+ d[n]=v;
+ localStorage.setItem("jurnal",JSON.stringify(d));
+ update();
+}
+
+function update(){
+ let d=JSON.parse(localStorage.getItem("jurnal")||"{}");
+ let done=Object.values(d).filter(Boolean).length;
+ let p=Math.round(done/items.length*100);
+ document.getElementById("bar").style.width=p+"%";
+ document.getElementById("percent").textContent=p+"%";
+ let b=[];
+ if(p>=25)b.push("🥉 Pemula");
+ if(p>=50)b.push("🥈 Istiqamah");
+ if(p>=80)b.push("🥇 Sangat Aktif");
+ if(p==100)b.push("👑 Hari Sempurna");
+ document.getElementById("badge").innerHTML=b.map(x=>`<span class="badge">${x}</span>`).join("");
+}
+
+function simpanCatatan(){
+ let j=document.getElementById("judul").value;
+ let i=document.getElementById("isi").value;
+ let html="<div class='card'><b>"+j+"</b><br>"+i+"</div>"+(localStorage.getItem("catatanHtml")||"");
+ localStorage.setItem("catatanHtml",html);
+ document.getElementById("catatan").innerHTML=html;
+}
+
+setInterval(()=>{
+ localStorage.setItem("mingguan",document.getElementById("mingguan").value);
+ localStorage.setItem("bulanan",document.getElementById("bulanan").value);
+},1000);
+
+function exportData(){
+ let data={};
+ for(let i=0;i<localStorage.length;i++){
+   let k=localStorage.key(i);
+   data[k]=localStorage.getItem(k);
+ }
+ let blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+ let a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="jurnal-ibadah.json";
+ a.click();
+}
+
+function importData(e){
+ let f=e.target.files[0];
+ let r=new FileReader();
+ r.onload=()=>{
+   let d=JSON.parse(r.result);
+   Object.keys(d).forEach(k=>localStorage.setItem(k,d[k]));
+   location.reload();
+ };
+ r.readAsText(f);
+}
+load();
+</script>
+</body>
+</html>
