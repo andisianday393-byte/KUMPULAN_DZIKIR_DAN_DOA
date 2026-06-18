@@ -688,7 +688,6 @@ body {
 
 /* Opsional: Membuat warna khusus untuk hari libur di header */
 .week .day-header:first-child { color: #e53e3e; } /* Ahad/Minggu */
-.week .day-header:nth-child(6) { color: #50C878; } /* Jumat */
 
 </style>
 </head>
@@ -803,7 +802,8 @@ function activate(){
 function updateWeekDays() {
     const weekDiv = document.querySelector('.week');
     const days = weekDiv.querySelectorAll('div');
-    
+
+    // Hari pertama
     if (mode === "gregorian") {
         days[0].textContent = "Minggu";
         days[0].style.color = "#e53e3e";
@@ -813,13 +813,14 @@ function updateWeekDays() {
         days[0].style.color = "";
         days[0].style.fontWeight = "";
     }
-    
+
+    // Jumat hanya hijau di kalender Hijriah
+    days[5].style.color = "";
+    days[5].style.fontWeight = "";
+
     if (mode === "hijri") {
         days[5].style.color = "#50C878";
         days[5].style.fontWeight = "700";
-    } else {
-        days[5].style.color = "";
-        days[5].style.fontWeight = "";
     }
 }
 
