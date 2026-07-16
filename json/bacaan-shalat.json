@@ -1,0 +1,242 @@
+{
+  "dzikir_shalat": [
+    {
+      "nomor": 1,
+      "title": "Takbiratul Ihram",
+      "titlesub": "Dibaca Setiap Perpindahan Gerakan",
+      "arabic": "اللهُ أَكْبَرُ",
+      "latin": "Allahu akbar",
+      "translation": "Allah Maha Besar.",
+      "bacaan_lainnya": []
+    },
+    {
+      "nomor": 2,
+      "title": "Doa Istiftah",
+      "titlesub": "Dibaca setelah Takbiratul Ihram pada rakaat pertama",
+      "arabic": "اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْ خَطَايَايَ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ",
+      "latin": "Allaahumma baa'id bainii wa baina khathaayaaya kamaa baa'adta bainal-masyriqi wal-maghrib. Allaahumma naqqinii minal-khathaayaa kamaa yunaqqaats-tsaubul-abyaadhu minad-danas. Allaahummaghsil khathaayaaya bil-maai wats-tsalji wal-barad",
+      "translation": "Ya Allah, jauhkanlah antara aku dan kesalahan-kesalahanku, sebagaimana Engkau menjauhkan antara timur dan barat. Ya Allah, bersihkanlah aku dari kesalahan-kesalahanku sebagaimana baju putih dibersihkan dari kotoran. Ya Allah, cucilah kesalahan-kesalahanku dengan air, salju dan air es.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Pilihan 1",
+          "arabic": "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلَا إِلَهَ غَيْرُكَ",
+          "latin": "Subhaanakal-laahumma wa bihamdika, wa tabaarakasmuka, wa ta'aalaa jadduka, wa laa ilaaha ghairuka",
+          "translation": "Maha Suci Engkau ya Allah, aku memuji-Mu. Maha Berkah nama-Mu, Maha Tinggi keagungan-Mu, dan tidak ada sesembahan yang berhak disembah selain Engkau."
+        },
+        {
+          "pilihan": "Pilihan 2",
+          "arabic": "اللهُ أَكْبَرُ كَبِيرًا، وَالْحَمْدُ لِلَّهِ كَثِيرًا، وَسُبْحَانَ اللهِ بُكْرَةً وَأَصِيلًا",
+          "latin": "Allahu akbaru kabiiraa, walhamdu lillaahi katsiiraa, wa subhaanallaahi bukratan wa asiilaa",
+          "translation": "Allah Maha Besar dengan segala kebesaran, segala puji bagi Allah dengan pujian yang banyak, dan Maha Suci Allah di waktu pagi dan petang."
+        }
+      ]
+    },
+    {
+      "nomor": 3,
+      "title": "Bacaan Ruku",
+      "titlesub": "Dibaca saat posisi Ruku",
+      "arabic": "سُبْحَانَ رَبِّىَ الْعَظِيمِ",
+      "latin": "Subhaana rabbiyal-'azhiim",
+      "translation": "Maha Suci Rabbku Yang Maha Agung.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Pilihan 1",
+          "arabic": "سُبْحَانَ رَبِّىَ الْعَظِيمِ وَبِحَمْدِهِ (٣×)",
+          "latin": "Subhaana rabbiyal-'azhiimi wa bihamdih (3x)",
+          "translation": "Maha Suci Tuhanku Yang Maha Agung dan dengan memuji-Nya (3x)."
+        },
+        {
+          "pilihan": "Pilihan 2",
+          "arabic": "سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي",
+          "latin": "Subhaanakal-laahumma rabbanaa wa bihamdika, allaahummaghfir lii",
+          "translation": "Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu ya Allah, ampunilah aku."
+        }
+      ]
+    },
+    {
+      "nomor": 4,
+      "title": "Bacaan Bangkit dari Ruku",
+      "titlesub": "Dibaca saat bangkit dari Ruku menuju I'tidal",
+      "arabic": "سَمِعَ اللهُ لِمَنْ حَمِدَهُ",
+      "latin": "Sami'allahu liman hamidah",
+      "translation": "Allah mendengar orang yang memuji-Nya.",
+      "bacaan_lainnya": []
+    },
+    {
+      "nomor": 5,
+      "title": "Bacaan I'tidal",
+      "titlesub": "Dibaca saat berdiri tegak (I'tidal)",
+      "arabic": "رَبَّنَا لَكَ الْحَمْدُ",
+      "latin": "Rabbanaa lakal-hamd",
+      "translation": "Wahai Rabb kami, bagi-Mu segala puji.",
+      "bacaan_lainnya": [
+        { "pilihan": "Pilihan 1", "arabic": "رَبَّنَا وَلَكَ الْحَمْدُ", "latin": "Rabbanaa wa lakal-hamd", "translation": "Wahai Rabb kami, dan bagi-Mu segala puji." },
+        { "pilihan": "Pilihan 2", "arabic": "اللَّهُمَّ رَبَّنَا لَكَ الْحَمْدُ", "latin": "Allaahumma rabbanaa lakal-hamd", "translation": "Ya Allah, wahai Rabb kami, bagi-Mu segala puji." },
+        { "pilihan": "Pilihan 3", "arabic": "اللَّهُمَّ رَبَّنَا وَلَكَ الْحَمْدُ", "latin": "Allaahumma rabbanaa wa lakal-hamd", "translation": "Ya Allah, wahai Rabb kami, dan bagi-Mu segala puji." },
+        { "pilihan": "Pilihan 4 (Versi Panjang)", "arabic": "رَبَّنَا لَكَ الْحَمْدُ مِلْءُ السَّمَاوَاتِ وَمِلْءُ الْأَرْضِ وَمِلْءُ مَا شِئْتَ مِنْ شَيْءٍ بَعْدُ", "latin": "Rabbanaa lakal-hamdu mil'us-samaawaati wa mil'al-ardhi wa mil'u maa syi'ta min syay'in ba'd", "translation": "Wahai Rabb kami, bagi-Mu segala puji sepenuh langit dan bumi, dan sepenuh apa yang Engkau kehendaki dari sesuatu setelah itu." },
+        { "pilihan": "Pilihan 5", "arabic": "رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ", "latin": "Rabbanaa wa lakal-hamdu hamdan katsiiran thayyiban mubaarakan fiih", "translation": "Wahai Rabb kami, bagi-Mu segala puji, aku memuji-Mu dengan pujian yang banyak, yang baik dan penuh dengan berkah." }
+      ]
+    },
+    {
+      "nomor": 6,
+      "title": "Bacaan Sujud",
+      "titlesub": "Dibaca saat posisi Sujud",
+      "arabic": "سُبْحَانَ رَبِّيَ الأَعْلَى",
+      "latin": "Subhaana rabbiyal-a'laa",
+      "translation": "Maha Suci Rabbku Yang Maha Tinggi.",
+      "bacaan_lainnya": [
+        { "pilihan": "Pilihan 1", "arabic": "سُبْحَانَ رَبِّىَ الأَعْلَى وَبِحَمْدِهِ (٣×)", "latin": "Subhaana rabbiyal-a'laa wa bihamdih (3x)", "translation": "Maha Suci Tuhanku Yang Maha Tinggi dan dengan memuji-Nya (3x)." },
+        { "pilihan": "Pilihan 2", "arabic": "سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي", "latin": "Subhaanakal-laahumma rabbanaa wa bihamdika, allaahummaghfir lii", "translation": "Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu ya Allah, ampunilah aku." },
+        { "pilihan": "Pilihan 3", "arabic": "سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ", "latin": "Subbuuhun qudduusun rabbul-malaaikati war-ruuh", "translation": "Maha Suci, Maha Kudus, Rabbnya para malaikat dan ruh (Malaikat Jibril)." }
+      ]
+    },
+    {
+      "nomor": 7,
+      "title": "Doa Duduk di Antara Dua Sujud",
+      "titlesub": "Dibaca saat duduk di antara dua sujud",
+      "arabic": "رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي",
+      "latin": "Rabbi ghfir lii, Rabbi ghfir lii",
+      "translation": "Wahai Rabbku ampunilah aku, wahai Rabbku ampunilah aku.",
+      "bacaan_lainnya": [
+        { "pilihan": "Pilihan 1", "arabic": "رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْزُقْنِي، وَارْفَعْنِي", "latin": "Rabbi ghfir lii, warhamnii, wajburnii, وارزقني, warfa'nii", "translation": "Wahai Rabbku ampunilah aku, sayangilah aku, cukupilah kekuranganku, berilah aku rezeki, dan tinggikanlah derajatku." },
+        { "pilihan": "Pilihan 2", "arabic": "اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَاهْدِنِي، وَارْزُقْنِي", "latin": "Allaahummaghfir lii, warhamnii, wajburnii, wahdinii, وارزuqnii", "translation": "Ya Allah, ampunilah aku, sayangilah aku, cukupilah kekuranganku, berilah aku petunjuk, dan berilah aku rezeki." },
+        { "pilihan": "Pilihan 3", "arabic": "رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْفَعْنِي، وَارْزُقْنِي، وَاهْدِنِي", "latin": "Rabbi ghfir lii, warhamnii, wajburnii, warfa'nii, وارزuqnii, wahdinii", "translation": "Wahai Rabbku ampunilah aku, sayangilah aku, cukupilah kekuranganku, tinggikanlah derajatku, berilah aku rezeki, dan berilah aku petunjuk." },
+        { "pilihan": "Pilihan 4", "arabic": "اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَعَافِنِي وَارْزُقْنِي", "latin": "Allaahummaghfir lii warhamnii wahdinii wa'aafinii وارزuqnii", "translation": "Ya Allah, ampunilah aku, sayangilah aku, berilah aku petunjuk, selamatkanlah aku (dari berbagai penyakit/penderitaan), dan berilah aku rezeki." }
+      ]
+    },
+    {
+      "nomor": 8,
+      "title": "Tasyahud (Tahiyyat)",
+      "titlesub": "Dibaca pada Tasyahud Awal dan Tasyahud Akhir",
+      "arabic": "التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+      "latin": "At-tahiyyaatu lillaahi wash-shalawaatu uth-thayyibaat, as-salaamu 'alaika ayyuhan-nabiyyu wa rahmatullaahi wa barakaatuh, as-salaamu 'alaynaa wa 'alaa 'ibaadillaahish-shaalihiin, asyhadu allaa ilaaha illallaah wa asyhadu anna muhammadan 'abduhu wa rasuuluh",
+      "translation": "Segala ucapan selamat, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Versi Ibnu Abbas",
+          "arabic": "التَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللهِ",
+          "latin": "At-tahiyyaatul-mubaarakaatush-shalawaatuth-thayyibaatu lillaah, as-salaamu 'alaika ayyuhan-nabiyyu wa rahmatullaahi wa barakaatuh, as-salaamu 'alaynaa wa 'alaa 'ibaadillaahish-shaalihiin, asyhadu allaa ilaaha illallaah wa asyhadu anna muhammadan rasuulullaah",
+          "translation": "Segala ucapan selamat yang penuh berkah, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan, rahmat Allah, dan keberkahan-Nya tetap terlimpah kepadamu wahai Nabi. Semoga keselamatan tetap tercurah kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada Tuhan yang berhak disembah selain Allah, dan aku bersaksi bahwa Muhammad adalah utusan Allah."
+        },
+        {
+          "pilihan": "Versi Abu Musa Al-Asy'ari",
+          "arabic": "التَّحِيَّاتُ الطَّيِّبَاتُ الصَّلَوَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+          "latin": "At-tahiyyaatut-thayyibaatush-shalawaatu lillaah, as-salaamu 'alaika ayyuhan-nabiyyu wa rahmatullaahi wa barakaatuh, as-salaamu 'alaynaa wa 'alaa 'ibaadillaahish-shaalihiin, asyhadu allaa ilaaha illallaah wa asyhadu anna muhammadan 'abduhu wa rasuuluh",
+          "translation": "Segala ucapan selamat, kebaikan, dan shalawat adalah milik Allah. Semoga keselamatan, rahmat Allah, dan keberkahan-Nya tetap terlimpah kepadamu wahai Nabi. Semoga keselamatan tetap tercurah kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada Tuhan yang berhak disembah selain Allah, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."
+        }
+      ]
+    },
+    {
+      "nomor": 9,
+      "title": "Shalawat Nabi",
+      "titlesub": "Dibaca pada Tasyahud Akhir setelah bacaan Tasyahud",
+      "arabic": "التَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللهِ",
+      "latin": "At-tahiyyaatul-mubaarakaatush-shalawaatuth-thayyibaatu lillaah, as-salaamu 'alaika ayyuhan-nabiyyu wa rahmatullaahi wa barakaatuh, as-salaamu 'alaynaa wa 'alaa 'ibaadillaahish-shaalihiin, asyhadu allaa ilaaha illallaah wa asyhadu anna muhammadan rasuulullaah",
+      "translation": "Segala ucapan selamat yang penuh berkah, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan, rahmat Allah, dan keberkahan-Nya tetap terlimpah kepadamu wahai Nabi. Semoga keselamatan tetap tercurah kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada Tuhan yang berhak disembah selain Allah, dan aku bersaksi bahwa Muhammad adalah utusan Allah.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Pilihan 1",
+          "arabic": "اللهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، وَبَارِكْ عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ فِي الْعَالَمِينَ، إِنَّكَ حَمِيدٌ مَجِيدٌ",
+          "latin": "Allaahumma shalli 'alaa muhammadin wa 'alaa aali muhammadin, wa baarik 'alaa muhammadin wa 'alaa aali muhammadin, kamaa baarakta 'alaa ibraahiima fil-'aalamiin, innaka hamiidun majiid",
+          "translation": "Ya Allah, limpahkanlah rahmat kepada Muhammad dan kepada keluarga Muhammad, dan berkahilah Muhammad dan keluarga Muhammad sebagaimana Engkau telah memberkati Ibrahim di seluruh alam semesta. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia."
+        },
+        {
+          "pilihan": "Pilihan 2 (Ringkas)",
+          "arabic": "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+          "latin": "Allaahumma shalli 'alaa muhammadin wa 'alaa aali muhammad",
+          "translation": "Ya Allah, berilah shalawat (pujian) kepada Muhammad dan keluarga Muhammad."
+        }
+      ]
+    },
+    {
+      "nomor": 10,
+      "title": "Doa Sebelum Salam",
+      "titlesub": "Dibaca pada akhir Tasyahud Akhir sebelum Salam",
+      "arabic": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ",
+      "latin": "Allaahumma innii a'uudhu bika min 'adzaabi jahannam, wa min 'adzaabil-qabr, wa min fitnatil-mahyaa wal-mamaat, wa min sharri fitnatil-masiihid-dajjaal",
+      "translation": "Ya Allah, sesungguhnya aku berlindung kepada-Mu dari azab neraka Jahannam, dari azab kubur, dari fitnah kehidupan dan kematian, serta dari keburukan fitnah Al-Masih Ad-Dajjal.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Doa Abu Bakar",
+          "arabic": "اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ",
+          "latin": "Allaahumma innii zhalamtu nafsii zhulman katsiiraa, wa laa yaghfirudz-dhunuuba illaa anta, faghfir lii maghfiratan min 'indik, warhamnii innaka antal-ghafuurur-rahiim",
+          "translation": "Ya Allah, sesungguhnya aku telah banyak menzhalimi diriku sendiri, dan tidak ada yang dapat mengampuni dosa kecuali Engkau. Maka ampunilah aku dengan ampunan dari sisi-Mu, dan rahmatilah aku. Sesungguhnya Engkau Maha Pengampun lagi Maha Penyayang."
+        },
+        {
+          "pilihan": "Pilihan 2",
+          "arabic": "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ",
+          "latin": "Yaa muqallibal-quluub tsabbit qalbii 'alaa diinik",
+          "translation": "Wahai Dzat yang membolak-balikkan hati, teguhkanlah hatiku di atas agama-Mu."
+        },
+        {
+          "pilihan": "Pilihan 3",
+          "arabic": "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
+          "latin": "Allaahumma a'innii 'alaa dzikrika wa syukrika wa husni 'ibaadatika",
+          "translation": "Ya Allah, tolonglah aku untuk senantiasa mengingat-Mu (berdzikir), bersyukur kepada-Mu, dan beribadah dengan baik kepada-Mu."
+        }
+      ]
+    },
+    {
+      "nomor": 11,
+      "title": "Doa Ta'awudz",
+      "titlesub": "Dibaca sebelum membaca Al-Fatihah pada rakaat pertama",
+      "arabic": "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+      "latin": "A'udzu billaahi minasy-syaythaanir-rajiim",
+      "translation": "Aku berlindung kepada Allah dari godaan setan yang terkutuk.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Pilihan 1",
+          "arabic": "أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+          "latin": "A'udzu billaahis-samii'il-'aliim minasy-syaythaanir-rajiim",
+          "translation": "Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk."
+        },
+        {
+          "pilihan": "Pilihan 2",
+          "arabic": "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ؛ مِنْ هَمْزِهِ، وَنَفْخِهِ، وَنَفْثِهِ",
+          "latin": "A'udzu billaahi minasy-syaythaanir-rajiim, min hamzihi, wa nafkhihi, wa nafthih",
+          "translation": "Aku berlindung kepada Allah dari godaan setan yang terkutuk; dari kegilaannya, kesombongannya, dan hembusan mantra jahatnya."
+        },
+        {
+          "pilihan": "Pilihan 3",
+          "arabic": "أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ إِنَّهُ هُوَ السَّمِيعُ الْعَلِيمُ",
+          "latin": "A'udzu billaahis-samii'il-'aliim minasy-syaythaanir-rajiim innahuu huwas-samii'ul-'aliim",
+          "translation": "Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk, sesungguhnya Dia-lah Yang Maha Mendengar lagi Maha Mengetahui."
+        },
+        {
+          "pilihan": "Pilihan 4",
+          "arabic": "أَسْتَعِيذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+          "latin": "Astaiiudzubillaahi minasy-syaythaanir-rajiim",
+          "translation": "Aku memohon perlindungan kepada Allah dari godaan setan yang terkutuk."
+        }
+      ]
+    },
+    {
+      "nomor": 12,
+      "title": "Doa Tambahan Saat Sujud",
+      "titlesub": "Disunnahkan dibaca saat Sujud setelah bacaan tasbih utama",
+      "arabic": "اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ دِقَّهُ، وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ وَعَلَانِيَتَهُ وَسِرَّهُ",
+      "latin": "Allaahummaghfir lii dzambii kullahu diqqaahu wa jillahu wa awwalahu wa aakhirahu wa 'alaaniyatahu wa sirrahu",
+      "translation": "Ya Allah, ampunilah seluruh dosaku, yang kecil maupun yang besar, yang awal maupun yang akhir, yang terang-terangan maupun yang rahasia.",
+      "bacaan_lainnya": [
+        {
+          "pilihan": "Pilihan 1",
+          "arabic": "اللَّهُمَّ اغْفِرْ لِي مَا أَسْرَرْتُ وَمَا أَعْلَنْتُ",
+          "latin": "Allaahummaghfir lii maa asrartu wa maa a'lantu",
+          "translation": "Ya Allah, ampunilah aku atas dosa yang aku sembunyikan dan yang aku tampakkan."
+        },
+        {
+          "pilihan": "Pilihan 2",
+          "arabic": "اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا، وَفِي سَمْعِي نُورًا، وَفِي بَصَرِي نُورًا، وَعَنْ يَمِينِي نُورًا، وَعَنْ شِمَالِي نُورًا، وَأَمَامِي نُورًا، وَخَلْفِي نُورًا، وَفَوْقِي نُورًا، وَتَحْتِي نُورًا، وَاجْعَلْ لِي نُورًا",
+          "latin": "Allaahmaj'al fii qalbii nuuraa, wa fii sam'ii nuuraa, wa fii basharii nuuraa, wa 'an yamiinii nuuraa, wa 'an syimaalii nuuraa, wa amaamii nuuraa, wa khalfii nuuraa, wa fawqii nuuraa, wa tahtii nuuraa, waj'al lii nuuraa",
+          "translation": "Ya Allah, jadikanlah cahaya di hatiku, cahaya di pendengaranku, cahaya di penglihatanku, cahaya di sebelah kananku, cahaya di sebelah kiriku, cahaya di depanku, cahaya di belakangku, cahaya di atasku, cahaya di bawahku, dan jadikanlah untukku cahaya."
+        },
+        {
+          "pilihan": "Pilihan 3",
+          "arabic": "اللَّهُمَّ إِنِّي أَعُوذُ بِرِضَاكَ مِنْ سَخَطِكَ، وَبِمُعَافَاتِكَ مِنْ عُقُوبَتِكَ، وَأَعُوذُ بِكَ مِنْكَ، لَا أُحْصِي ثَنَاءً عَلَيْكَ، أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ",
+          "latin": "Allaahumma innii a'uudhu biridhaaka min sakhatika, wa bimu'aafaatika min 'uquubatika, wa a'uudhu bika mink, laa uhshii tsanaa'an 'alaik, anta kamaa atsnayta 'alaa nafsik",
+          "translation": "Ya Allah, sesungguhnya aku berlindung dengan keridhaan-Mu dari kemurkaan-Mu, dan dengan keselamatan-Mu dari hukuman-Mu, dan aku berlindung kepada-Mu dari siksa-Mu. Aku tidak mampu menghitung pujian kepada-Mu, Engkau adalah sebagaimana Engkau memuji diri-Mu sendiri."
+        }
+      ]
+    }
+  ]
+}

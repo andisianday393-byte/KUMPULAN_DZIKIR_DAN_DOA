@@ -1,0 +1,99 @@
+[
+  {
+    "id": "subhanallah",
+    "title": "Subhanallah",
+    "arabic": "سُبْحَانَ اللّٰهِ",
+    "latin": "Subhanallah",
+    "arti": "Maha Suci Allah.",
+    "options": [10, 33, 100],
+    "targetText": "Dibaca {x}x"
+  },
+  {
+    "id": "alhamdulillah",
+    "title": "Alhamdulillah",
+    "arabic": "الْحَمْدُ لِلّٰهِ",
+    "latin": "Alhamdulillah",
+    "arti": "Segala puji bagi Allah.",
+    "options": [10, 33, 100],
+    "targetText": "Dibaca {x}x"
+  },
+  {
+    "id": "allahuakbar",
+    "title": "Allahu Akbar",
+    "arabic": "اَللّٰهُ أَكْبَرُ",
+    "latin": "Allahu Akbar",
+    "arti": "Allah Maha Besar.",
+    "options": [10, 33, 100],
+    "targetText": "Dibaca {x}x"
+  },
+  {
+    "id": "lailahaillallah",
+    "title": "Laa Ilaaha Illallah",
+    "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ",
+    "latin": "Laa ilaaha illallah",
+    "arti": "Tiada Tuhan selain Allah.",
+    "options": [10, 33, 100],
+    "targetText": "Dibaca {x}x"
+  },
+  {
+    "id": "istighfar",
+    "title": "Istighfar",
+    "arabic": "أَسْتَغْفِرُ اللّٰهَ",
+    "arabicOptions": [
+      {
+        "title": "Istighfar 1",
+        "arabic": "أسْتَغْفِرُ اللهَ",
+        "latin": "Astaghfirullah",
+        "arti": "Aku memohon ampun kepada Allah."
+      },
+      {
+        "title": "Istighfar 2",
+        "arabic": "أسْتَغْفِرُ اللهَ وَأَتُوبُ إِلَيْهِ",
+        "latin": "Astaghfirullaaha wa atuubu ilaih",
+        "arti": "Aku memohon ampun kepada Allah dan bertobat kepada-Nya."
+      },
+      {
+        "title": "Istighfar 3",
+        "arabic": "رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",
+        "latin": "Robbighfirlii wa tub 'alayya, innaka antat tawwabur rohiim",
+        "arti": "Ya Tuhanku, ampunilah aku dan terimalah tobatku, sesungguhnya Engkau Maha Penerima tobat lagi Maha Penyayang."
+      }
+    ],
+    "latin": "Astaghfirullah",
+    "arti": "Aku memohon ampun kepada Allah.",
+    "options": [10, 33, 100],
+    "targetText": "Dibaca {x}x"
+  },
+  {
+    "id": "shalawat",
+    "title": "Shalawat",
+    "arabic": "اَللّٰهُمَّ صَلِّ عَلَى مُحَمَّدٍ",
+    "arabicOptions": [
+      {
+        "title": "Shalawat 1",
+        "arabic": "اَللّٰهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+        "latin": "Allahumma shalli 'ala Muhammad wa 'ala ali Muhammad",
+        "arti": "Ya Allah, limpahkanlah rahmat kepada Nabi Muhammad dan keluarga Nabi Muhammad."
+      },
+      {
+  "title": "Shalawat 2",
+  "arabic": "اَللّٰهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اَللّٰهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ",
+  "latin": "Allahumma shalli 'ala Muhammad wa 'ala ali Muhammad, kamaa shallaita 'ala Ibraahiima wa 'ala aali Ibraahiima, innaka hamiidun majiid. Allahumma baarik 'ala Muhammad wa 'ala ali Muhammad, kamaa baarakta 'ala Ibraahiima wa 'ala aali Ibraahiima, innaka hamiidun majiid",
+  "arti": "Ya Allah, limpahkanlah rahmat kepada Nabi Muhammad dan keluarga Nabi Muhammad, sebagaimana Engkau melimpahkan rahmat kepada Nabi Ibrahim dan keluarga Nabi Ibrahim. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia. Ya Allah, berkahilah Nabi Muhammad dan keluarga Nabi Muhammad, sebagaimana Engkau memberkahi Nabi Ibrahim dan keluarga Nabi Ibrahim. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia.",
+  "hideArti": true
+},
+      {
+  "title": "Shalawat 3",
+  "arabic": "اَللّٰهُمَّ صَلِّ وَسَلِّمْ عَلَى رَسُولِكَ مُحَمَّدٍ",
+  "latin": "Allahumma shalli wasallim 'ala rasulika Muhammad",
+  "arti": "Ya Allah, limpahkanlah rahmat dan keselamatan kepada utusan-Mu, Nabi Muhammad."
+}
+
+    ],
+    "latin": "Allahumma shalli 'ala Muhammad",
+    "arti": "Ya Allah, limpahkanlah rahmat kepada Nabi Muhammad.",
+     "options": [10, 33, 100],
+    "targetText": "Dibaca {x}x"
+  }
+]
+
