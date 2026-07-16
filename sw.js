@@ -1,4 +1,4 @@
-const STATIC_CACHE = "dzikir-static-v1";
+const STATIC_CACHE = "dzikir-static-v2";
 
 const ASSETS = [
     "./",
