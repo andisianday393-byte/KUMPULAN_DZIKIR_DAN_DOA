@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruqyah</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <style>
+
+.guide-item{
+    display:flex;
+    gap:16px;
+    padding:18px 0;
+    border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.guide-item:last-child{
+    border-bottom:none;
+}
+
+.guide-section{
+    margin:28px 18px;
+}
+
+.guide-heading{
+    font-size:22px;
+    font-weight:700;
+    color:var(--primary);
+    padding-bottom:10px;
+    margin-bottom:16px;
+    border-bottom:2px solid var(--primary);
+}
+
+.guide-content{
+    flex:1;
+}
+
+.guide-list{
+    margin:15px 0;
+    padding-left:22px;
+}
+
+.guide-list li{
+    margin-bottom:12px;
+    line-height:1.8;
+}
+
+.number{
+
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+}
+
+.guide-title{
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.guide-desc{
+
+    line-height:1.7;
+
+    color:var(--text-color);
+
+}
+
+.hidden-content{
+    display:none;
+}
+
+.dzikir-actions{
+    display:flex;
+    gap:10px;
+    margin:12px 0;
+}
+
+.dzikir-actions button{
+    border:none;
+    padding:7px 14px;
+    border-radius:20px;
+    background:var(--primary);
+    color:#fff;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.guide-section .dzikir-card{
+    width:calc(100% + 0px);
+    margin-left:-18px;
+}
+
+    </style>
+  </head>
+ 
+<body>
+<!-- ============================================
+     1. FIXED HEADER (STICKY TOP)
+     ============================================ -->
+<div id="pdfLoadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="loader-content">
+    <div class="spinner"></div>
+    <h3>Menyiapkan PDF</h3>
+    <p>Mohon tunggu sebentar, dokumen sedang dibuat...</p>
+</div>
+</div>
+<div class="top-header">
+
+    <!-- Tombol Back -->
+    <div class="back-container" onclick="goBack()">
+        <div class="back-button"></div>
+    </div>
+
+    <!-- Judul -->
+    <div class="header-title" id="headerTitle">
+        Ruqyah Mandiri
+    </div>
+
+<!-- Tombol Daftar Doa -->
+<div class="header-actions">
+
+    <div id="sharePdfWrap" class="share-pdf-wrap">
+    
+    <button id="sharePdfBtn" class="header-icon-btn" onclick="sharePdf()">
+    <i class="fa-solid fa-share-nodes"></i>
+</button>
+</div>
+    <button id="listBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-list"></i>
+    </button>
+  
+    <button id="drawerBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+</div>  
+    <!-- Drawer -->
+    <div id="headerDrawer" class="header-drawer">
+
+        <div class="search-box">
+            <input type="text" placeholder="Cari doa atau dzikir">
+          
+            <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle">
+            <i class="fa-solid fa-sun toggle-icon"></i>
+        </button>
+
+        <button id="fontSizeBtn" class="control-btn">
+            <i class="fa-solid fa-maximize"></i>
+        </button>
+
+        <button id="wakeLockBtn" class="control-btn">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </button>
+
+    </div>
+
+</div>
+  
+<div id="doaListDrawer" class="doa-list-drawer"></div>
+
+<div id="fontSliderBox" class="font-slider-box">
+    <input
+        id="fontSlider"
+        type="range"
+        min="1.2"
+        max="3"
+        step="0.1"
+        value="1.4">
+
+    <span id="fontValue">1.4</span>
+</div>
+<!-- ============================================
+     2. MAIN CONTAINER
+     ============================================ -->
+<div class="container" id="pdfContent">
+    <div class="pdf-title">
+    <h2>Ruqyah Mandiri</h2>
+    <div class="subtitles">Tata Cara Ruqyah Mandiri</div>
+    </div>
+    <header>
+    </header>
+    
+    <div id="guidePersiapan"></div>
+
+<div id="guideLangkah"></div>
+
+<div id="ayatRuqyah"></div>
+
+<div id="ruqyahTidur"></div>
+
+<div id="doaSakit"></div>
+
+<div id="doaTerluka"></div>
+
+<div id="catatanPenting"></div>
+
+<div id="referensi"></div>
+    <!-- ============================================
+         4. FOOTER
+         ============================================ -->
+    <footer>
+    <p><strong>﴾ فَاذْكُرُونِي أَذْكُرْكُمْ ﴿</strong></p>
+    <p>"Maka ingatlah kepada-Ku, niscaya Aku ingat kepadamu."</p>
+    <small>QS. Al-Baqarah: 152</small>
+    <br><br>
+    <small>&copy; 2026 Ruqyah Mandiri</small><br>
+      <small>
+Referensi materi:
+Youtube - Yufid.TV
+</small>
+</footer>
+</div>
+<script>
+async function loadRuqyah(){
+
+    const res = await fetch("json/ayat_ruqyah.json");
+    const data = await res.json();
+
+    renderPersiapan(data.guide.persiapan);
+
+    renderLangkah(data.guide.langkah);
+
+    renderAyat(data.ayat_ruqyah);
+
+    renderDoaSakit(data.doa_sakit);
+
+    renderTidur(
+    data.guide.sebelum_tidur,
+    data.ayat_ruqyah
+);
+
+    renderDoaTerluka(data.doa_terluka);
+
+}
+  loadRuqyah();
+  renderCatatanPenting();
+  renderReferensi();
+function renderPersiapan(items){
+
+    let html = `
+    <div class="guide-section" id="persiapan">
+    <div class="guide-heading">
+        Persiapan Sebelum Ruqyah
+    </div>
+    `;
+
+    items.forEach((item,index)=>{
+
+        html += `
+        <div class="guide-item">
+
+            <div class="number">
+                ${index+1}
+            </div>
+
+            <div class="guide-content">
+
+                <div class="guide-title">
+                    ${item.title}
+                </div>
+
+                <div class="guide-desc">
+                    ${item.description}
+                </div>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    html += `</div>`;
+
+    document.getElementById("guidePersiapan").innerHTML = html;
+}
+function renderAyat(items){
+
+    let html=`
+    <div class="guide-section" id="ayat">
+    <h2>Ayat Ruqyah</h2>
+      `;
+
+    items.forEach(item=>{
+
+        html += `
+<div class="dzikir-card">
+
+    <div class="dzikir-title">
+        ${item.title}
+    </div>
+
+    <div class="arabic">
+        ${item.arabic}
+    </div>
+
+    <div class="hidden-box">
+
+        <div class="latin hidden-content">
+            ${item.latin}
+        </div>
+
+        <div class="translation hidden-content">
+            ${item.terjemahan}
+        </div>
+
+    </div>
+
+    <div class="info-actions">
+
+    <button class="action-btn"
+            onclick="toggleDzikir(this)">
+        Arti
+    </button>
+
+    <button class="menu-btn"
+            onclick="toggleActionMenu(this)">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+    <div class="action-menu">
+
+        <button onclick="toggleLatin(this)">
+            Latin
+        </button>
+
+        <button onclick="copyDzikir(this)">
+            Salin
+        </button>
+
+        <button onclick="shareDzikir(this)">
+            Bagikan
+        </button>
+
+    </div>
+
+</div>
+</div>
+`;
+
+    });
+
+    html+="</div>";
+
+    document.getElementById("ayatRuqyah").innerHTML=html;
+
+}
+function renderLangkah(items){
+
+    let html = `
+    <div class="guide-section" id="langkah">
+    <h2>Tata Cara Ruqyah Mandiri</h2>
+    `;
+
+    items.forEach((item,index)=>{
+
+        html += `
+        <div class="guide-item">
+
+            <div class="number">
+                ${index+1}
+            </div>
+
+            <div>
+
+                <div class="guide-title">
+                    ${item.title}
+                </div>
+
+                <div class="guide-desc">
+                    ${item.description}
+                </div>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    html += "</div>";
+
+    document.getElementById("guideLangkah").innerHTML = html;
+
+}
+function renderDoaSakit(data){
+
+    let html = `
+    <div class="guide-section" id="sakit">
+
+        <h2>${data.title}</h2>
+
+        <div class="guide-desc">
+            Apabila merasakan sakit pada bagian tubuh tertentu, lakukan langkah-langkah berikut:
+        </div>
+
+        <ol class="guide-list">
+    `;
+
+    data.langkah.forEach(step=>{
+        html += `<li>${step}</li>`;
+    });
+
+    html += `
+        </ol>
+
+        <div class="dzikir-card">
+
+            <div class="arabic">
+    ${data.arabic}
+</div>
+<div class="latin hidden-content">
+        ${data.latin}
+    </div>
+
+    <div class="translation hidden-content">
+        ${data.terjemahan}
+    </div>
+
+<div class="info-actions">
+
+    <button class="action-btn"
+            onclick="toggleDzikir(this)">
+        Arti
+    </button>
+
+    <button class="menu-btn"
+            onclick="toggleActionMenu(this)">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+    <div class="action-menu">
+
+        <button onclick="toggleLatin(this)">
+            Latin
+        </button>
+
+        <button onclick="copyDzikir(this)">
+            Salin
+        </button>
+
+        <button onclick="shareDzikir(this)">
+            Bagikan
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+    `;
+
+    document.getElementById("doaSakit").innerHTML = html;
+
+}
+function renderTidur(guide, ayat){
+
+    const tidur = guide[0];
+
+    let html = `
+    <div class="guide-section" id="tidur">
+
+        <h2>${tidur.title}</h2>
+
+        <div class="guide-desc">
+            Lakukan amalan berikut setiap malam sebelum tidur sebagai bentuk perlindungan diri dengan izin Allah.
+        </div>
+
+        <ol class="guide-list">
+    `;
+
+    tidur.steps.forEach(step=>{
+        html += `<li>${step}</li>`;
+    });
+
+    html += `</ol>`;
+
+    // Ambil 3 surat terakhir dari ayat_ruqyah
+    const suratTidur = ayat.filter(item =>
+        item.title.includes("Al-Ikhlas") ||
+        item.title.includes("Al-Falaq") ||
+        item.title.includes("An-Nas")
+    );
+
+    suratTidur.forEach(item=>{
+
+        html += `
+        <div class="dzikir-card">
+
+            <div class="dzikir-title">
+                ${item.title}
+            </div>
+
+            <div class="arabic">
+                ${item.arabic}
+            </div>
+<div class="latin hidden-content">
+    ${item.latin}
+</div>
+
+<div class="translation hidden-content">
+    ${item.terjemahan}
+</div>
+
+            <div class="info-actions">
+
+    <button class="action-btn"
+            onclick="toggleDzikir(this)">
+        Arti
+    </button>
+
+    <button class="menu-btn"
+            onclick="toggleActionMenu(this)">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+    <div class="action-menu">
+
+        <button onclick="toggleLatin(this)">
+            Latin
+        </button>
+
+        <button onclick="copyDzikir(this)">
+            Salin
+        </button>
+
+        <button onclick="shareDzikir(this)">
+            Bagikan
+        </button>
+
+    </div>
+
+</div>
+
+
+        </div>
+        `;
+
+    });
+
+    html += `
+    </div>
+    `;
+  document.getElementById("ruqyahTidur").innerHTML = html;
+
+}
+function renderDoaTerluka(data){
+
+    let html = `
+    <div class="guide-section" id="terluka">
+
+        <h2>${data.title}</h2>
+
+        <div class="guide-desc">
+            Apabila mengalami luka pada tubuh, lakukan langkah-langkah berikut sesuai tuntunan sunnah.
+        </div>
+
+        <ol class="guide-list">
+    `;
+
+    data.langkah.forEach(step=>{
+        html += `<li>${step}</li>`;
+    });
+
+    html += `
+        </ol>
+
+        <div class="dzikir-card">
+
+            <div class="arabic">
+    ${data.arabic}
+</div>
+<div class="latin hidden-content">
+    ${data.latin}
+</div>
+
+<div class="translation hidden-content">
+    ${data.terjemahan}
+</div>
+
+<div class="info-actions">
+
+    <button class="action-btn"
+            onclick="toggleDzikir(this)">
+        Arti
+    </button>
+
+    <button class="menu-btn"
+            onclick="toggleActionMenu(this)">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+    <div class="action-menu">
+
+        <button onclick="toggleLatin(this)">
+            Latin
+        </button>
+
+        <button onclick="copyDzikir(this)">
+            Salin
+        </button>
+
+        <button onclick="shareDzikir(this)">
+            Bagikan
+        </button>
+
+    </div>
+
+</div>
+        </div>
+
+    </div>
+    `;
+
+    document.getElementById("doaTerluka").innerHTML = html;
+
+}
+function toggleContent(btn, type){
+
+    const card = btn.closest(".dzikir-card");
+    const target = card.querySelector("." + type);
+
+    if(target.style.display === "block"){
+        target.style.display = "none";
+    }else{
+        target.style.display = "block";
+    }
+
+}
+
+const menuRuqyah = [
+    {id:"persiapan",title:"Persiapan Sebelum Ruqyah"},
+    {id:"langkah",title:"Tata Cara Ruqyah"},
+    {id:"ayat",title:"Ayat Ruqyah"},
+    {id:"sakit",title:"Doa Saat Sakit"},
+    {id:"tidur",title:"Ruqyah Sebelum Tidur"},
+    {id:"terluka",title:"Doa Saat Terluka"},
+    {id:"catatan", title:"Catatan Penting"},
+    {id:"referensi", title:"Referensi"}
+];
+const listDrawer = document.getElementById("doaListDrawer");
+listDrawer.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="doa-list-header">
+        Daftar Isi Ruqyah
+    </div>
+    `
+);
+menuRuqyah.forEach((item, index) => {
+
+    listDrawer.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="doa-list-item"
+             data-target="${item.id}">
+            ${index + 1}. ${item.title}
+        </div>
+        `
+    );
+
+});
+document.querySelectorAll(".doa-list-item").forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const target = document.getElementById(item.dataset.target);
+
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        doaListDrawer.classList.remove("show");
+    });
+
+});
+
+async function sharePdf() {
+
+    const overlay = document.getElementById("pdfLoadingOverlay");
+    const element = document.getElementById("pdfContent");
+
+    if (!element) {
+        alert("Konten PDF tidak ditemukan.");
+        return;
+    }
+
+    overlay.style.display = "flex";
+
+    requestAnimationFrame(() => {
+        overlay.classList.add("show");
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 200));
+document.querySelector(".top-header")?.style.setProperty("display","none");
+
+document.querySelector(".active-dzikir-box")?.style.setProperty("display","none");
+
+document.querySelector("#tasbihPopup")?.style.setProperty("display","none");
+document.querySelectorAll(".info-actions").forEach(el => {
+    el.style.display = "none";
+});
+document.querySelectorAll(".tasbih-link").forEach(el => {
+    el.style.display = "none";
+});
+
+    try {
+element.classList.add("pdf-export");
+      document.querySelectorAll("#pdfContent.pdf-export .arabic").forEach(el => {
+    el.innerHTML = el.innerHTML
+        .replace(/،/g,'<span class="punct">،</span>')
+        .replace(/:/g,'<span class="punct">:</span>');
+});
+        const opt = {
+            margin: 8,
+            filename: "Kumpulan-Doa-Pilihan.pdf",
+            image: {
+                type: "jpeg",
+                quality: 1
+            },
+            html2canvas: {
+            scale: 1.3,
+            useCORS: true,
+            scrollY: 0
+},
+            jsPDF: {
+                unit: "mm",
+                format: "a4",
+                orientation: "portrait"
+            },
+            pagebreak: {
+                mode: ["css", "legacy"]
+            }
+        };
+
+document.querySelectorAll(".latin").forEach(el => {
+    el.style.display = "block";
+});
+
+document.querySelectorAll(".translation").forEach(el => {
+    el.style.display = "block";
+});
+
+
+// Tunggu browser merender perubahan
+await new Promise(resolve => requestAnimationFrame(resolve));
+await new Promise(resolve => requestAnimationFrame(resolve));
+        const worker = html2pdf().set(opt).from(element);
+
+        const pdf = await worker.toPdf().get("pdf");
+
+        const blob = pdf.output("blob");
+
+        const file = new File(
+            [blob],
+            "Kumpulan-Doa-Pilihan.pdf",
+            {
+                type: "application/pdf"
+            }
+        );
+
+        if (
+            navigator.canShare &&
+            navigator.canShare({ files: [file] })
+        ) {
+
+            await navigator.share({
+                title: "Kumpulan Doa Pilihan",
+                text: "Kumpulan Doa Pilihan PDF",
+                files: [file]
+            });
+
+        } else {
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "Kumpulan-Doa-Pilihan.pdf";
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+            alert("Browser tidak mendukung berbagi file. PDF telah diunduh.");
+        }
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Gagal membagikan PDF, Silahkan Ulangi.");
+
+    } finally {
+
+document.querySelector(".top-header")?.style.removeProperty("display");
+
+document.querySelector(".active-dzikir-box")?.style.removeProperty("display");
+
+document.querySelector("#tasbihPopup")?.style.removeProperty("display");
+document.querySelectorAll(".info-actions").forEach(el => {
+    el.style.display = "";
+});
+document.querySelectorAll(".tasbih-link").forEach(el => {
+    el.style.display = "";
+});
+document.querySelectorAll(".latin").forEach(el => {
+    el.style.display = "none";
+});
+
+document.querySelectorAll(".translation").forEach(el => {
+    el.style.display = "none";
+});
+element.classList.remove("pdf-export");
+
+        overlay.classList.remove("show");
+
+        setTimeout(() => {
+            overlay.style.display = "none";
+        }, 300);
+
+    }
+
+}
+function renderCatatanPenting(){
+
+    const html = `
+    <div class="guide-section" id="catatan">
+
+        <div class="guide-heading">
+            Catatan Penting
+        </div>
+
+        <div class="guide-item">
+
+            <div class="number">1</div>
+
+            <div class="guide-content">
+
+                <div class="guide-title">
+                    Ruqyah bukan pengganti pengobatan medis
+                </div>
+
+                <div class="guide-desc">
+                    Tetap berobat ke dokter apabila mengalami sakit. Ruqyah adalah
+                    ikhtiar syar'i yang dilakukan bersamaan dengan usaha pengobatan
+                    yang dibolehkan dalam Islam.
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="guide-item">
+
+            <div class="number">2</div>
+
+            <div class="guide-content">
+
+                <div class="guide-title">
+                    Lakukan dengan penuh keyakinan kepada Allah
+                </div>
+
+                <div class="guide-desc">
+                    Kesembuhan datang hanya dari Allah Subhanahu wa Ta'ala.
+                    Bacalah ayat dan doa dengan ikhlas, bertawakal, serta jauhi
+                    segala bentuk kesyirikan, jimat, dan praktik ruqyah yang
+                    bertentangan dengan syariat.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    `;
+
+    document.getElementById("catatanPenting").innerHTML = html;
+
+}
+function renderReferensi(){
+
+    const html = `
+    <div class="guide-section" id="referensi">
+
+        <div class="guide-heading">
+            Referensi
+        </div>
+
+        <div class="guide-item">
+
+            <div class="number">
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+
+            <div class="guide-content">
+
+                <div class="guide-title">
+                    Yufid.TV
+                </div>
+
+                <div class="guide-desc">
+                    Materi tata cara ruqyah syar'iyyah dan penjelasan sunnah
+                    dapat dipelajari melalui kajian-kajian yang disampaikan
+                    oleh para ustaz di kanal Yufid.TV.
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="guide-item">
+
+            <div class="number">
+                <i class="fa-solid fa-book-quran"></i>
+            </div>
+
+            <div class="guide-content">
+
+                <div class="guide-title">
+                    Al-Qur'an dan Hadits Shahih
+                </div>
+
+                <div class="guide-desc">
+                    Seluruh ayat ruqyah dan doa yang terdapat dalam aplikasi ini
+                    bersumber dari Al-Qur'an serta hadits-hadits shahih sesuai
+                    pemahaman Ahlus Sunnah wal Jama'ah.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    `;
+
+    document.getElementById("referensi").innerHTML = html;
+
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="js/header.js"></script>    
+</body>
+</html>

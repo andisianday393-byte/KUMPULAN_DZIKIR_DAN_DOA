@@ -3,11 +3,31 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumpulan Doa - Dzikir Pagi</title>
+    <title>Kumpulan Doa - Dzikir Setelah Shalat</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/tasbih.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
+<style>
+
+/* Judul PDF disembunyikan di web */
+.pdf-title{
+    display: none;
+}
+
+/* Saat export PDF */
+.pdf-export .pdf-title{
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Sembunyikan judul halaman web saat export PDF */
+.pdf-export header{
+    display: none !important;
+}
+  
+</style>
   </head>
  
 <body>
@@ -21,7 +41,7 @@
     <p>Mohon tunggu sebentar, dokumen sedang dibuat...</p>
 </div>
 </div>
-
+  
 <div class="top-header">
 
     <!-- Tombol Back -->
@@ -31,12 +51,13 @@
 
     <!-- Judul -->
     <div class="header-title" id="headerTitle">
-        Dzikir Pagi
+        Dzikir Setelah Shalat
     </div>
-    <div class="header-actions">
+
+   <div class="header-actions">
 
     <div id="sharePdfWrap" class="share-pdf-wrap">
-    <span class="share-pdf-label">Bagikan PDF</span>
+    
     <button id="sharePdfBtn" class="header-icon-btn" onclick="sharePdf()">
     <i class="fa-solid fa-share-nodes"></i>
 </button>
@@ -47,6 +68,7 @@
     </button>
 
 </div>
+
     <!-- Drawer -->
     <div id="headerDrawer" class="header-drawer">
 
@@ -68,6 +90,7 @@
         <button id="wakeLockBtn" class="control-btn">
             <i class="fa-solid fa-mobile-screen-button"></i>
         </button>
+
     </div>
 
 </div>
@@ -91,14 +114,13 @@
      ============================================ -->
 <div class="container" id="pdfContent">
     <div class="pdf-title">
-    <h2>Dzikir Pagi</h2>
+    <h2>Dzikir Setelah Shalat Fardhu</h2>
     <p class="subtitles">Kumpulan Dzikir dan Doa</p>
 </div>
-
     <header>
-    <span class="arabic bismillah">
-        بِــــــــسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
-    </span>
+    <h2 class="page-title">
+        Dzikir Setelah Shalat Fardhu
+    </h2>
 </header>
     
     <div class="dzikir-content" id="dzikirContent"></div>
@@ -111,14 +133,13 @@
     <p>"Maka ingatlah kepada-Ku, niscaya Aku ingat kepadamu."</p>
     <small>QS. Al-Baqarah: 152</small>
     <br><br>
-    <small>&copy; 2026 Kumpulan Dzikir Pagi </small><br>
+    <small>&copy; 2026 Kumpulan Dzikir Setelah Shalat</small><br>
       <small>
 Referensi materi:
 https://bekalislam.online
 </small>
 </footer>
 </div>
-  
   <div id="tasbihPopup" class="tasbih-popup">
 
   <div class="tasbih-box">
@@ -178,49 +199,34 @@ https://bekalislam.online
 
     <div class="tasbih-actions">
 
-    <!-- Pilih Lafal -->
-    <div id="arabicSelectWrap" class="arabic-select-wrap">
-
-        <small>Lafal</small>
-
-        <button id="arabicSelectBtn" class="tasbih-reset">
-            <span id="arabicSelectText">Pilih Lafal</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </button>
-
-        <div id="arabicMenu" class="tasbih-menu"></div>
-
-    </div>
-
-    <!-- Pilih Tasbih -->
     <div class="tasbih-select-wrap" id="tasbihSelectWrap">
 
-        <small>Pilih</small>
+    <small>Pilih</small>
 
-        <button id="tasbihSelectBtn" class="tasbih-reset">
-            <span id="tasbihSelectText">100x</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </button>
+    <button id="tasbihSelectBtn" class="tasbih-reset">
+        <span id="tasbihSelectText">100x</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
 
-        <div id="tasbihMenu" class="tasbih-menu"></div>
-
+    <div id="tasbihMenu" class="tasbih-menu">
     </div>
 
-    <!-- Reset -->
+</div>
+      
     <button id="tasbihReset" class="tasbih-reset">
         Reset
     </button>
 
 </div>
 
-<button id="tasbihPlus" class="tasbih-btn">
-    TAP DZIKIR
-</button>
-    </div>
+    <button id="tasbihPlus" class="tasbih-btn">
+        TAP DZIKIR
+    </button>
+</div>
 
   </div>
-<script>
 
+<script>
 async function loadDzikir() {
 
     const container = document.getElementById("dzikirContent");
@@ -229,7 +235,7 @@ async function loadDzikir() {
 
     try {
 
-        const response = await fetch("json/dzikir-pagi.json");
+        const response = await fetch("json/dzikir-setelah-shalat.json");
 
         if (!response.ok) {
             throw new Error("Gagal memuat JSON");
@@ -240,34 +246,53 @@ async function loadDzikir() {
         container.innerHTML = "";
 
         data.dzikir.forEach(item => {
+let sectionTitle = "";
 
+if (item.nomor === 14) {
+    sectionTitle = `
+        <h2 class="section-title">
+            Dzikir Setelah Shalat Witir
+        </h2>
+    `;
+}
+
+if (item.nomor === 15) {
+    sectionTitle = `
+        <h2 class="section-title">
+            Dzikir Setelah Shalat Dhuha
+        </h2>
+    `;
+}
+          
             const tasbihButton = item.tasbih
-                ? `
-                <span
-                    class="tasbih-link"
-                    data-target="${item.tasbih}"
-                    data-options='${JSON.stringify(item.options || [])}'
-                    data-arabic-options='${JSON.stringify(item.arabicOptions || [])}'
-                    data-targettext="${item.targetText || ""}">
-                    📿 Tasbih
-                </span>
-                `
-                : "";
+? `
+<span
+    class="tasbih-link"
+    data-target="${item.tasbih}"
+    data-options='${JSON.stringify(item.options || [])}'
+    data-targettext="${item.targetText || ""}"
+    data-activetext="${item.activeText || ""}">
+    📿 Tasbih
+</span>
+`
+: "";
 
-            const arabicText = item.arabic || "";
-console.log(item.nomor, JSON.stringify(arabicText));
-            let arabicClass = "arabic";
+          const arabicText = item.arabic || "";
+
+let arabicClass = "arabic";
 
 if (item.arabicIstigfar) {
     arabicClass += " arabic-istighfar";
 } else if (arabicText.includes("\n")) {
     arabicClass += " arabic-multiline";
 }
-
+          
             container.insertAdjacentHTML(
-                "beforeend",
-                `
-                <div class="dzikir-card">
+    "beforeend",
+    `
+    ${sectionTitle}
+
+    <div class="dzikir-card">
 
                     <span class="${arabicClass}">
 ${arabicText} </span>
@@ -328,7 +353,8 @@ ${arabicText} </span>
 
     </div>
 
-</div>                `
+</div>
+                `
             );
 
         });
@@ -345,7 +371,7 @@ ${arabicText} </span>
     }
 
 }
-  
+
 function lockBodyScroll() {
     const scrollY = window.scrollY;
     document.body.dataset.scrollY = scrollY;
@@ -375,7 +401,6 @@ function initTasbih() {
     let tasbihFinished = false;
     let currentTargetText = "";
     let currentArabicOptions = [];
-    let currentCard = null;
     let closeTimeout = null;
   
     const popup = document.getElementById("tasbihPopup");
@@ -398,7 +423,6 @@ function initTasbih() {
     const arabicSelectWrap = document.getElementById("arabicSelectWrap");
     const arabicSelectBtn = document.getElementById("arabicSelectBtn");
     const arabicSelectText = document.getElementById("arabicSelectText");
-    
   // Pastikan semua elemen popup tersedia
     if (
     !popup ||
@@ -478,7 +502,7 @@ statusEl.classList.remove("show");
 
     if (!btn) return;
 
-    const card = btn.closest(".dzikir-card"); currentCard = card;
+    const card = btn.closest(".dzikir-card");
       
 const options = JSON.parse(
     btn.dataset.options || "[]"
@@ -553,8 +577,10 @@ else if (arabicSelectWrap) {
 }
       
     activeArabic.innerHTML = card.querySelector(".arabic").innerHTML;
-      activeArabic.style.marginTop = "";
+activeArabic.style.marginTop = "";
 activeArabic.classList.remove("compact");
+activeArabic.classList.remove("option");
+activeArabic.classList.remove("istigfar");
 
 if (!card.querySelector(".arabic").classList.contains("arabic-istighfar")) {
     activeArabic.classList.add("compact");
@@ -610,8 +636,7 @@ updateTasbih();
     if (tasbihFinished) return;
 
     navigator.vibrate?.([30, 0, 30]);
-    console.log("vibrate" in navigator);
-console.log(navigator.vibrate);
+
     tasbihCount++;
 
     updateTasbih();
@@ -673,28 +698,29 @@ console.log(navigator.vibrate);
 
         if (!currentArabicOptions[index]) return;
 
-        const selected = currentArabicOptions[index];
+        activeArabic.innerHTML =
+            currentArabicOptions[index].text;
 
-activeArabic.innerHTML = selected.text;
-
-// gunakan offset dari JSON jika ada
-activeArabic.style.marginTop =
-    selected.offset || "";
-      
         if (arabicSelectText) {
+
             arabicSelectText.textContent =
                 currentArabicOptions[index].title;
+
         }
 
         if (
-            currentCard &&
-            currentCard.querySelector(".arabic") &&
-            currentCard.querySelector(".arabic").classList.contains("arabic-istighfar")
+            card &&
+            card.querySelector(".arabic") &&
+            card.querySelector(".arabic").classList.contains("arabic-istighfar")
         ) {
-            activeArabic.classList.toggle("istigfar", index > 0);
+
+            activeArabic.classList.toggle(
+                "istigfar",
+                index > 0
+            );
+
         }
 
-        // Tutup menu
         arabicMenu.style.display = "none";
 
     });
@@ -771,20 +797,20 @@ document.querySelectorAll(".tasbih-link").forEach(el => {
 element.classList.add("pdf-export");
       document.querySelectorAll("#pdfContent.pdf-export .arabic").forEach(el => {
     el.innerHTML = el.innerHTML
-        .replace(/،/g,'<span class="punct">،</span>')
-        .replace(/:/g,'<span class="punct">:</span>');
+        .replace(/،/g, '<span class="punct">،</span>')
+        .replace(/:/g, '<span class="punct">:</span>');
 });
         const opt = {
             margin: 8,
-            filename: "Dzikir-Pagi.pdf",
+            filename: "Dzikir-Setelah-Shalat-Fardhu.pdf",
             image: {
                 type: "jpeg",
                 quality: 1
             },
             html2canvas: {
-            scale: 1.3,
-            useCORS: true,
-            scrollY: 0
+    scale: 1.3,
+    useCORS: true,
+    scrollY: 0
 },
             jsPDF: {
                 unit: "mm",
@@ -816,7 +842,7 @@ await new Promise(resolve => requestAnimationFrame(resolve));
 
         const file = new File(
             [blob],
-            "Dzikir-Pagi.pdf",
+            "Dzikir-Setelah-Shalat-Fardhu.pdf",
             {
                 type: "application/pdf"
             }
@@ -828,8 +854,8 @@ await new Promise(resolve => requestAnimationFrame(resolve));
         ) {
 
             await navigator.share({
-                title: "Dzikir Pagi",
-                text: "Dzikir Pagi PDF",
+                title: "Dzikir Setelah Shalat Fardhu",
+                text: "Dzikir Setelah Shalat Fardhu PDF",
                 files: [file]
             });
 
@@ -839,7 +865,7 @@ await new Promise(resolve => requestAnimationFrame(resolve));
 
             const a = document.createElement("a");
             a.href = url;
-            a.download = "Dzikir-Pagi.pdf";
+            a.download = "Dzikir-Setelah-Shalat-Fardhu.pdf";
             a.click();
 
             URL.revokeObjectURL(url);
@@ -883,7 +909,7 @@ element.classList.remove("pdf-export");
 
 }
 </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="js/header.js"></script>  
-  </body>  
-</html>  
+</body>
+</html>

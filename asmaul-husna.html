@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asmaul Husna</title>
+
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="fontawesome/css/all.min.css">
+
+<style>
+
+.redirect-box{
+    max-width:500px;
+    margin:80px auto;
+    padding:25px;
+    text-align:center;
+}
+
+.redirect-icon{
+    width:90px;
+    height:90px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2.6rem;
+}
+
+.redirect-box h2{
+    margin-bottom:15px;
+}
+
+.redirect-box p{
+    line-height:1.8;
+    color:var(--text-color);
+    margin-bottom:25px;
+}
+
+.redirect-btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    background:var(--primary);
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.redirect-btn i{
+    margin-right:8px;
+}
+
+.note{
+    margin-top:18px;
+    font-size:.9rem;
+    opacity:.8;
+}
+.redirect-card{
+    margin-top:40px;
+    text-align:center;
+    padding:30px 22px;
+}
+
+.redirect-icon{
+    width:90px;
+    height:90px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:#319795;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2.5rem;
+    box-shadow:0 10px 25px rgba(49,151,149,.25);
+}
+
+.redirect-card h2{
+    color:#319795;
+    margin-bottom:18px;
+    font-size:1.5rem;
+}
+
+.visit-btn{
+    width:100%;
+    margin-top:12px;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    background:#319795;
+    color:#fff;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.visit-btn:hover{
+    background:#2c7a7b;
+}
+
+.visit-btn:active{
+    transform:scale(.98);
+}
+
+.visit-btn i{
+    margin-right:8px;
+}
+
+.redirect-note{
+    margin-top:18px;
+    font-size:.9rem;
+    color:#718096;
+}
+</style>
+
+</head>
+<body>
+<div class="top-header">
+  <div class="back-container" onclick="goBack()">
+        <div class="back-button"></div>
+    </div>
+
+    <!-- Judul -->
+    <div class="header-title" id="headerTitle">
+        Beranda
+    </div>
+  <div class="header-actions">
+
+    <button id="drawerBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+</div>
+    <!-- Drawer -->
+    <div id="headerDrawer" class="header-drawer">
+
+        <div class="search-box">
+            <input type="text" placeholder="Cari doa atau dzikir">
+            <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle">
+            <i class="fa-solid fa-sun toggle-icon"></i>
+        </button>
+<button id="wakeLockBtn" class="control-btn">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </button>
+    </div>
+</div>
+<div class="container">
+
+    <div class="dzikir-card redirect-card">
+
+        <div class="redirect-icon">
+            <i class="fa-solid fa-book-quran"></i>
+        </div>
+
+        <h2>Asmaul Husna</h2>
+
+        <p class="redirect-text">
+            Halaman <strong>Asmaul Husna</strong> pada aplikasi ini menggunakan
+            referensi dari <strong>Bekal Islam</strong>.
+        </p>
+
+        <p class="redirect-text">
+            Untuk mendapatkan materi yang lengkap serta pembaruan terbaru,
+            silakan kunjungi halaman resminya melalui tombol di bawah ini.
+        </p>
+
+        <button class="visit-btn" onclick="openBekalIslam()">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Kunjungi Situs
+        </button>
+
+        <div class="redirect-note">
+            Anda akan membuka halaman Bekal Islam di browser.
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function openBekalIslam(){
+
+    window.open(
+        "https://bekalislam.online/asmaul-husna",
+        "_blank"
+    );
+
+}
+
+</script>
+
+<script src="js/header.js"></script>
+</body>
+</html>

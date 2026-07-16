@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tasbih</title>
+
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/search.css">
+<link rel="stylesheet" href="css/list.css">
+<link rel="stylesheet" href="fontawesome/css/all.min.css">
+
+<style>
+
+/* ===========================
+   TASBIH DETAIL
+=========================== */
+.tasbih-card{
+    width:calc(100% - 24px); /* memberi jarak 12px kiri dan kanan */
+    max-width:420px;
+
+    margin:60px auto 5px;
+    padding:22px 18px 24px;
+
+    background:var(--card);
+    border-radius:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    box-sizing:border-box;
+}
+
+/* ===== Judul ===== */
+
+.tasbih-title{
+    font-size:18px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:14px;
+    margin-top: -5px
+}
+
+.arabic-title{
+    font-size:1.6rem;
+    line-height:1.9;
+    text-align:center;
+}
+
+.latin{
+    margin-top:14px;
+    text-align:center;
+    font-size:12px;
+    font-style:italic;
+}
+
+.arti{
+    margin-top:8px;
+    margin-bottom: -10px;
+    text-align:center;
+    line-height:1.7;
+    color:#6b7280;
+    font-size:14px;
+}
+
+[data-theme="dark"] .arti{
+    color:#d1d5db;
+}
+
+/* ===== Pilihan Bacaan ===== */
+
+.option-area{
+    margin-top:18px;
+}
+
+.option-select{
+    width:100%;
+    height:44px;
+    padding:0 14px;
+
+    border:1px solid #ddd;
+    border-radius:12px;
+
+    background:var(--card);
+    color:inherit;
+
+    display:none;
+}
+
+[data-theme="dark"] .option-select{
+    border-color:#4b5563;
+}
+
+/* ===== Target ===== */
+
+.target-box{
+    margin-top: 10px;
+}
+
+.target-label{
+    text-align:center;
+    font-size:25px;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.target-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.target-btn{
+    flex:1;
+    height:42px;
+
+    border:none;
+    border-radius:20px;
+
+    background:#e5e7eb;
+
+    font-weight:600;
+    cursor:pointer;
+}
+
+.target-btn.active{
+    background:#319795;
+    color:#fff;
+}
+
+[data-theme="dark"] .target-btn{
+    background:#374151;
+    color:#fff;
+}
+
+/* ===== Status ===== */
+
+.tasbih-status{
+    text-align:center;
+    min-height:22px;
+    margin:-5px 0 35px;
+
+    font-size:20px;
+    font-weight:700;
+    color:#22c55e;
+
+    opacity:0;
+    transform:translateY(-5px);
+
+    transition:.3s;
+}
+
+.tasbih-status.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ===== Progress Ring ===== */
+
+.circle-wrap{
+    position:relative;
+
+    width:170px;
+    height:170px;
+
+    margin:5px auto;
+}
+
+.progress-ring{
+    transform:rotate(-90deg);
+}
+
+.ring-bg{
+    fill:none;
+    stroke:#e5e7eb;
+    stroke-width:10;
+}
+
+[data-theme="dark"] .ring-bg{
+    stroke:#374151;
+}
+
+.ring-progress{
+    fill:none;
+    stroke:#22c55e;
+    stroke-width:10;
+    stroke-linecap:round;
+
+    stroke-dasharray:471;
+    stroke-dashoffset:471;
+
+    transition:.35s;
+}
+
+.circle-content{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.tasbih-count{
+    font-size:42px;
+    font-weight:700;
+    color:#319795;
+}
+
+.tasbih-percent{
+    margin-top:4px;
+    font-size:18px;
+    color:#888;
+}
+
+.tasbih-progress{
+    margin-top:-30px;
+
+    text-align:center;
+
+    font-size:18px;
+    font-weight:600;
+}
+
+.tasbih-finish{
+    color:#22c55e;
+}
+
+/* ===== Tombol ===== */
+
+.tasbih-actions{
+    margin-top:24px;
+}
+
+.tasbih-btn{
+    width:100%;
+    height:64px;
+
+    border:none;
+    border-radius:40px;
+
+    background:#319795;
+    color:#fff;
+    margin-top:-10px;
+    font-size:20px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.tasbih-btn:active{
+    transform:scale(.98);
+}
+
+.tasbih-reset:hover{
+    background:#dcdcdc;
+}
+
+[data-theme="dark"] .tasbih-reset{
+    background:#374151;
+    color:#fff;
+}
+  .tasbih-counter-card{
+    position:fixed;
+    left:50%;
+    top:320px;
+
+    width:360px;
+    max-width:calc(100% - 24px);
+
+    padding:18px 16px;
+
+    transform:translateX(-50%) scale(.6);
+    transform-origin:top center;
+
+    background:var(--card);
+    border-radius:50px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    z-index:9999;
+    touch-action:auto;
+    box-sizing:border-box;
+}
+  
+.circle-wrap{
+    width:220px;
+    height:220px;
+}
+
+.tasbih-count{
+    font-size:36px;
+}
+
+.tasbih-percent{
+    font-size:16px;
+}
+
+.tasbih-progress{
+    font-size:20px;
+}
+
+.tasbih-btn{
+    height:75px;
+    font-size:18px;
+}
+
+.target-btn{
+    height:40px;
+}
+
+.show-arti-btn{
+    display:none;
+    margin:12px auto 0;
+    padding:10px 18px;
+
+    border:none;
+    border-radius:20px;
+
+    background:#319795;
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.show-arti-btn:active{
+    transform:scale(.98);
+}  
+  [data-theme="dark"] .target-btn.active{
+    background:#319795;
+    color:#fff;
+}
+
+.doa-list-item{
+    display:block;
+    padding:8px 5px;
+
+    color:var(--text-color);
+    text-decoration:none;
+
+    border-bottom:1px solid #eee;
+
+    font-size:.95rem;
+    line-height:1.5;
+
+    transition:.2s;
+}
+
+.doa-list-item:last-child{
+    border-bottom:none;
+}
+
+.doa-list-item:hover{
+    background:#f5f5f5;
+}
+
+[data-theme="dark"] .doa-list-item{
+    border-bottom:1px solid #374151;
+}
+
+[data-theme="dark"] .doa-list-item:hover{
+    background:#374151;
+}
+
+.drag-hint{
+    text-align:center;
+    font-size:18px;
+    color:#9ca3af;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    user-select:none;
+    opacity:.7;
+    margin-top:-10px;
+    margin-bottom:6px;
+}
+
+.drag-header{
+    cursor:grab;
+    touch-action:none;
+    user-select:none;
+}
+
+.drag-header:active{
+    cursor:grabbing;
+}
+
+.target-header{
+    display:flex;
+    align-items:center;
+    width:100%;
+}
+
+.target-label{
+    font-size:25px;
+    font-weight:600;
+}
+
+.tasbih-reset{
+    margin-left:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:-40px;
+    width:42px;
+    height:42px;
+
+    padding:0;
+    border:none;
+    border-radius:50%;
+
+    background:#e5e7eb;
+    color:#374151;
+
+    font-size:16px;
+    cursor:pointer;
+}
+
+[data-theme="dark"] .tasbih-reset{
+    background:#374151;
+    color:#fff;
+}
+</style>
+
+</head>
+<body>
+
+<div class="top-header">
+
+    <!-- Tombol Back -->
+    <div class="back-container" onclick="goBack()">
+        <div class="back-button"></div>
+    </div>
+
+    <!-- Judul -->
+    <div class="header-title" id="headerTitle">
+        Tasbih
+    </div>
+
+<!-- Tombol Daftar Doa -->
+<div class="header-actions">
+
+    <button id="listBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-list"></i>
+    </button>
+  
+    <button id="drawerBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+</div>  
+    <!-- Drawer -->
+    <div id="headerDrawer" class="header-drawer">
+
+        <div class="search-box">
+            <input type="text" placeholder="Cari doa atau dzikir">
+          
+            <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle">
+            <i class="fa-solid fa-sun toggle-icon"></i>
+        </button>
+
+        <button id="fontSizeBtn" class="control-btn">
+            <i class="fa-solid fa-maximize"></i>
+        </button>
+
+        <button id="wakeLockBtn" class="control-btn">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </button>
+
+    </div>
+
+</div>
+  
+<div id="doaListDrawer" class="doa-list-drawer"></div>
+  
+<div id="fontSliderBox" class="font-slider-box">
+    <input
+        id="fontSlider"
+        type="range"
+        min="1.2"
+        max="3"
+        step="0.1"
+        value="1.4">
+
+    <span id="fontValue">1.4</span>
+</div>
+
+<!-- Card Informasi Dzikir -->
+<div class="tasbih-card">
+
+    <div id="title" class="tasbih-title">
+        Memuat...
+    </div>
+
+    <div id="arabic" class="arabic-title"></div>
+
+    <div id="latin" class="latin"></div>
+
+    <div id="arti" class="arti"></div>
+    <button id="showArtiBtn" class="show-arti-btn" style="display:none;">
+    Tampilkan Artinya
+</button>
+    <div class="option-area">
+        <select id="optionSelect" class="option-select"></select>
+    </div>
+
+</div>
+
+<!-- Card Tasbih -->
+<div class="tasbih-counter-card">
+
+    <!-- Target -->
+    <div class="target-box">
+<div class="drag-header">
+    <div class="drag-hint">
+        ⠿ Geser
+    </div>
+</div>
+    </div>
+
+    <!-- Status -->
+    <div id="tasbihStatus" class="tasbih-status"></div>
+<div id="counterTarget" class="tasbih-progress">
+        Dibaca 0 / 10
+    </div>
+    <!-- Progress Ring -->
+    <div class="circle-wrap">
+
+        <svg class="progress-ring" width="220" height="220">
+
+    <circle
+        class="ring-bg"
+        cx="110"
+        cy="110"
+        r="100">
+    </circle>
+
+    <circle
+        id="ringProgress"
+        class="ring-progress"
+        cx="110"
+        cy="110"
+        r="100">
+    </circle>
+
+</svg>
+        <div class="circle-content">
+
+            <div id="counter" class="tasbih-count">
+                0
+            </div>
+
+            <div id="counterPercent" class="tasbih-percent">
+                0%
+            </div>
+
+        </div>
+
+    </div>
+    <button id="resetBtn" class="tasbih-reset">
+            <i class="fa-solid fa-rotate-left"></i>
+        
+        </button>
+<div class="target-label">
+            Pilih Target
+        </div>
+
+
+        <div class="target-buttons">
+            <button class="target-btn active" data-target="10">10</button>
+            <button class="target-btn" data-target="33">33</button>
+            <button class="target-btn" data-target="100">100</button>
+        </div>
+    <div class="tasbih-actions">
+
+        <button id="tapButton" class="tasbih-btn">
+            <i class="fa-solid fa-hand-pointer"></i>
+            TAP UNTUK MENAMBAH
+        </button>
+
+        
+    </div>
+
+</div>
+<script>
+
+  let count = 0;
+  let target = 10;
+  let tasbihFinished = false;
+  
+  function renderTarget(item){
+
+    const container = document.querySelector(".target-buttons");
+
+container.innerHTML = "";
+
+let currentTarget = item.options[0];
+
+target = currentTarget;
+count = 0;
+
+updateCounter();
+    document.getElementById("counterTarget").textContent =
+        `Dibaca 0 / ${currentTarget}`;
+
+    item.options.forEach((value,index)=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "target-btn";
+
+        if(index === 0){
+            btn.classList.add("active");
+        }
+
+        btn.dataset.target = value;
+        btn.textContent = value;
+
+        btn.addEventListener("click",()=>{
+
+            // pindahkan active
+            container.querySelectorAll(".target-btn")
+                .forEach(b=>b.classList.remove("active"));
+
+            btn.classList.add("active");
+
+            // ganti target
+            currentTarget = value;
+            target = value;      // variabel target global
+            count = 0;           // reset hitungan
+            tasbihFinished = false;
+            updateCounter();     // refresh progress
+
+        });
+
+        container.appendChild(btn);
+
+    });
+
+}
+  
+  const radius = 100;
+const circumference = 2 * Math.PI * radius;
+
+const ring = document.getElementById("ringProgress");
+ring.style.strokeDasharray = circumference;
+ring.style.strokeDashoffset = circumference;  
+function updateCounter(){
+
+    document.getElementById("counter").textContent = count;
+
+    document.getElementById("counterTarget").textContent =
+        `Dibaca ${count} / ${target}`;
+navigator.vibrate?.([30, 0, 30]);
+    const percent = Math.min((count / target) * 100, 100);
+
+    document.getElementById("counterPercent").textContent =
+        Math.round(percent) + "%";
+
+    const offset =
+        circumference - (percent / 100) * circumference;
+
+    document.getElementById("ringProgress").style.strokeDashoffset = offset;
+
+  const status = document.getElementById("tasbihStatus");
+const counter = document.getElementById("counter");
+
+if (count >= target) {
+
+    status.textContent = "🎉 Target Tercapai";
+    status.classList.add("show");
+
+    counter.classList.add("tasbih-finish");
+
+    if (!tasbihFinished) {
+        tasbihFinished = true;
+
+        if (navigator.vibrate) {
+            navigator.vibrate([200, 80, 200, 80, 400]);
+        }
+    }
+
+} else {
+
+    status.textContent = "";
+    status.classList.remove("show");
+
+    counter.classList.remove("tasbih-finish");
+
+    tasbihFinished = false;
+}
+}
+  
+  document.getElementById("tapButton").addEventListener("click",()=>{
+
+    if(count < target){
+      navigator.vibrate?.([30, 0, 30]);
+        count++;
+        updateCounter();
+    }
+
+});
+  document.getElementById("resetBtn").addEventListener("click",()=>{
+
+    navigator.vibrate?.([30, 0, 30]);
+    count = 0;
+    tasbihFinished = false;
+    updateCounter();
+
+});
+async function loadTasbih() {
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    if (!id) return;
+
+    try {
+
+        const response = await fetch("json/tasbih.json");
+        const data = await response.json();
+
+        const item = data.find(x => x.id === id);
+
+        if (!item) return;
+
+        renderTasbih(item);
+
+    } catch (err) {
+
+        console.error(err);
+
+    }
+
+}
+
+function renderArabicOptions(item){
+
+    const select = document.getElementById("optionSelect");
+
+    select.innerHTML = "";
+
+    item.arabicOptions.forEach((opt, index) => {
+
+        const option = document.createElement("option");
+
+        option.value = index;
+        option.textContent = opt.title;
+
+        select.appendChild(option);
+
+    });
+
+    // Tampilkan dropdown
+    select.style.display = "block";
+
+    // Fungsi untuk menampilkan bacaan yang dipilih
+    function showOption(index){
+
+    const opt = item.arabicOptions[index];
+
+    const arabic = document.getElementById("arabic");
+    const latin = document.getElementById("latin");
+    const arti = document.getElementById("arti");
+    const btn = document.getElementById("showArtiBtn");
+
+    arabic.textContent = opt.arabic;
+    latin.textContent = opt.latin;
+    arti.textContent = opt.arti;
+
+    if(opt.hideArti){
+
+        arti.style.display = "none";
+        btn.style.display = "block";
+
+    }else{
+
+        arti.style.display = "block";
+        btn.style.display = "none";
+
+    }
+
+}
+
+    // Tampilkan pilihan pertama
+    showOption(0);
+
+    // Saat pilihan berubah
+    select.onchange = function(){
+
+        showOption(this.value);
+
+    };
+
+}
+  
+function renderTasbih(item){
+
+    document.title = item.title;
+
+    document.getElementById("headerTitle").textContent = item.title;
+    document.getElementById("title").textContent = item.title;
+
+    document.getElementById("arabic").textContent = item.arabic;
+    document.getElementById("latin").textContent = item.latin;
+    document.getElementById("arti").textContent = item.arti;
+
+    renderTarget(item);
+
+    if(item.arabicOptions && item.arabicOptions.length){
+        renderArabicOptions(item);
+    }else{
+        document.getElementById("optionSelect").style.display = "none";
+    }
+
+}
+
+document.getElementById("showArtiBtn").addEventListener("click", function(){
+
+    const arti = document.getElementById("arti");
+
+    arti.style.display = "block";
+
+    this.style.display = "none";
+
+});
+
+async function loadTasbihDrawer(){
+
+    const drawer = document.getElementById("doaListDrawer");
+
+    const response = await fetch("json/tasbih.json");
+    const data = await response.json();
+
+    drawer.innerHTML = `
+        <div class="doa-list-header">
+            Daftar Tasbih
+        </div>
+    `;
+
+    data.forEach(item => {
+
+        const a = document.createElement("a");
+
+        a.href = `tasbih-detail.html?id=${item.id}`;
+        a.className = "doa-list-item"; // sesuai CSS
+        a.textContent = item.title;
+
+        drawer.appendChild(a);
+
+    });
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadTasbih();
+    loadTasbihDrawer();
+});
+
+const card = document.querySelector(".tasbih-counter-card");
+const dragHeader = document.querySelector(".drag-header");
+  
+let drag = false;
+let startX = 0;
+let startY = 0;
+let x = window.innerWidth / 2 - card.offsetWidth / 2;
+let y = 320;
+
+card.style.left = x + "px";
+card.style.top = y + "px";
+card.style.transform = "scale(.6)";
+
+dragHeader.addEventListener("pointerdown", (e) => {
+    drag = true;
+
+    startX = e.clientX - x;
+    startY = e.clientY - y;
+
+    dragHeader.setPointerCapture(e.pointerId);
+});
+
+dragHeader.addEventListener("pointermove", (e) => {
+
+    if (!drag) return;
+
+    x = e.clientX - startX;
+    y = e.clientY - startY;
+
+    card.style.left = x + "px";
+    card.style.top = y + "px";
+});
+
+dragHeader.addEventListener("pointerup", () => {
+    drag = false;
+});
+
+dragHeader.addEventListener("pointercancel", () => {
+    drag = false;
+});
+
+</script>
+<script src="js/header.js"></script>
+
+</body>
+</html>

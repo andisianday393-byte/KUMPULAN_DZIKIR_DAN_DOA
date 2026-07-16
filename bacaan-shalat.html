@@ -1,1034 +1,601 @@
 <!DOCTYPE html>
-<html lang="id" dir="rtl">
-<head>
+<html lang="id" dir="ltr">
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumpulan Doa - Bacaan Shalat Fardhu</title>
-    <link rel="stylesheet" href="search.css">
-    <link rel="stylesheet" href="arabic.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+  <style>
+
+.info-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
-:root {
-    --bg-color: #f0f4f8;
-    --text-color: #2d3748;
-    --header-bg: #319795;
-    --header-text: white;
-    --menu-bg: white;
-    --menu-text: #2d3748;
-    --menu-hover-border: #319795;
-    --menu-shadow: rgba(0,0,0,0.05);
-    --menu-hover-shadow: rgba(0,0,0,0.1);
-    --icon-bg: #e6fffa;
-    --icon-color: #319795;
-    --footer-text: #a0aec0;
-    --toggle-bg: #e2e8f0;
-    --toggle-circle: white;
-}
-[data-theme="dark"] {
-    --bg-color: #1a202c;
-    --text-color: #e2e8f0;
-    --header-bg: #2c7a7b;
-    --header-text: white;
-    --menu-bg: #2d3748;
-    --menu-text: #e2e8f0;
-    --menu-hover-border: #4fd1c5;
-    --menu-shadow: rgba(0,0,0,0.3);
-    --menu-hover-shadow: rgba(0,0,0,0.5);
-    --icon-bg: #2c7a7b;
-    --icon-color: #4fd1c5;
-    --footer-text: #718096;
-    --toggle-bg: #4fd1c5;
-    --toggle-circle: #1a202c;
-}
-body {
-    font-family: 'Amiri', serif;
-    background-color: #ffffff; /* Ubah dari var(--bg-color) ke putih agar menyatu */
-    color: var(--text-color);
-    margin: 0;
-    padding: 20px 20px 0 20px; /* Tambahkan padding bawah 0 */
-    line-height: 1.8;
-    direction: rtl;
+.action-btn{
+    flex:1;
 }
 
-.top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    width: 100%;
-    height: 45px;
-    background: var(--header-bg);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.12);
-    direction: ltr;
+.lainnya-btn{
+    background:#f7f7f7;
+    color:#444;
 }
-.top-bar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding-left: 40px;
+
+.bacaan-lainnya{
+    margin-top:12px;
 }
-.back-container {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.bacaan-lainnya summary{
+    display:none;
 }
-.back-button {
-    width: 14px;
-    height: 14px;
-    border-left: 4px solid #fff;
-    border-bottom: 4px solid #fff;
-    transform: rotate(45deg);
-    border-radius: 2px;
-}
-.search-box {
-    flex: 1;
-    max-width: none;
-    position: relative;
-}
-.search-box input {
-    width: 100%;
-    height: 30px;
-    border: none;
-    outline: none;
-    border-radius: 999px;
-    padding: 0 40px 0 15px;
-    font-size: 14px;
-    background: #fff;
-    font-family: 'Inter', sans-serif;
-}
-.search-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #319795;
-    font-size: 16px;
-    pointer-events: none;
-}
-.theme-toggle,
-.control-btn {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    border: none;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #319795;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: .3s;
-    font-size: 18px;
-}
-.theme-toggle:hover,
-.control-btn:hover {
-    transform: scale(1.05);
-}
-.toggle-icon {
-    font-size: 18px;
-}
-.container {
-    max-width: 850px;
-    margin: 50px auto 0; /* Ubah angka terakhir dari 20px menjadi 0 */
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 20px 20px 0 0; /* Opsional: buat sudut bawah kotak agar tidak melengkung */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
-header {
-    text-align: center;
-    margin-top: 0px;
-    margin-bottom: 15px;
-    border-bottom: 3px double #319795;
-    padding-bottom: 5px;
-}
-h1 {
-    color: #319795;
-    font-size: 2.5rem;
-    margin: 0;
-    direction: ltr;
-}
-.subtitle {
-    font-size: 1.2rem;
-    color: #4a5568;
-    direction: ltr;
-    margin-bottom: 10px;
-}
-.dzikir-card{
-    background:#fff;
-    border:2px solid #e2e8f0;
-    border-right:6px solid #319795;
-    margin-bottom:25px;
-    padding:25px;
-    padding-bottom:50px; /* tambahan */
+
+.nested-box{
+    margin-top:10px;
+    padding:12px;
     border-radius:12px;
-    position:relative;
+    background:#f8f9fa;
 }
-.ref-number {
-    position: absolute;
-    right: 15px;
-    bottom: 12px;
-
-    background: #319795;
-    color: #fff;
-
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 13px;
-    font-family: sans-serif;
-    font-weight: bold;
+.nested-latin{
+    display:none;
+    margin-top:10px;
+    font-size:1rem;
+    color:#555;
+    line-height:1.7;
 }
-.doa-title{
+
+.nested-item .action-btn{
+    margin-top:10px;
+}   
+
+.pdf-export .bacaan-lainnya{
+    display:block !important;
+}
+
+.pdf-export .bacaan-lainnya details{
+    display:block !important;
+}
+
+.pdf-export .nested-item{
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+    margin-bottom:16px;
+}
+
+.pdf-export .nested-box{
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+}
+
+.pdf-export .nested-item{
+    padding-bottom:12px;
+    border-bottom:1px solid #ddd;
+}
+
+.pdf-export .nested-item:last-child{
+    border-bottom:none;
+}
+
+/* ==========================
+   Ukuran khusus saat PDF
+   ========================== */
+
+.pdf-export .nested-box{
+    font-size: 1.08rem !important;
+    line-height: 1.8 !important;
+}
+
+.pdf-export .nested-item strong{
     display:block;
-    text-align:center;
-    font-family:'Poppins',sans-serif;
-    font-size:15px;
+    font-size:1.2rem !important;
+    margin-bottom:8px;
+    color:#000;
+}
+
+.pdf-export .nested-arabic{
+    display:block;
+    font-size:2rem !important;
+    line-height:2.2 !important;
+    margin:10px 0;
+}
+
+.pdf-export .nested-latin{
+    display:block;
+    font-size:1.15rem !important;
+    line-height:1.8 !important;
+    margin-top:8px;
+}
+
+.pdf-export .nested-item .translation{
+    display:block;
+    font-size:1.15rem !important;
+    line-height:1.8 !important;
+    margin-top:10px;
+}
+
+.pdf-export .nested-item hr{
+    margin:18px 0;
+}
+
+[data-theme="dark"] .pdf-export .pilihan-title{
+    color:#fff !important;
+}
+
+.pdf-export .nested-item{
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.title-group{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.title{
+    font-size:1.05rem;
     font-weight:700;
-    color:#2c3e50;
-    line-height:1.5;
-    margin:0;
-}
-details {
-    direction: ltr;
-    margin-top: 10px;
-    font-family: 'Inter', sans-serif;
-}
-summary {
-    cursor: pointer;
-    color: #319795;
-    font-weight: 600;
-    font-size: 0.8rem;
-    outline: none;
-    user-select: none;
-    margin-bottom: 8px;
-}
-summary:hover {
-    color: #2c7a7b;
-    text-decoration: underline;
-}
-.translation {
-    display: block;
-    padding: 10px 15px;
-    background: #f7fafc;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    color: #4a5568;
-    line-height: 1.6;
-    font-style: italic;
-}
-.nested-box {
-    margin-top: 12px;
-    line-height: 1.8;
-}
-.nested-arabic {
-    display: block;
-    direction: rtl;
-    font-size: 1.6rem;
-    line-height: 2;
-    color: #1a202c;
-    margin: 10px 0;
-}
-.nested-box .translation {
-    display: block;
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-top: 8px;
-    padding: 12px 15px;
-}
-.nested-box strong {
-    font-size: 1rem !important;
-    font-weight: 700;
-}
-[data-theme="dark"] .nested-arabic {
-    color: #ffffff;
-}
-[data-theme="dark"] .nested-box .translation {
-    color: #e2e8f0;
-}
-.info-row {
-    text-align: center;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 2px dashed #e2e8f0;
-}
-.instruction {
-    color: #c53030;
-    font-weight: bold;
-    font-size: 0.95rem;
-}
-footer {
-    text-align: center;
-    margin-top: 10px;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    color: #718096;
-    font-size: 0.9rem;
-    position: relative; /* Penting untuk posisi garis */
-    direction: ltr;
-    border-top: none; /* Hapus border asli */
+    line-height:1.4;
+    color:var(--text-color);
 }
 
-/* Membuat garis custom */
-footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%); /* Menjaga agar garis selalu di tengah */
-    width: 95%; /* Atur panjang garis di sini (misalnya 80% dari lebar footer) */
-    height: 1px;
-    background-color: #e2e8f0; /* Warna garis */
+.title-sub{
+    margin-top:3px;
+    font-size:.82rem;
+    font-weight:500;
+    color:#6b7280;
+    line-height:1.4;
 }
-.footer-content {
-    max-width: 850px; /* Samakan dengan max-width milik .container agar sejajar */
-    margin: 0 auto;   /* Membuat konten berada di tengah */
-    padding: 0 20px;  /* Memberi jarak di sisi kiri dan kanan pada layar kecil */
-    box-sizing: border-box;
-}
-.font-slider-box {
-    position: absolute;
-    top: 65px;
-    right: 60px;
 
-    background: #fff;
-    padding: 10px 12px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+[data-theme="dark"] .title-sub{
+    color:#a1a1aa;
+}
 
-    display: none;
-    align-items: center;
-    gap: 10px;
-
-    z-index: 9999;
-}
-.font-slider-box input[type="range"] {
-    width: 120px;
-    accent-color: #319795;
-}
-.font-slider-box span {
-    font-size: 12px;
-    min-width: 30px;
-    text-align: center;
-}
-[data-theme="dark"] body {
-    background: #1a202c;
-    color: #e2e8f0;
-}
-[data-theme="dark"] .container {
-    background: #2d3748;
-}
-[data-theme="dark"] .dzikir-card {
-    background: #1f2937;
-    border-color: #2c7a7b;
-}
-[data-theme="dark"] .arabic {
-    color: #fff;
-}
-[data-theme="dark"] .translation {
-    background: #374151;
-    color: #e2e8f0;
-}
-[data-theme="dark"] summary {
-    color: #4fd1c5;
-}
-[data-theme="dark"] .top-header {
-    background: #2c7a7b;
-}
-[data-theme="dark"] .search-box input {
-    background: #1f2937;
-    color: #fff;
-}
-[data-theme="dark"] .search-box input::placeholder {
-    color: rgba(255,255,255,.7);
-}
-[data-theme="dark"] .theme-toggle,
-[data-theme="dark"] .control-btn {
-    background: #1f2937;
-    color: #4fd1c5;
-}
-[data-theme="dark"] .font-slider-box {
-    background: #2d3748;
-    color: #fff;
-}
-[data-theme="dark"] h1,
-[data-theme="dark"] p {
-    color: #4fd1c5;
-}
-[data-theme="dark"] .doa-title {
-    color: #4fd1c5;
-}
-[data-theme="dark"] details summary {
-    color: #4fd1c5 !important;
-}
-[data-theme="dark"] .nested-box strong {
-    color: #4fd1c5 !important;
-}
-[data-theme="dark"] body {
-    background: #2d3748; /* Samakan dengan warna .container */
-    color: #e2e8f0;
-}
-@media (max-width: 600px) {
-    body {
-        padding: 0;
-        background-color: #ffffff;
-    }
-
-    .container {
-        padding: 15px 10px;
-        border-radius: 0;
-        box-shadow: none;
-    }
-
-    .dzikir-card {
-        padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 8px;
-    }
-
-    .arabic {
-        font-size: 1.6rem;
-        line-height: 2;
-    }
-
-       h1 {
-        font-size: 1.5rem;
-    }
-
-    .subtitle {
-        font-size: 0.9rem;
-    }
-}
-</style>
-</head>
+  </style>
+  </head>
+ 
 <body>
-      <div class="top-header">
+<!-- ============================================
+     1. FIXED HEADER (STICKY TOP)
+     ============================================ -->
+<div id="pdfLoadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="loader-content">
+    <div class="spinner"></div>
+    <h3>Menyiapkan PDF</h3>
+    <p>Mohon tunggu sebentar, dokumen sedang dibuat...</p>
+</div>
+</div>
+<div class="top-header">
+
+    <!-- Tombol Back -->
     <div class="back-container" onclick="goBack()">
         <div class="back-button"></div>
     </div>
 
-    <div class="top-bar">
+    <!-- Judul -->
+    <div class="header-title" id="headerTitle">
+        Bacaan Shalat
+    </div>
+
+<!-- Tombol Daftar Doa -->
+<div class="header-actions">
+
+    <div id="sharePdfWrap" class="share-pdf-wrap">
+    
+    <button id="sharePdfBtn" class="header-icon-btn" onclick="sharePdf()">
+    <i class="fa-solid fa-share-nodes"></i>
+</button>
+</div>
+    <button id="listBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-list"></i>
+    </button>
+  
+    <button id="drawerBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+</div>  
+    <!-- Drawer -->
+    <div id="headerDrawer" class="header-drawer">
+
         <div class="search-box">
             <input type="text" placeholder="Cari doa atau dzikir">
+          
             <span class="search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </span>
         </div>
 
-        <button id="themeToggle" class="theme-toggle" title="Dark Mode">
+        <button id="themeToggle" class="theme-toggle">
             <i class="fa-solid fa-sun toggle-icon"></i>
         </button>
 
-        <div id="fontSliderBox" class="font-slider-box">
-            <input type="range" id="fontSlider" min="1.2" max="3.2" step="0.1" value="1.8">
-            <span id="fontValue">1.8</span>
-        </div>
-
-        <button id="fontSizeBtn" class="control-btn" title="Ukuran Teks">
+        <button id="fontSizeBtn" class="control-btn">
             <i class="fa-solid fa-maximize"></i>
         </button>
 
-        <button id="boldBtn" class="control-btn" title="Bold Arab">
-            <b style="font-size: 20px;">B</b>
+        <button id="wakeLockBtn" class="control-btn">
+            <i class="fa-solid fa-mobile-screen-button"></i>
         </button>
+
     </div>
+
 </div>
-<div class="container">
+  
+<div id="doaListDrawer" class="doa-list-drawer"></div>
+
+  <div id="fontSliderBox" class="font-slider-box">
+    <input
+        id="fontSlider"
+        type="range"
+        min="1.2"
+        max="3"
+        step="0.1"
+        value="1.4">
+
+    <span id="fontValue">1.4</span>
+</div>
+<!-- ============================================
+     2. MAIN CONTAINER
+     ============================================ -->
+<div class="container" id="pdfContent">
     
     <header>
-        <h1>Panduan Bacaan Shalat</h1>
-        <p class="subtitle">Bacaan Gerakan Shalat Fardhu Sesuai Sunnah</p>
     </header>
-
-    <!-- [1] Takbiratul Ihram -->
-<div class="dzikir-card">
-    <!-- Info row diletakkan paling atas sebagai kepala kartu -->
-    <div class="info-row">
-        <span class="doa-title">Takbiratul Ihram & Setiap Perpindahan Gerakan</span>
-        </div>
-           <span class="arabic">اللهُ أَكْبَرُ</span>
-    
-    <!-- Arti berada di paling bawah -->
-    <details>
-        <summary>Tampilkan Artinya</summary>
-        <span class="translation">"Allah Maha Besar."</span>
-    </details>
-    <span class="ref-number">1</span>
+    <div class="pdf-title">
+    <h2>Bacaan Shalat Sesuai Sunnah</h2>
+    <p class="subtitles">Kumpulan Dzikir dan Doa</p>
 </div>
+    <div class="dzikir-content" id="dzikirContent"></div>
 
-
-        <!-- [2] Doa Istiftah -->
-        <div class="dzikir-card">
-          <div class="info-row">
-                <span class="doa-title">Doa Istiftah (Dibaca setelah Takbiratul Ihram Rakaat Pertama)</span>
-                <span class="ref-number">2</span>
-            </div>
-            <span class="arabic">اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْ خَطَايَايَ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Ya Allah, jauhkanlah antara aku dan kesalahan-kesalahanku, sebagaimana Engkau menjauhkan antara timur dan barat. Ya Allah, bersihkanlah aku dari kesalahan-kesalahanku sebagaimana baju putih dibersihkan dari kotoran. Ya Allah, cucilah kesalahan-kesalahanku dengan air, salju dan air es."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Doa iftitah lainnya</summary>
-                <div class="nested-box">
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
-                    <span class="nested-arabic">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلَا إِلَهَ غَيْرُكَ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Engkau ya Allah, aku memuji-Mu. Maha Berkah nama-Mu, Maha Tinggi keagungan-Mu, dan tidak ada sesembahan yang berhak disembah selain Engkau."</span>
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
-                    <span class="nested-arabic">اللهُ أَكْبَرُ كَبِيرًا، وَالْحَمْدُ لِلَّهِ كَثِيرًا، وَسُبْحَانَ اللهِ بُكْرَةً وَأَصِيلًا</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Allah Maha Besar dengan segala kebesaran, segala puji bagi Allah dengan pujian yang banyak, dan Maha Suci Allah di waktu pagi dan petang."</span>
-                </div>
-            </details>
-        </div>
-
-        <!-- [3] Bacaan Ruku -->
-        <div class="dzikir-card">
-          <div class="info-row">
-                <span class="doa-title">Dibaca saat posisi Ruku</span>
-                <span class="ref-number">3</span>
-            </div>
-            <span class="arabic">سُبْحَانَ رَبِّىَ الْعَظِيمِ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Maha Suci Rabbku Yang Maha Agung."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan ruku lainnya</summary>
-                <div class="nested-box">
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
-                    <span class="nested-arabic">سُبْحَانَ رَبِّىَ الْعَظِيمِ وَبِحَمْدِهِ (٣×)</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Tuhanku Yang Maha Agung dan dengan memuji-Nya (3x)."</span>
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
-                    <span class="nested-arabic">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu ya Allah, ampunilah aku."</span>
-                </div>
-            </details>
-        </div>
-
-        <!-- [4] I'tidal (Bangkit dari Ruku) -->
-        <div class="dzikir-card">
-          <div class="info-row">
-                <span class="doa-title">Dibaca saat bangkit dari ruku menuju i'tidal</span>
-                <span class="ref-number">4</span>
-            </div>
-            <span class="arabic">سَمِعَ اللهُ لِمَنْ حَمِدَهُ</span>
-            
-            <details>
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Allah mendengar orang yang memuji-Nya."</span>
-            </details>
-        </div>
-
-        <!-- [5] Doa I'tidal -->
-        <div class="dzikir-card">
-          <div class="info-row">
-                <span class="doa-title">Dibaca saat berdiri tegak (I'tidal)</span>
-                <span class="ref-number">5</span>
-            </div>
-            <!-- Doa 1 (Bagian Utama) -->
-            <span class="arabic">رَبَّنَا لَكَ الْحَمْدُ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Wahai Rabb kami, bagi-Mu segala puji."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Doa i'tidal lainnya</summary>
-                <div class="nested-box">
-                    <!-- Doa 2 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
-                    <span class="nested-arabic">رَبَّنَا وَلَكَ الْحَمْدُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabb kami, dan bagi-Mu segala puji."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 3 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
-                    <span class="nested-arabic">اللَّهُمَّ رَبَّنَا لَكَ الْحَمْدُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, wahai Rabb kami, bagi-Mu segala puji."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 4 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
-                    <span class="nested-arabic">اللَّهُمَّ رَبَّنَا وَلَكَ الْحَمْدُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, wahai Rabb kami, dan bagi-Mu segala puji."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 5 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4 (Versi Panjang):</strong>
-                    <span class="nested-arabic">رَبَّنَا لَكَ الْحَمْدُ مِلْءُ السَّمَاوَاتِ وَمِلْءُ الْأَرْضِ وَمِلْءُ مَا شِئْتَ مِنْ شَيْءٍ بَعْدُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabb kami, bagi-Mu segala puji sepenuh langit dan bumi, dan sepenuh apa yang Engkau kehendaki dari sesuatu setelah itu."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-
-                    <!-- Pilihan 5 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 5:</strong>
-                    <span class="nested-arabic">رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabb kami, bagi-Mu segala puji, aku memuji-Mu dengan pujian yang banyak, yang baik dan penuh dengan berkah."</span>
-                </div>
-            </details>
-        </div>
-
-        <!-- [6] Bacaan Sujud -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Dibaca saat posisi Sujud</span>
-                <span class="ref-number">6</span>
-            </div>
-            <!-- Doa Pertama (Bagian Utama - Dibaca 1x) -->
-            <span class="arabic">سُبْحَانَ رَبِّيَ الأَعْلَى</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Maha Suci Rabbku Yang Maha Tinggi."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan sujud lainnya</summary>
-                <div class="nested-box">
-                    <!-- Doa Kedua (Dibaca 3x) -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
-                    <span class="nested-arabic">سُبْحَانَ رَبِّىَ الأَعْلَى وَبِحَمْدِهِ (٣×)</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Tuhanku Yang Maha Tinggi dan dengan memuji-Nya (3x)."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa Ketiga -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
-                    <span class="nested-arabic">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu ya Allah, ampunilah aku."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa Keempat -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
-                    <span class="nested-arabic">سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci, Maha Kudus, Rabbnya para malaikat dan ruh (Malaikat Jibril)."</span>
-                
-                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa Keempat -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
-                    <span class="nested-arabic">سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Maha Suci, Maha Kudus, Rabbnya para malaikat dan ruh (Malaikat Jibril)."</span>
-                </div>
-            </details>
-        </div>
-
-        <!-- [7] Duduk di Antara Dua Sujud -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Dibaca saat duduk di antara dua sujud</span>
-                <span class="ref-number">7</span>
-            </div>
-            <!-- Doa 1 (Bagian Utama) -->
-            <span class="arabic">رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Wahai Rabbku ampunilah aku, wahai Rabbku ampunilah aku."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan duduk antara dua sujud lainnya</summary>
-                <div class="nested-box">
-                    <!-- Doa 2 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
-                    <span class="nested-arabic">رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْزُقْنِي، وَارْفَعْنِي</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabbku ampunilah aku, sayangilah aku, cukupilah kekuranganku, berilah aku rezeki, dan tinggikanlah derajatku."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 3 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2:</strong>
-                    <span class="nested-arabic">اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَاهْدِنِي، وَارْزُقْنِي</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, ampunilah aku, sayangilah aku, cukupilah kekuranganku, berilah aku petunjuk, dan berilah aku rezeki."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 4 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3:</strong>
-                    <span class="nested-arabic">رَبِّ اغْفِرْ لِي، وَارْحَمْنِي، وَاجْبُرْنِي، وَارْفَعْنِي، وَارْزُقْنِي، وَاهْدِنِي</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabbku ampunilah aku, sayangilah aku, cukupilah kekuranganku, tinggikanlah derajatku, berilah aku rezeki, dan berilah aku petunjuk."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 5 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4:</strong>
-                    <span class="nested-arabic">اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَعَافِنِي وَارْزُقْنِي</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, ampunilah aku, sayangilah aku, berilah aku petunjuk, selamatkanlah aku (dari berbagai penyakit/penderitaan), dan berilah aku rezeki."</span>
-                </div>
-            </details>
-        </div>
-
-        <!-- [8] Tasyahud (Tahiyyat) Awal & Akhir -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Dibaca saat Tasyahud (Tahiyyat) Awal & Akhir</span>
-                <span class="ref-number">8</span>
-            </div>
-            <!-- Doa 1 (Bagian Utama - Versi Ibnu Mas'ud) --><span class="arabic">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Segala ucapan selamat, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan tasyahud versi lainnya</summary>
-                <div class="nested-box">
-                    <!-- Doa 2 (Versi Ibnu Abbas) -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 (Versi Ibnu Abbas - Riwayat Muslim):</strong>
-                    <span class="nested-arabic">التَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللهِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Segala ucapan selamat yang penuh berkah, shalawat, dan kebaikan adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah, dan aku bersaksi bahwa Muhammad adalah utusan Allah."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Doa 3 (Versi Abu Musa Al-Asy'ari) -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 (Versi Abu Musa Al-Asy'ari - Riwayat Muslim):</strong><span class="nested-arabic">التَّحِيَّاتُ الطَّيِّبَاتُ الصَّلَوَاتُ لِلَّهِ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</span>
-  <span class="translation" style="direction: ltr; text-align: left;">"Segala ucapan selamat, kebaikan, dan shalawat adalah milik Allah. Semoga keselamatan dilimpahkan kepadamu wahai Nabi, beserta rahmat Allah dan berkah-Nya. Semoga keselamatan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah melainkan Allah dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."</span>
-                </div>
-            </details>
-        </div>
-
-        <!-- [9] Shalawat Nabi (Tasyahud Akhir) -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Dibaca pada Tasyahud Akhir setelah bacaan tasyahud</span>
-                <span class="ref-number">9</span>
-            </div>
-            <span class="arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Ya Allah, berilah shalawat kepada Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberi shalawat kepada Ibrahim dan keluarga Ibrahim, sesungguhnya Engkau Maha Terpuji lagi Maha Mulia. Dan berkahilah Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberkahi Ibrahim dan keluarga Ibrahim, sesungguhnya Engkau Maha Terpuji lagi Maha Mulia."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Bacaan shalawat lainnya</summary>
-                <div class="nested-box">
-                  <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1:</strong>
-                  <span class="nested-arabic">
-                    اللهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، وَبَارِكْ عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ فِي الْعَالَمِينَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</span>
-
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, limpahkanlah rahmat kepada Muhammad dan kepada keluarga Muhammad, dan berkahilah Muhammad serta keluarga Muhammad, sebagaimana Engkau telah memberkahi Ibrahim di seluruh alam. Sesungguhnya Engkau Maha Terpuji lagi Maha Mulia.".</span>
-                
-                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                
-                  <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 2 (Lebih ringkas):</strong>
-                    <span class="nested-arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, berilah shalawat (pujian) kepada Muhammad dan keluarga Muhammad." (Bacaan standar minimal shalawat yang sah dalam tasyahud akhir).</span>
-                </div>
-                </div>
-            </details>
-
-                <!-- [10] Doa Sebelum Salam -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Dibaca di akhir Tasyahud Akhir sebelum Salam</span>
-                <span class="ref-number">10</span>
-            </div>
-            <span class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Ya Allah, sesungguhnya aku berlindung kepada-Mu dari azab neraka Jahannam, dari azab kubur, dari fitnah kehidupan dan kematian, serta dari keburukan fitnah Al-Masih Ad-Dajjal."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Doa sebelum salam lainnya</summary>
-                <div class="nested-box">
-                    <!-- Pilihan 1 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 (Doa Abu Bakar):</strong>
-                    <span class="nested-arabic">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ، وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, sesungguhnya aku telah banyak menzhalimi diriku sendiri, dan tidak ada yang dapat mengampuni dosa-dosa kecuali Engkau. Maka ampunilah aku dengan ampunan dari sisi-Mu, dan sayangilah aku. Sesungguhnya Engkau Maha Pengampun lagi Maha Penyayang."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 2 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 :</strong>
-                    <span class="nested-arabic">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Dzat yang membolak-balikkan hati, teguhkanlah hatiku di atas agama-Mu."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 3 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3 :</strong>
-                    <span class="nested-arabic">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, tolonglah aku untuk senantiasa mengingat-Mu (berdzikir), bersyukur kepada-Mu, dan beribadah dengan baik kepada-Mu."</span>
-                </div>
-            </details>
-            </div>
-            
-            <!-- [11] Pilihan Istiadzah / Ta'awudz -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Dibaca sebelum membaca Al-Fatihah pada rakaat pertama</span>
-                <span class="ref-number">11</span>
-            </div>
-            <span class="arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Aku berlindung kepada Allah dari godaan setan yang terkutuk."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Variasi Istiadzah / Ta'awudz lainnya</summary>
-                <div class="nested-box">
-                    <!-- Pilihan 1 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 :</strong>
-                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 2 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 :</strong>
-                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ؛ مِنْ هَمْزِهِ، وَنَفْخِهِ، وَنَفْثِهِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah dari godaan setan yang terkutuk; dari kegilaannya, kesombongannya, dan hembusan mantra jahatnya."</span>
-
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 3 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3 :</strong>
-                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ؛ مِنْ هَمْزِهِ، وَنَفْخِهِ، وَنَفْثِهِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk; dari kegilaannya, kesombongannya, dan hembusan mantra jahatnya."</span>
-
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 4 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4 :</strong>
-                    <span class="nested-arabic">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ إِنَّهُ هُوَ السَّمِيعُ الْعَلِيمُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari godaan setan yang terkutuk, sesungguhnya Dia-lah Yang Maha Mendengar lagi Maha Mengetahui."</span>
-
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 5 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 5 :</strong>
-                    <span class="nested-arabic">أَسْتَعِيذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Aku memohon perlindungan kepada Allah dari godaan setan yang terkutuk."</span>
-                </div>
-            </details>
-        </div>
-        
-        <!-- [12] Pilihan Doa-Doa dalam Sujud -->
-        <div class="dzikir-card">
-          
-            <div class="info-row">
-                <span class="doa-title">Disunnahkan dibaca saat posisi Sujud (setelah bacaan tasbih utama)</span>
-                <span class="ref-number">12</span>
-            </div>
-            <span class="arabic">اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ دِقَّهُ، وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ وَعَلَانِيَتَهُ وَسِرَّهُ</span>
-            
-            <details style="margin-bottom: -8px;">
-                <summary>Tampilkan Artinya</summary>
-                <span class="translation">"Ya Allah, ampunilah seluruh dosaku, yang kecil maupun yang besar, yang awal maupun yang akhir, yang terang-terangan maupun yang rahasia."</span>
-            </details>
-
-            <details>
-                <summary style="color: #2c7a7b; font-weight: bold;">✨ Pilihan doa dalam sujud lainnya</summary>
-                <div class="nested-box">
-                    <!-- Pilihan 1 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block; margin-top: 10px;">Pilihan 1 :</strong>
-                    <span class="nested-arabic">اللَّهُمَّ اغْفِرْ لِي مَا أَسْرَرْتُ وَمَا أَعْلَنْتُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, ampunilah aku atas dosa yang aku sembunyikan dan yang aku tampakkan."</span>
-                    
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 2 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 2 :</strong>
-                    <span class="nested-arabic">رَبِّ اغْفِرْ لِي مَا أَسْرَرْتُ وَمَا أَعْلَنْتُ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Wahai Rabbku, ampunilah aku atas dosa yang aku sembunyikan dan yang aku tampakkan."</span>
-
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 3 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 3 (Doa Memohon Cahaya):</strong>
-                    <span class="nested-arabic">اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا، وَفِي سَمْعِي نُورًا، وَفِي بَصَرِي نُورًا، وَعَنْ يَمِينِي نُورًا، وَعَنْ شِمَالِي نُورًا، وَأَمَامِي نُورًا، وَخَلْفِي نُورًا، وَفَوْقِي نُورًا، وَتَحْتِي نُورًا، وَاجْعَلْ لِي نُورًا</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, jadikanlah cahaya di hatiku, cahaya di pendengaranku, cahaya di penglihatanku, cahaya di sebelah kananku, cahaya di sebelah kiriku, cahaya di depanku, cahaya di belakangku, cahaya di atasku, cahaya di bawahku, dan limpahkanlah cahaya kepadaku."</span>
-
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-                    
-                    <!-- Pilihan 4 -->
-                    <strong style="font-size: 0.9rem; color: #4a5568; display: block;">Pilihan 4 :</strong>
-                    <span class="nested-arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِرِضَاكَ مِنْ سَخَطِكَ، وَبِمُعَافَاتِكَ مِنْ عُقُوبَتِكَ، وَأَعُوذُ بِكَ مِنْكَ، لَا أُحْصِي ثَنَاءً عَلَيْكَ، أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ</span>
-                    <span class="translation" style="direction: ltr; text-align: left;">"Ya Allah, sesungguhnya aku berlindung dengan keridhaan-Mu dari kemurkaan-Mu, dengan keselamatan-Mu dari siksaan-Mu, dan aku berlindung kepada-Mu dari (siksaan)-Mu. Aku tidak mampu menghitung pujian atas-Mu, Engkau adalah sebagaimana Engkau memuji diri-Mu sendiri."</span>
-                </div>
-            </details>
-        </div>
-    </div>
-<footer>
-    <div class="footer-content">
-        &copy; 2026 Kumpulan Bacaan Shalat - Sumber resmi: 
-        <a href="https://bekalislam.online/" target="_blank" rel="noopener noreferrer" style="color: #2c7a7b">Bekal Islam oleh Ustadz Firanda Andirja</a>
-    </div>
+    <!-- ============================================
+         4. FOOTER
+         ============================================ -->
+    <footer>
+    <p><strong>﴾ فَاذْكُرُونِي أَذْكُرْكُمْ ﴿</strong></p>
+    <p>"Maka ingatlah kepada-Ku, niscaya Aku ingat kepadamu."</p>
+    <small>QS. Al-Baqarah: 152</small>
+    <br><br>
+    <small>&copy; 2026 Bacaan Shalat Sesuai Sunnah</small><br>
+      <small>
+Referensi materi:
+https://bekalislam.online
+</small>
 </footer>
+</div>
+  
+<script>
+async function loadDzikir() {
+    const container = document.getElementById("dzikirContent");
+    const listDrawer = document.getElementById("doaListDrawer");
+    if (!container) return;
+
+    try {
+        const response = await fetch("json/bacaan-shalat.json");
+        const data = await response.json();
+        container.innerHTML = "";
+        listDrawer.innerHTML = "";
+
+      listDrawer.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="doa-list-header">
+        Daftar Bacaan Shalat
+    </div>
+    `
+);
+
+        data.dzikir_shalat.forEach(item => {
+            const hasOther = item.bacaan_lainnya?.length > 0;
+            
+            let htmlLainnya = "";
+            if (hasOther) {
+                const listLainnya = item.bacaan_lainnya.map((lain, index) => `
+<div class="nested-item">
+
+    <strong class="pilihan-title">${lain.pilihan}</strong>
+
+    <span class="nested-arabic">
+        ${lain.arabic}
+    </span>
+
+    <div class="nested-latin hidden-content">
+        ${lain.latin || ""}
+    </div>
+
+    <div class="translation">
+        ${lain.translation}
+    </div>
+
+    <button class="action-btn"
+            onclick="toggleLatinNested(this)">
+        Latin
+    </button>
+
+    ${index < item.bacaan_lainnya.length - 1 ? "<hr>" : ""}
 
 </div>
-<script>
-function goBack() {
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        window.location.href = "/";
-    }
-}
+`).join("");
+              
+                htmlLainnya = `
+<div class="bacaan-lainnya">
+    <details>
+        <summary style="display:none;"></summary>
 
-let arabSize = 1.4;
-let sliderVisible = false;
-let boldState = false;
+        <div class="nested-box">
+            ${listLainnya}
+        </div>
 
-const fontBtn = document.getElementById("fontSizeBtn");
-const sliderBox = document.getElementById("fontSliderBox");
-const slider = document.getElementById("fontSlider");
-const fontValue = document.getElementById("fontValue");
-const boldBtn = document.getElementById("boldBtn");
-const toggleButton = document.getElementById("themeToggle");
-const htmlElement = document.documentElement;
+    </details>
+</div>
+`;
+            }
 
-/* Inisialisasi ukuran font Arab */
-function initArabFontSize() {
-    if (!slider) return;
+            container.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="dzikir-card" id="doa-${item.nomor}">
 
-    slider.value = arabSize;
+        <div class="card-header">
+    <div class="title-group">
+        <span class="title">${item.title}</span>
 
-    document.querySelectorAll(".arabic, .nested-arabic").forEach(el => {
-        el.style.fontSize = arabSize + "rem";
-    });
+        ${item.titlesub ? `
+        <span class="title-sub">${item.titlesub}</span>
+        ` : ""}
+    </div>
 
-    if (fontValue) {
-        fontValue.textContent = arabSize;
-    }
-}
+    <span class="ref-number">${item.nomor}</span>
+</div>
 
-/* Tombol slider ukuran font */
-if (fontBtn && sliderBox) {
-    fontBtn.addEventListener("click", () => {
-        sliderVisible = !sliderVisible;
-        sliderBox.style.display = sliderVisible ? "flex" : "none";
-    });
-}
+        <span class="arabic">
+            ${item.arabic}
+        </span>
 
-/* Geser ukuran font */
-if (slider) {
-    slider.addEventListener("input", () => {
-        const size = slider.value;
+        <div class="hidden-box">
 
-        document.querySelectorAll(".arabic, .nested-arabic").forEach(el => {
-            el.style.fontSize = size + "rem";
+            <div class="latin hidden-content">
+                ${item.latin || ""}
+            </div>
+
+            <div class="translation hidden-content">
+                ${item.translation}
+            </div>
+
+        </div>
+
+        <div class="info-actions">
+
+    <button class="action-btn"
+            onclick="toggleDzikir(this)">
+       Tampilkan Artinya
+    </button>
+
+    ${hasOther ? `
+    <button class="action-btn lainnya-btn"
+            onclick="this.closest('.dzikir-card').querySelector('.bacaan-lainnya details').open = !this.closest('.dzikir-card').querySelector('.bacaan-lainnya details').open">
+        Bacaan Lainnya
+    </button>
+    ` : ""}
+
+    <button class="menu-btn"
+            onclick="toggleActionMenu(this)">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+    <div class="action-menu">
+
+        <button onclick="toggleLatin(this)">
+            Latin
+        </button>
+
+        <button onclick="copyDzikir(this)">
+            Salin
+        </button>
+
+        <button onclick="shareDzikir(this)">
+            Bagikan
+        </button>
+
+    </div>
+
+</div>
+${htmlLainnya}`
+);
         });
+    } catch (err) {
+        console.error(err);
+    }
+}
+function toggleLatinNested(btn){
 
-        if (fontValue) {
-            fontValue.textContent = size;
+    const item = btn.closest(".nested-item");
+    const latin = item.querySelector(".nested-latin");
+
+    if(latin.style.display === "block"){
+        latin.style.display = "none";
+        btn.textContent = "Latin";
+    }else{
+        latin.style.display = "block";
+        btn.textContent = "Sembunyikan Latin";
+    }
+
+}
+async function sharePdf() {
+
+    const overlay = document.getElementById("pdfLoadingOverlay");
+    const element = document.getElementById("pdfContent");
+
+    if (!element) {
+        alert("Konten PDF tidak ditemukan.");
+        return;
+    }
+
+    overlay.style.display = "flex";
+
+    requestAnimationFrame(() => {
+        overlay.classList.add("show");
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 200));
+document.querySelector(".top-header")?.style.setProperty("display","none");
+
+document.querySelector(".active-dzikir-box")?.style.setProperty("display","none");
+
+document.querySelector("#tasbihPopup")?.style.setProperty("display","none");
+document.querySelectorAll(".info-actions").forEach(el => {
+    el.style.display = "none";
+});
+document.querySelectorAll(".tasbih-link").forEach(el => {
+    el.style.display = "none";
+});
+document.querySelectorAll(".nested-item .action-btn").forEach(btn=>{
+    btn.style.display="none";
+});
+    try {
+element.classList.add("pdf-export");
+      document.querySelectorAll("#pdfContent.pdf-export .arabic").forEach(el => {
+    el.innerHTML = el.innerHTML
+        .replace(/،/g,'<span class="punct">،</span>')
+        .replace(/:/g,'<span class="punct">:</span>');
+});
+        const opt = {
+            margin: 8,
+            filename: "Bacaan-Shalat-Sesuai-Sunnah.pdf",
+            image: {
+                type: "jpeg",
+                quality: 1
+            },
+            html2canvas: {
+            scale: 1.3,
+            useCORS: true,
+            scrollY: 0
+},
+            jsPDF: {
+                unit: "mm",
+                format: "a4",
+                orientation: "portrait"
+            },
+            pagebreak: {
+                mode: ["css", "legacy"]
+            }
+        };
+
+document.querySelectorAll(".latin").forEach(el => {
+    el.style.display = "block";
+});
+
+document.querySelectorAll(".translation").forEach(el => {
+    el.style.display = "block";
+});
+
+
+// Tunggu browser merender perubahan
+await new Promise(resolve => requestAnimationFrame(resolve));
+await new Promise(resolve => requestAnimationFrame(resolve));
+document.querySelectorAll(".bacaan-lainnya details").forEach(el=>{
+    el.open = true;
+});
+document.querySelectorAll(".nested-latin").forEach(el => {
+    el.style.display = "block";
+});
+        const worker = html2pdf().set(opt).from(element);
+
+        const pdf = await worker.toPdf().get("pdf");
+
+        const blob = pdf.output("blob");
+
+        const file = new File(
+            [blob],
+            "Bacaan-Shalat-Sesuai-Sunnah.pdf",
+            {
+                type: "application/pdf"
+            }
+        );
+
+        if (
+            navigator.canShare &&
+            navigator.canShare({ files: [file] })
+        ) {
+
+            await navigator.share({
+                title: "Bacaan Shalat Sesuai Sunnah",
+                text: "Bacaan Shalat Sesuai Sunnah PDF",
+                files: [file]
+            });
+
+        } else {
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "Bacaan-Shalat-Sesuai-Sunnah.pdf";
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+            alert("Browser tidak mendukung berbagi file. PDF telah diunduh.");
         }
 
-        arabSize = parseFloat(size);
-    });
-}
+    } catch (err) {
 
-/* Tombol Bold */
-if (boldBtn) {
-    boldBtn.addEventListener("click", () => {
-        boldState = !boldState;
+        console.error(err);
 
-        document.querySelectorAll(".arabic, .nested-arabic").forEach(el => {
-            el.style.fontWeight = boldState ? "bold" : "normal";
-        });
-    });
-}
+        alert("Gagal membagikan PDF, Silahkan Ulangi.");
 
-/* Dark Mode */
-const savedTheme = localStorage.getItem("theme") || "light";
-htmlElement.setAttribute("data-theme", savedTheme);
-updateThemeIcon(savedTheme);
+    } finally {
 
-if (toggleButton) {
-    toggleButton.addEventListener("click", () => {
-        const current = htmlElement.getAttribute("data-theme");
-        const next = current === "light" ? "dark" : "light";
+document.querySelector(".top-header")?.style.removeProperty("display");
 
-        htmlElement.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
+document.querySelector(".active-dzikir-box")?.style.removeProperty("display");
 
-        updateThemeIcon(next);
-    });
-}
+document.querySelector("#tasbihPopup")?.style.removeProperty("display");
+document.querySelectorAll(".info-actions").forEach(el => {
+    el.style.display = "";
+});
+document.querySelectorAll(".tasbih-link").forEach(el => {
+    el.style.display = "";
+});
+document.querySelectorAll(".latin").forEach(el => {
+    el.style.display = "none";
+});
 
-function updateThemeIcon(theme) {
-    const icon = document.querySelector(".toggle-icon");
+document.querySelectorAll(".translation").forEach(el => {
+    el.style.display = "none";
+});
 
-    if (icon) {
-        icon.className =
-            theme === "dark"
-                ? "fa-solid fa-moon toggle-icon"
-                : "fa-solid fa-sun toggle-icon";
+document.querySelectorAll(".nested-latin").forEach(el => {
+    el.style.display = "none";
+});
+
+document.querySelectorAll(".nested-item .action-btn").forEach(btn=>{
+    btn.style.display="";
+});
+element.classList.remove("pdf-export");
+
+        overlay.classList.remove("show");
+
+        setTimeout(() => {
+            overlay.style.display = "none";
+        }, 300);
+
     }
+
 }
 
-/* Jalankan saat halaman siap */
-function init() {
-    initArabFontSize();
-}
-
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
 </script>
-<script src="search.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="js/header.js"></script>  
 </body>
 </html>
-
-
-

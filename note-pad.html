@@ -4,320 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jurnal Ibadah & Aktivitas</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
 <style>
-:root {
-    --primary: #319795;
-    --bg: #f0f4f8;
-    --card: #fff;
-    --text: #2d3748;
-    --border: #e2e8f0;
-    --header-bg: #319795;
-    --header-text: white;
-    --icon-bg: #e6fffa;
-    --icon-color: #319795;
-    --toggle-bg: #e2e8f0;
-}
-
-[data-theme="dark"] {
-    --primary: #2c7a7b;
-    --bg: #1a202c;
-    --card: #2d3748;
-    --text: #e2e8f0;
-    --border: #4a5568;
-    --header-bg: #2c7a7b;
-    --icon-bg: #2c7a7b;
-    --icon-color: #4fd1c5;
-    --toggle-bg: #4fd1c5;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-body {
-    margin: 0;
-    padding-top: 65px;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    transition: 0.3s;
-    min-height: 100vh;
-}
-
-/* Header */
-.top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 45px;
-    background: var(--header-bg);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 14px;
-    z-index: 9999;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-
-.header-left,
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.page-title {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.back-container {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.back-btn {
-    width: 14px;
-    height: 14px;
-    border-left: 4px solid #fff;
-    border-bottom: 4px solid #fff;
-    transform: rotate(45deg);
-    border-radius: 2px;
-}
-
-/* Search */
-.search-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 38px;
-    height: 38px;
-    margin-top: 10px;
-}
-
-.search-box {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 0;
-    height: 30px;
-    opacity: 0;
-    overflow: visible;
-    transform: scaleX(0);
-    transform-origin: right center;
-    transition: all 0.35s ease;
-}
-
-.search-wrapper.active .search-box {
-    width: 160px;
-    opacity: 1;
-    transform: scaleX(1);
-}
-
-.search-box input {
-    width: 100%;
-    height: 30px;
-    border: none;
-    outline: none;
-    border-radius: 999px;
-    padding: 0 45px 0 15px;
-    font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
-    background: var(--card);
-    color: var(--text);
-}
-
-.search-box input:focus {
-    box-shadow: none;
-}
-
-.search-box input::placeholder {
-    color: #a0aec0;
-}
-
-.search-toggle {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 50%;
-    background: var(--card);
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 15px;
-    flex-shrink: 0;
-}
-
-[data-theme="dark"] .search-toggle {
-    background: #1f2937;
-    color: #4fd1c5;
-}
-
-.search-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #319795;
-    pointer-events: auto;
-    cursor: pointer;
-}
-
-[data-theme="dark"] .search-icon {
-    color: #4fd1c5;
-}
-
-/* Theme */
-.theme-toggle {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    border: none;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #319795;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 18px;
-}
-
-.theme-toggle:hover {
-    transform: scale(1.05);
-}
-
-[data-theme="dark"] .theme-toggle {
-    background: #1f2937;
-    color: #4fd1c5;
-}
-
-.toggle-icon {
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-/* Suggestion */
-.search-error {
-    padding: 10px 12px;
-    color: #e53e3e;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-}
-
-.search-error-icon {
-    font-size: 10px;
-}
-
-.suggestion-box {
-    position: absolute;
-    top: 35px;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
-    z-index: 999999;
-    max-height: 250px;
-    overflow-y: auto;
-}
-
-[data-theme="dark"] .suggestion-box {
-    background: #2d3748;
-    color: white;
-}
-
-.suggestion-item {
-    padding: 12px 15px;
-    cursor: pointer;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(0,0,0,.05);
-    transition: .2s;
-}
-
-.suggestion-item:last-child {
-    border-bottom: none;
-}
-
-.suggestion-item:hover,
-.suggestion-item.active {
-    background: #e6fffa;
-}
-
-.suggestion-item.history {
-    color: #4a5568;
-}
-
-.suggestion-item b {
-    color: #319795;
-}
-
-.delete-history {
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.clear-history {
-    padding: 12px;
-    text-align: center;
-    color: #e53e3e;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .2s;
-    font-size: 12px;
-}
-
-.clear-history i {
-    margin-right: 6px;
-    font-size: 12px;
-}
-
-[data-theme="dark"] .suggestion-item {
-    border-bottom: 1px solid #4a5568;
-}
-
-[data-theme="dark"] .suggestion-item:hover,
-[data-theme="dark"] .suggestion-item.active {
-    background: #1a202c;
-}
-
-[data-theme="dark"] .suggestion-item.history {
-    color: #cbd5e0;
-}
-
-[data-theme="dark"] .suggestion-item b {
-    color: #4fd1c5;
-}
 
 /* Layout */
 .wrap {
     max-width: 700px;
-    margin: 10px auto 0;
+    margin: 70px auto 0;
     padding: 15px;
 }
 
@@ -386,7 +81,7 @@ body {
 
 .percent-label {
     position: absolute;
-    top: -18px;
+    top: -20px;
     right: 0;
     font-size: 0.75rem;
     font-weight: 600;
@@ -450,32 +145,48 @@ button {
 </head>
 <body>
 <div class="top-header">
-    <div class="header-left">
-        <div class="back-container" onclick="goBack()">
-            <div class="back-btn"></div>
-        </div>
-        <span class="page-title">Jurnal Ibadah dan Aktivitas</span>
+
+    <!-- Tombol Back -->
+    <div class="back-container" onclick="goBack()">
+        <div class="back-button"></div>
     </div>
 
-    <div class="header-right">
-        <!-- Elemen Pencarian -->
-        <div class="search-wrapper" id="searchWrapper">
-            <div class="search-box">
-                <input type="text" placeholder="Cari dzikir dan doa...">
-            </div>
-            <button id="searchToggle" class="search-toggle">
+    <!-- Judul -->
+    <div class="header-title" id="headerTitle">
+        Jurnal Ibadah
+    </div>
+    
+    <!-- Tombol Drawer -->
+    <button id="drawerBtn" class="header-icon-btn drawer-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+    <!-- Drawer -->
+    <div id="headerDrawer" class="header-drawer">
+
+        <div class="search-box">
+            <input type="text" placeholder="Cari doa atau dzikir">
+            <span class="search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            </span>
         </div>
 
-        <!-- Tombol Tema -->
         <button id="themeToggle" class="theme-toggle">
             <i class="fa-solid fa-sun toggle-icon"></i>
         </button>
+
+        <button id="fontSizeBtn" class="control-btn">
+            <i class="fa-solid fa-maximize"></i>
+        </button>
+
+        <button id="wakeLockBtn" class="control-btn">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </button>
+
     </div>
-</div>
 
 </div>
+
 
 <div class="wrap">
 <div class="card card-progress">
@@ -533,7 +244,7 @@ button {
         document.referrer ? window.location.href = document.referrer : window.location.reload();
     }
 }
-const items=["Subuh","Dzuhur","Ashar","Magrib","Isya","Dhuha","Tahajud","Tilawah","Dzikir Pagi","Dzikir Petang","Sedekah"];
+const items=["Subuh","Dzuhur","Ashar","Magrib","Isya","Dhuha","Tahajud","Witir","Tilawah","Dzikir Pagi","Dzikir Petang","Sedekah"];
 const box=document.getElementById("ibadah");
 
 function load(){
@@ -889,5 +600,6 @@ document.addEventListener("click", (e) => {
 });
 
 </script>
+<script src="js/header.js"></script>
 </body>
 </html>

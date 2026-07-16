@@ -1,27 +1,19 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
+<html lang="id" dir="ltr">
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juz Amma Audio - Kumpulan Doa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="search.css">
-    <link rel="stylesheet" href="arabic.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/tasbih.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
 <style>/* RESET DASAR */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
 }
 
 /* VARIABEL TEMA */
@@ -49,7 +41,6 @@ html, body {
     --surface-card-shadow: rgba(0,0,0,0.06);
     --text-main: #2d3748;
     --text-subtle: #718096;
-    --card-bg: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -76,146 +67,8 @@ html, body {
     --surface-card-shadow: rgba(0,0,0,0.24);
     --text-main: #e2e8f0;
     --text-subtle: #a0aec0;
-    --card-bg: #2d3748;
 }
-
-/* BODY */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 20px;
-    line-height: 1.8;
-    transition: 0.3s;
-}
-
-/* FONT ARAB DAN TERJEMAH */
-.ayat-current,
-.ayat-next,
-.ayat-above,
-#arabicText * {
-    font-family: 'Amiri Quran', serif !important;
-}
-
-.translate-panel,
-.translate-text,
-#translateText,
-#translateText * {
-    font-family: 'Poppins', sans-serif !important;
-    direction: ltr;
-}
-
-/* HEADER ATAS */
-.top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    height: 45px;
-    background: var(--header-bg);
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.12);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
-
-.top-bar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 20px;
-}
-
-.back-container {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.back-button {
-    width: 14px;
-    height: 14px;
-    border-left: 4px solid #fff;
-    border-bottom: 4px solid #fff;
-    transform: rotate(45deg);
-    border-radius: 2px;
-}
-
-.page-title {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    margin-left: 30px;
-    white-space: nowrap;
-}
-
-/* PENCARIAN */
-.search-box {
-    width: 100px;
-    position: relative;
-}
-
-.search-box input {
-    width: 100%;
-    height: 30px;
-    border: none;
-    outline: none;
-    border-radius: 999px;
-    padding: 0 40px 0 15px;
-    font-size: 14px;
-    background: #fff;
-    margin-left: 0;
-}
-
-.search-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #319795;
-    font-size: 16px;
-    pointer-events: none;
-}
-
-/* TOMBOL HEADER */
-.theme-toggle,
-.control-btn {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    border: none;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #319795;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: .3s;
-    font-size: 18px;
-}
-
-.theme-toggle:hover,
-.control-btn:hover {
-    transform: scale(1.05);
-}
-
-.toggle-icon {
-    font-size: 18px;
-}
-
+  
 /* AKSI GLOBAL */
 .global-actions {
     display: flex;
@@ -348,62 +201,67 @@ body {
     overflow: hidden;
 }
 
-.ayat-wrapper {
-    position: relative;
-    height: 220px;
+/* PANEL AYAT */
+.ayat-wrapper{
+    position:relative;
+    min-height:320px;      /* lebih panjang ke bawah */
 }
 
-.arabic-panel .ayat-wrapper {
-    background: rgba(49, 151, 149, 0.06);
-    border: 1px solid rgba(49, 151, 149, 0.12);
-    border-radius: 18px;
-    padding: 16px;
-    margin: 0;
+.arabic-panel .ayat-wrapper{
+    background:rgba(49,151,149,.06);
+    border:1px solid rgba(49,151,149,.12);
+    border-radius:18px;
+    padding:20px 18px;
 }
 
-[data-theme="dark"] .arabic-panel .ayat-wrapper {
-    background: rgba(49, 151, 149, 0.1);
-    border: 1px solid rgba(49, 151, 149, 0.18);
+[data-theme="dark"] .arabic-panel .ayat-wrapper{
+    background:rgba(49,151,149,.10);
+    border:1px solid rgba(49,151,149,.18);
 }
 
-/* STRUKTUR AYAT */
-
-
-.arabic-panel .ayat-current {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    direction: rtl;
-    text-align: center;
-    padding: 8px;
-    border-radius: 12px;
-    transition: all 0.8s ease;
+/* SUSUNAN 3 AYAT */
+.ayat-stack{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;          /* jarak antar ayat */
 }
 
-.arabic-panel .ayat-next {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    opacity: 0.25;
-    filter: blur(0.3px);
-    direction: rtl;
-    text-align: center;
-    padding: 8px;
+/* AYAT SEBELUMNYA */
+.ayat-above{
+    font-size:1.15rem;
+    line-height:1.5;
+    opacity:.28;
+    filter:blur(.3px);
+    text-align:center;
+    direction:rtl;
+    transition:.4s;
 }
 
-.ayat-above {
-    font-size: 1.2rem;
-    opacity: 0.25;
-    filter: blur(0.3px);
-    direction: rtl;
-    text-align: center;
-    padding: 8px;
-    margin-top: -15px;
-    margin-bottom: 5px;
-    transition: all 0.5s ease;
+/* AYAT AKTIF */
+.arabic-panel .ayat-current{
+    font-size:1.8rem;
+    line-height:2;
+    text-align:center;
+    direction:rtl;
+    padding:4px 0;
+    transition:.4s;
 }
 
+/* AYAT BERIKUTNYA */
+.arabic-panel .ayat-next{
+    font-size:1.15rem;
+    line-height:1.5;
+    opacity:.28;
+    filter:blur(.3px);
+    text-align:center;
+    direction:rtl;
+    transition:.4s;
+}
 /* TERJEMAH */
 .translate-panel {
-    margin-top: -40px;
+    margin-top: -20px;
     padding: 10px;
     background: rgba(0, 0, 0, 0.025);
     border-radius: 12px;
@@ -481,8 +339,8 @@ body {
 
 #audioProgress::-webkit-slider-thumb {
     appearance: none;
-    width: 14px;
-    height: 14px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #319795;
 }
@@ -515,6 +373,7 @@ body {
 }
 
 .control-btn {
+
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -642,40 +501,6 @@ body {
     flex-shrink: 0;
 }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    color: #718096;
-    font-size: 0.9rem;
-    border-top: 1px solid #e2e8f0;
-    direction: ltr;
-    margin-bottom: 0;
-}
-
-/* DARK MODE */
-[data-theme="dark"] body {
-    background: #1a202c;
-    color: #e2e8f0;
-}
-
-[data-theme="dark"] .top-header {
-    background: #2c7a7b;
-}
-
-[data-theme="dark"] .search-box input {
-    background: #1f2937;
-    color: #fff;
-}
-
-[data-theme="dark"] .theme-toggle,
-[data-theme="dark"] .control-btn {
-    background: #1f2937;
-    color: #4fd1c5;
-}
-
 /* RESPONSIVE */
 @media (max-width: 600px) {
     body {
@@ -718,26 +543,143 @@ footer {
         padding: 12px;
         border-radius: 14px;
     }
-}</style>
+}
+  /* List Surah - Mode Gelap */
+[data-theme="dark"] .track-item{
+    background: #2d3748;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+
+  .drawer-btn,
+.theme-toggle,
+.control-btn{
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    border:none;
+    border-radius:50%;
+    flex-shrink:0;
+}
+
+.drawer-close-icon{margin-left:1px;}
+.drawer-btn i,
+.theme-toggle i,
+.control-btn i{
+    font-size:16px;
+    line-height:1;
+}
+#activeSurahName{
+    background: var(--surface-title);
+    color: var(--text-main);
+    padding:16px;
+    border-radius:16px;
+    width:100%;
+    max-width:420px;
+    margin:auto;
+    text-align:center;
+    border:1px solid var(--surface-card-border);
+    box-shadow:0 4px 12px var(--surface-card-shadow);
+}
+
+.page-title-inside{
+    font-size:.78rem;
+    opacity:.65;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+    text-transform:uppercase;
+}
+
+.surah-name-inside{
+    font-size:1.15rem;
+    font-weight:700;
+}
+
+  .back-container {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.back-button {
+    width: 16px;
+    height: 16px;
+    border-left: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    transform: rotate(45deg);
+    border-radius: 2px;
+}
+
+</style>
 </head>
 <body>
 <div class="top-header">
+
+    <!-- Tombol Back -->
     <div class="back-container" onclick="goBack()">
         <div class="back-button"></div>
     </div>
-    <div class="page-title">Juz Amma Audio</div>
-    <div class="top-bar">
+
+    <!-- Judul -->
+    <div class="header-title" id="headerTitle">
+        Juz Amma Audio
+    </div>
+
+    <!-- Tombol Drawer -->
+    <button id="drawerBtn" class="drawer-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+
+    <!-- Drawer -->
+    <div id="headerDrawer" class="header-drawer">
+
         <div class="search-box">
             <input type="text" placeholder="Cari doa atau dzikir">
             <span class="search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </span>
         </div>
-        <button id="themeToggle" class="theme-toggle" title="Dark Mode">
+
+        <button id="themeToggle" class="theme-toggle">
             <i class="fa-solid fa-sun toggle-icon"></i>
         </button>
+
+        <button id="fontSizeBtn" class="control-btn">
+            <i class="fa-solid fa-maximize"></i>
+        </button>
+
+        <button id="wakeLockBtn" class="control-btn">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </button>
+
     </div>
+
 </div>
+<div id="activeDzikirBox" class="active-dzikir-box">
+    <div id="activeTargetText" class="active-target-text"></div>
+    <div id="activeArabic" class="active-arabic"></div>
+</div>
+<div id="fontSliderBox" class="font-slider-box">
+    <input
+        id="fontSlider"
+        type="range"
+        min="1.2"
+        max="3"
+        step="0.1"
+        value="1.4">
+
+    <span id="fontValue">1.4</span>
+</div>
+
 
 <div class="global-actions">
     <button onclick="playAllSurahs()" class="global-btn play-all-btn">
@@ -754,12 +696,32 @@ footer {
     <span class="close-btn" onclick="closeDisplay()"><i class="fa-solid fa-chevron-down"></i></span>
     <div class="player-content">
         <div class="surah-title-wrap">
-    <h2 id="activeSurahName">Surah</h2>
+    <div id="activeSurahName">
+        <div class="page-title-inside" id="pageTitleInside">
+            Juz Amma Audio
+        </div>
+
+        <div class="surah-name-inside" id="surahNameInside">
+            Surah
+        </div>
+    </div>
 </div>
 </div>
 
 <div class="ayat-panel">
-    <div id="arabicText" class="arabic-panel"></div>
+    <div id="arabicText" class="arabic-panel">
+
+    <div class="ayat-stack">
+
+        <div id="ayatAbove" class="ayat-above"></div>
+
+        <div id="ayatCurrent" class="ayat-current"></div>
+
+        <div id="ayatNext" class="ayat-next"></div>
+
+    </div>
+
+</div>
     <div id="translateText" class="translate-panel"></div>
 
 
@@ -803,7 +765,15 @@ footer {
 </div>
 
 <footer>
-    &copy; 2026 Kumpulan Dzikir dan Doa - Semoga Bermanfaat
+    <p><strong>﴾ فَاذْكُرُونِي أَذْكُرْكُمْ ﴿</strong></p>
+    <p>"Maka ingatlah kepada-Ku, niscaya Aku ingat kepadamu."</p>
+    <small>QS. Al-Baqarah: 152</small>
+    <br><br>
+    <small>&copy; 2026 Kumpulan Dzikir Pagi </small><br>
+      <small>
+Referensi materi:
+https://bekalislam.online
+</small>
 </footer>
 
 <script>
@@ -817,14 +787,10 @@ let currentSurahIndex = 0;
 let playlist;
 let playerView;
 let audio;
-let toggleButton;
-let ayatSyncInterval = null;
-let currentDurasiPerAyat = 0;
-let currentTotalAyat = 0;
 let currentSurahDataSync = null;
 let showTranslation = true;
-let currentTahap = 0; // 0=taawudz, 1=basmalah, 2+=ayat
-
+let currentTahap = 0;
+let isPlayAllMode = false;
 // ===== MENU SURAH =====
 const menuSurah = [
     { id: 78, name: "An-Naba'" }, { id: 79, name: "An-Nazi'at" }, { id: 80, name: "'Abasa" },
@@ -841,35 +807,6 @@ const menuSurah = [
     { id: 111, name: "Al-Lahab" }, { id: 112, name: "Al-Ikhlash" }, { id: 113, name: "Al-Falaq" },
     { id: 114, name: "An-Nas" }
 ];
-
-// ===== FUNGSI =====
-function goBack() {
-    audio.pause();
-    audio.removeAttribute('src');
-    audio.load();
-    stopAyatSync();
-    currentSurahData = null;
-    currentSurahId = null;
-    currentAyat = 1;
-    currentTahap = -1;
-    totalAyatGlobal = 0;
-    currentSurahIndex = 0;
-    document.getElementById('activeSurahName').innerText = 'Surah';
-    document.getElementById('arabicText').innerHTML = '';
-    document.getElementById('translateText').innerHTML = '';
-    document.getElementById('ayatListContainer').innerHTML = '';
-    playerView.style.display = 'none';
-    playlist.style.display = 'block';
-}
-
-function updateThemeIcon(theme) {
-    const icon = document.querySelector(".toggle-icon");
-    if (icon) {
-        icon.className = theme === "dark" 
-            ? "fa-solid fa-moon toggle-icon" 
-            : "fa-solid fa-sun toggle-icon";
-    }
-}
 
 function renderMenu() {
     menuSurah.forEach(s => {
@@ -890,46 +827,43 @@ function renderMenu() {
 }
 
 async function startSurah(id) {
+  
     try {
-        const res = await fetch(`data.2/${id}.json`);
-        if (!res.ok) {
-            throw new Error(`File data.2/${id}.json tidak ditemukan (Status: ${res.status})`);
-        }
+        const res = await fetch(`juzAmma/${id}.json`);
         const json = await res.json();
         const data = json[String(id)];
-        const timestampFile = `ts-${id}.json`;
+        const timestampFile = `timestamp/${id}.json`;
 
         try {
             const tsRes = await fetch(timestampFile);
 
             if (!tsRes.ok) {
-                console.warn(`⚠️ Timestamp ts-${id}.json tidak ditemukan`);
-                currentTimestampData = {
-                    surahId: id,
-                    timestamps: []
-                };
-            } else {
-                const tsData = await tsRes.json();
-                currentTimestampData = {
-                    surahId: id,
-                    timestamps: Array.isArray(tsData)
-                        ? tsData
-                        : tsData.timestamps || []
-                };
+                throw new Error(`Timestamp tidak ditemukan: ${timestampFile}`);
             }
+
+            const tsData = await tsRes.json();
+
+            currentTimestampData = {
+                surahId: id,
+                timestamps: Array.isArray(tsData)
+                    ? tsData
+                    : tsData.timestamps || []
+            };
 
         } catch (err) {
             console.warn("Gagal memuat timestamp:", err);
+
             currentTimestampData = {
                 surahId: id,
                 timestamps: []
             };
         }
-        
         currentSurahData = data;
         currentSurahId = id;
-        currentAyat = 1;
-        currentTahap = -1;
+        currentSurahIndex =
+    menuSurah.findIndex(s => s.id === id);
+        currentAyat = 1;  // ⟳ PERBAIKAN: ayat mulai dari 1
+        currentTahap = -1; // ⟳ PERBAIKAN: reset ke -1 (belum ada segment)
         totalAyatGlobal = parseInt(data.number_of_ayah);
 
         playerView.style.display = 'block';
@@ -969,10 +903,11 @@ async function startSurah(id) {
             </div>
         `;
 
+        // ⟳ PERBAIKAN: pass ayatNo = 1 (bukan 2)
         playAyat(currentSurahId, 1, totalAyatGlobal, data);
 
     } catch(error) {
-        console.error("❌ Error saat memuat surah:", error);
+        console.error(error);
         alert("Error: " + error.message);
     }
 }
@@ -980,64 +915,35 @@ async function startSurah(id) {
 function getTranslation(data, ayatNo) {
     return data?.translations?.id?.text?.[String(ayatNo)] || "";
 }
+  
+function renderAyat(aboveArab, currentArab, nextArab, translation) {
 
-function displayAyatOnly(surahId, ayatNo, totalAyat, data) {
-    currentAyat = ayatNo;
+    document.getElementById("ayatAbove").innerHTML =
+        aboveArab
+            ? `<div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${aboveArab}</div>`
+            : "";
+
+    document.getElementById("ayatCurrent").innerHTML =
+        `<div style="font-size:1.8rem;direction:rtl;text-align:center;padding:8px;">${currentArab}</div>`;
+
+    document.getElementById("ayatNext").innerHTML =
+        nextArab
+            ? `<div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${nextArab}</div>`
+            : "";
+
+    document.getElementById("translateText").innerHTML =
+        `<div class="translate-text">${translation}</div>`;
+  }
     
-    let currentText = "";
-    let currentTranslation = "";
-    
-    if (ayatNo === 1) {
-        currentText = `
-            <div style="margin-bottom:20px;">
-                <div style="font-size:1.6rem; direction:rtl; margin-bottom:8px;">
-                    ${data.preface?.taawudz || ""}
-                </div>
-            </div>
-            <div style="margin-bottom:20px;">
-                <div style="font-size:1.6rem; direction:rtl; margin-bottom:8px;">
-                    ${data.preface?.basmalah || ""}
-                </div>
-            </div>
-            <div style="font-size:1.6rem; direction:rtl;">
-                ${data.text?.["1"] || ""}
-            </div>
-        `;
-        currentTranslation = `${data.preface?.taawudz_id || ""}<br>${data.preface?.basmalah_id || ""}<br>${getTranslation(data, 1)}`;
-    } else {
-        currentText = `
-            <div style="font-size:1.6rem; direction:rtl;">
-                ${data.text?.[String(ayatNo)] || ""}
-            </div>
-        `;
-        currentTranslation = getTranslation(data, ayatNo);
-    }
-
-    document.getElementById("arabicText").innerHTML = `
-        <div class="ayat-wrapper">
-            <div class="ayat-current">
-                ${currentText}
-            </div>
-        </div>
-    `;
-
-    document.getElementById("translateText").innerHTML = `
-        <div class="translate-text">
-            ${currentTranslation}
-        </div>
-    `;
-
-    document.getElementById("activeSurahName").innerText = `${data.name_latin} - ${totalAyat} Ayat`;
-
-    const fileNumber = surahId - 77;
-    audio.src = `audio/${surahId}-${fileNumber}.m4a`;
-}
-
 async function playAyat(surahId, ayatNo, totalAyat, data) {
     if (!data) {
-        const res = await fetch(`data.2/${surahId}.json`);
+        const res = await fetch(`juzAmma/${surahId}.json`);
         const json = await res.json();
         data = json[String(surahId)];
+    }
+
+    if (!currentTimestampData || currentTimestampData.surahId !== surahId) {
+        console.warn("Timestamp belum dimuat");
     }
 
     currentSurahDataSync = data;
@@ -1046,109 +952,110 @@ async function playAyat(surahId, ayatNo, totalAyat, data) {
     
     document.getElementById("activeSurahName").innerText = `${data.name_latin} - ${totalAyat} Ayat`;
 
-    let arab = data.preface?.taawudz || "";
-    let indo = data.preface?.taawudz_id || "";
+    renderAyat(
+    "",
+    data.preface?.taawudz || "",
+    "",
+    data.preface?.taawudz_id || ""
+);
     
-    document.getElementById("arabicText").innerHTML = `
-        <div class="ayat-wrapper">
-            <div class="ayat-current">
-                <div style="font-size:1.8rem;direction:rtl;text-align:center;padding:8px;">${arab}</div>
-            </div>
-        </div>
-    `;
-    document.getElementById("translateText").innerHTML = `
-        <div class="translate-text">
-            ${indo}
-        </div>
-    `;
+    renderAyat(
+    "",
+    data.preface?.taawudz || "",
+    "",
+    data.preface?.taawudz_id || ""
+);
 
     const fileNumber = surahId - 77;
-    const audioPath = `audio/${surahId}-${fileNumber}.m4a`;
-    console.log("🎵 Loading audio:", audioPath);
-    
-    audio.src = audioPath;
-    
+    audio.src = `audio/${surahId}-${fileNumber}.m4a`;
+    audio.onended = () => {
+
+    if (isPlayAllMode) {
+
+        if (currentSurahIndex < menuSurah.length - 1) {
+
+            currentSurahIndex++;
+
+            startSurah(menuSurah[currentSurahIndex].id);
+
+        } else {
+
+            isPlayAllMode = false;
+
+            alert("Semua surah selesai diputar");
+
+        }
+
+    }
+
+};
     audio.onloadedmetadata = () => {
-        console.log("✅ Audio loaded successfully, duration:", audio.duration);
-        audio.currentTime = 0;
-        document.getElementById("playPauseBtn").innerHTML = '<i class="fa-solid fa-play"></i>';
-        updateAyatDisplay(currentSurahId, 0, data);
-    };
-    
-    audio.onerror = (e) => {
-        console.error("❌ Error loading audio:", audioPath, e);
-        alert(`❌ Audio tidak ditemukan: ${audioPath}`);
-    };
+
+    audio.currentTime = 0;
+
+    updateAyatDisplay(currentSurahId, 0, data);
+
+    if (isPlayAllMode) {
+        audio.play();
+    }
+
+};
 }
 
 function updatePrevNextButtons() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    prevBtn.disabled = currentSurahId === 78;
-    nextBtn.disabled = currentSurahId === 114;
+
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    if (isPlayAllMode) {
+
+        prevBtn.disabled = currentSurahIndex === 0;
+        nextBtn.disabled = currentSurahIndex === menuSurah.length - 1;
+
+    } else {
+
+        prevBtn.disabled = currentSurahId === 78;
+        nextBtn.disabled = currentSurahId === 114;
+
+    }
+
 }
 
 function prevAyat() {
-    if (currentSurahId && currentSurahId > 78) {
-        audio.pause();
-        document.getElementById("playPauseBtn").innerHTML = '<i class="fa-solid fa-play"></i>';
-        stopAyatSync();
-        startSurah(currentSurahId - 1);
+
+    audio.pause();
+
+    if (currentSurahIndex > 0) {
+
+        currentSurahIndex--;
+
+        startSurah(menuSurah[currentSurahIndex].id);
+
     }
+
 }
 
 function nextAyat() {
-    if (currentSurahId && currentSurahId < 114) {
-        audio.pause();
-        document.getElementById("playPauseBtn").innerHTML = '<i class="fa-solid fa-play"></i>';
-        stopAyatSync();
-        startSurah(currentSurahId + 1);
+
+    audio.pause();
+
+    if (currentSurahIndex < menuSurah.length - 1) {
+
+        currentSurahIndex++;
+
+        startSurah(menuSurah[currentSurahIndex].id);
+
     }
+
 }
 
-async function playAllSurahs() {
+function playAllSurahs() {
+
+    isPlayAllMode = true;
     currentSurahIndex = 0;
-    playNextSurah();
-}
 
-async function playNextSurah() {
-    if (currentSurahIndex >= menuSurah.length) {
-        alert("Semua surah selesai diputar");
-        return;
-    }
+    startSurah(menuSurah[0].id);
 
-    const surahId = menuSurah[currentSurahIndex].id;
-    try {
-        const res = await fetch(`data.2/${surahId}.json`);
-        const json = await res.json();
-        const data = json[surahId] || json;
-
-        playerView.style.display = 'block';
-        playlist.style.display = 'none';
-
-        playAyatFullSurah(surahId, 1, parseInt(data.number_of_ayah), data, () => {
-            currentSurahIndex++;
-            playNextSurah();
-        });
-    } catch(err) {
-        console.error(err);
-    }
-}
-
-function playAyatFullSurah(surahId, ayatNo, totalAyat, data, onFinish) {
-    document.getElementById('activeSurahName').innerText = `${data.name_latin} - Ayat ${ayatNo}`;
-    document.getElementById('arabicText').innerText = data.text[String(ayatNo)];
-    document.getElementById('translateText').innerText = data.translations.id.text[String(ayatNo)];
-    audio.src = `audio/${surahId}-${ayatNo}.m4a`;
-    audio.play();
-
-    audio.onended = () => {
-        if (ayatNo < totalAyat) {
-            playAyatFullSurah(surahId, ayatNo + 1, totalAyat, data, onFinish);
-        } else {
-            if (onFinish) onFinish();
-        }
-    };
 }
 
 async function downloadAllSurahs() {
@@ -1157,7 +1064,7 @@ async function downloadAllSurahs() {
 
     for (const surah of menuSurah) {
         try {
-            const res = await fetch(`data.2/${surah.id}.json`);
+            const res = await fetch(`juzAmma/${surah.id}.json`);
             const json = await res.json();
             const data = json[surah.id] || json;
             const totalAyat = parseInt(data.number_of_ayah);
@@ -1198,9 +1105,6 @@ function togglePlayPause() {
             if (currentSurahDataSync) {
                 startAyatSync(currentSurahDataSync);
             }
-        }).catch(err => {
-            console.error("❌ Error playing audio:", err);
-            alert("Tidak dapat memutar audio. Periksa apakah file audio tersedia.");
         });
     } else {
         audio.pause();
@@ -1268,7 +1172,7 @@ function updateProgressBar() {
             audio.duration - audio.currentTime
         );
 }
-
+  
 function stopAyatSync() {
     if (audio && currentSyncHandler) {
         audio.removeEventListener('timeupdate', currentSyncHandler);
@@ -1307,7 +1211,10 @@ function updateAyatFromTimestamp(currentTime, data) {
     for (let i = 0; i < timestamps.length; i++) {
         const current = timestamps[i];
         const next = timestamps[i + 1];
-        if (currentTime >= current.time && (!next || currentTime < next.time)) {
+
+        if (currentTime >= current.time &&
+            (!next || currentTime < next.time)) {
+
             activeEntry = current;
             break;
         }
@@ -1315,160 +1222,170 @@ function updateAyatFromTimestamp(currentTime, data) {
 
     if (!activeEntry) return;
 
-    let newTahap = -99; 
-    if (activeEntry.hasOwnProperty('taawuz')) newTahap = 0;
-    else if (activeEntry.hasOwnProperty('basmalah')) newTahap = 1;
-    else if (activeEntry.hasOwnProperty('ayat')) newTahap = activeEntry.ayat + 1;
+    let newTahap = -1;
 
-    if (newTahap !== currentTahap) {
-        currentTahap = newTahap;
-        
-        if (newTahap === 0) {
-            updateAyatDisplay(currentSurahId, 0, data);
-        } else if (newTahap === 1) {
-            updateAyatDisplay(currentSurahId, 1, data);
-        } else {
-            displayTimestampSegment(newTahap - 1, data);
-        }
+    if ("taawuz" in activeEntry) {
+
+        newTahap = 0;
+
+    } else if ("basmalah" in activeEntry) {
+
+        newTahap = 1;
+
+    } else if ("ayat" in activeEntry) {
+
+        // Ayat 1 menjadi tahap 2
+        newTahap = activeEntry.ayat + 1;
+
     }
+
+    if (newTahap === currentTahap) return;
+
+    currentTahap = newTahap;
+
+    updateAyatDisplay(currentSurahId, newTahap, data);
 }
 
-function displayTimestampSegment(ayatNum, data) {
-    const arab = data.text?.[String(ayatNum)] || "";
-    const indo = data.translations?.id?.text?.[String(ayatNum)] || "";
-    
-    const prevAyatNum = ayatNum - 1;
-    const prevArab = prevAyatNum >= 1 ? (data.text?.[String(prevAyatNum)] || "") : "";
-    
-    const nextAyatNum = ayatNum + 1;
-    const nextArab = data.text?.[String(nextAyatNum)] || "";
-
-    let arabicHtml = `
-        <div class="ayat-stack">
-            ${prevArab ? `<div class="ayat-above"><div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${prevArab}</div></div>` : ''}
-            <div class="ayat-current">
-                <div style="font-size:1.8rem;direction:rtl;text-align:center;padding:8px;">${arab}</div>
-            </div>
-            ${nextArab ? `<div class="ayat-next"><div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${nextArab}</div></div>` : ''}
-        </div>
-    `;
-    
-    document.getElementById("arabicText").innerHTML = arabicHtml;
-    document.getElementById("translateText").innerHTML = `<div class="translate-text">${indo}</div>`;
-    currentAyat = ayatNum;
-}
 
 function updateAyatDisplay(surahId, tahap, data) {
-    let arab = "", indo = "";
-    let aboveArab = "", nextArab = "";
 
+    let arab = "";
+    let indo = "";
+    let aboveArab = "";
+    let nextArab = "";
+
+    // =====================
+    // TA'AWUDZ
+    // =====================
     if (tahap === 0) {
+
         arab = data.preface?.taawudz || "";
         indo = data.preface?.taawudz_id || "";
+
         nextArab = data.preface?.basmalah || "";
-        
-        document.getElementById("arabicText").innerHTML = `
-            <div class="ayat-stack">
-                <div class="ayat-current">
-                    <div style="font-size:1.8rem;direction:rtl;text-align:center;padding:8px;">${arab}</div>
-                </div>
-                <div class="ayat-next">
-                    <div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${nextArab}</div>
-                </div>
-            </div>
-        `;
-    } else if (tahap === 1) {
+
+        renderAyat(
+            "",
+            arab,
+            nextArab,
+            indo
+        );
+
+        return;
+    }
+
+    // =====================
+    // BASMALAH
+    // =====================
+    if (tahap === 1) {
+
         arab = data.preface?.basmalah || "";
         indo = data.preface?.basmalah_id || "";
+
         aboveArab = data.preface?.taawudz || "";
         nextArab = data.text?.["1"] || "";
-        
-        document.getElementById("arabicText").innerHTML = `
-            <div class="ayat-stack">
-                <div class="ayat-above">
-                    <div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${aboveArab}</div>
-                </div>
-                <div class="ayat-current">
-                    <div style="font-size:1.8rem;direction:rtl;text-align:center;padding:8px;">${arab}</div>
-                </div>
-                ${nextArab ? `<div class="ayat-next">
-                    <div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${nextArab}</div>
-                </div>` : ''}
-            </div>
-        `;
-    } else {
-        const ayatNo = tahap;
-        arab = data.text?.[String(ayatNo)] || "";
-        indo = data?.translations?.id?.text?.[String(ayatNo)] || "";
-        aboveArab = data.text?.[String(ayatNo - 1)] || "";
-        nextArab = data.text?.[String(ayatNo + 1)] || "";
-        
-        document.getElementById("arabicText").innerHTML = `
-            <div class="ayat-stack">
-                ${aboveArab ? `<div class="ayat-above">
-                    <div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${aboveArab}</div>
-                </div>` : ''}
-                <div class="ayat-current">
-                    <div style="font-size:1.8rem;direction:rtl;text-align:center;padding:8px;">${arab}</div>
-                </div>
-                ${nextArab ? `<div class="ayat-next">
-                    <div style="font-size:1.1rem;direction:rtl;text-align:center;padding:6px;">${nextArab}</div>
-                </div>` : ''}
-            </div>
-        `;
+
+        renderAyat(
+            aboveArab,
+            arab,
+            nextArab,
+            indo
+        );
+
+        return;
     }
-    
-    document.getElementById("translateText").innerHTML = `
-        <div class="translate-text">
-            ${indo}
-        </div>
-    `;
+
+    // =====================
+    // AYAT
+    // tahap 2 = ayat 1
+    // tahap 3 = ayat 2
+    // dst
+    // =====================
+
+    const ayatNo = tahap - 1;
+
+    arab = data.text?.[String(ayatNo)] || "";
+    indo = data.translations?.id?.text?.[String(ayatNo)] || "";
+
+    if (ayatNo === 1) {
+
+        aboveArab = data.preface?.basmalah || "";
+
+    } else {
+
+        aboveArab = data.text?.[String(ayatNo - 1)] || "";
+
+    }
+
+    nextArab = data.text?.[String(ayatNo + 1)] || "";
+
+    renderAyat(
+        aboveArab,
+        arab,
+        nextArab,
+        indo
+    );
 }
 
 // ===== DOMContentLoaded =====
 document.addEventListener('DOMContentLoaded', () => {
-    toggleButton = document.getElementById("themeToggle");
-    const htmlElement = document.documentElement;
-    const savedTheme = localStorage.getItem("theme") || "light";
-    htmlElement.setAttribute("data-theme", savedTheme);
-    updateThemeIcon(savedTheme);
-
-    if (toggleButton) {
-        toggleButton.addEventListener("click", () => {
-            const current = htmlElement.getAttribute("data-theme");
-            const next = current === "light" ? "dark" : "light";
-            htmlElement.setAttribute("data-theme", next);
-            localStorage.setItem("theme", next);
-            updateThemeIcon(next);
-        });
-    }
-
+    
     playlist = document.getElementById('playlist');
     playerView = document.getElementById('playerView');
     audio = document.getElementById('audioPlayer');
-    const progress = document.getElementById("audioProgress");
+const progress = document.getElementById("audioProgress");
 
-    audio.addEventListener("timeupdate", updateProgressBar);
+audio.addEventListener("timeupdate", updateProgressBar);
 
-    audio.addEventListener("loadedmetadata", () => {
-        updateProgressBar();
-    });
+audio.addEventListener("loadedmetadata", () => {
+    updateProgressBar();
+});
 
-    progress.addEventListener("input", () => {
+progress.addEventListener("input", () => {
 
-        if (!audio.duration) return;
+    if (!audio.duration) return;
 
-        const seekTime =
-            (progress.value / 100) *
-            audio.duration;
+    const seekTime =
+        (progress.value / 100) *
+        audio.duration;
 
-        audio.currentTime = seekTime;
+    audio.currentTime = seekTime;
 
-        updateProgressBar();
-    });
+    updateProgressBar();
+});
     renderMenu();
+  audio.addEventListener("play", () => {
+    document.getElementById("playPauseBtn").innerHTML =
+        '<i class="fa-solid fa-pause"></i>';
+});
+
+audio.addEventListener("pause", () => {
+    document.getElementById("playPauseBtn").innerHTML =
+        '<i class="fa-solid fa-play"></i>';
+});
+
+  audio.addEventListener("ended", () => {
+
+    if (!isPlayAllMode) return;
+
+    if (currentSurahIndex < menuSurah.length - 1) {
+
+        currentSurahIndex++;
+
+        startSurah(menuSurah[currentSurahIndex].id);
+
+    } else {
+
+        isPlayAllMode = false;
+        alert("Semua surah selesai diputar");
+
+    }
+
+});
 });
 </script>
-<script src="search.js"></script>
-</body>
+<script src="js/header.js"></script>
+  </body>
 </html>
+
+
