@@ -754,10 +754,20 @@ ${instruction}`;
 
 }
 function goBack() {
+
+    if (typeof closeDisplay === "function" &&
+        typeof playerView !== "undefined" &&
+        playerView &&
+        playerView.style.display === "block") {
+
+        closeDisplay();
+        return;
+    }
+
     if (window.history.length > 1) {
-        window.history.back();
+        history.back();
     } else {
-        window.location.href = "/"; // Fallback ke home jika tidak ada history
+        location.href = "/";
     }
 }
 
