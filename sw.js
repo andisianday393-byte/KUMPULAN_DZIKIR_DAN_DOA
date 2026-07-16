@@ -1,75 +1,124 @@
-const STATIC_CACHE = "dzikir-static";
+const STATIC_CACHE = "dzikir-static-v1";
 
 const ASSETS = [
-  "/",
-  "/search.css",
-  "/search.js",
+    "./",
+    "./index.html",
 
-  "/icon-192.png",
-  "/icon-512.png",
+    "./css/index.css",
+    "./css/index-drawer.css",
+    "./css/search-index.css",
 
-  "/audio/adzan.mp3",
+    "./js/index-drawer.js",
+    "./js/search.js",
 
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    "./json/manifest.json",
+
+    "./assets/icon-192.png",
+    "./assets/icon-512.png",
+
+    "./audio/adzan.mp3",
+
+    "./fontawesome/css/all.min.css",
+    "./fontawesome/webfonts/fa-solid-900.woff2",
+    "./fontawesome/webfonts/fa-regular-400.woff2",
+    "./fontawesome/webfonts/fa-brands-400.woff2"
 ];
 
 // Install
 self.addEventListener("install", event => {
-  self.skipWaiting();
 
-  event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then(cache => cache.addAll(ASSETS))
-  );
+    self.skipWaiting();
+
+    event.waitUntil(
+        caches.open(STATIC_CACHE)
+            .then(cache => cache.addAll(ASSETS))
+    );
+
 });
 
 // Activate
 self.addEventListener("activate", event => {
-  event.waitUntil(clients.claim());
+
+    event.waitUntil(
+
+        caches.keys().then(keys => {
+
+            return Promise.all(
+
+                keys
+                    .filter(key => key !== STATIC_CACHE)
+                    .map(key => caches.delete(key))
+
+            );
+
+        }).then(() => self.clients.claim())
+
+    );
+
 });
 
 // Fetch
 self.addEventListener("fetch", event => {
 
-  const req = event.request;
+    if (event.request.method !== "GET") return;
 
-  // HTML selalu terbaru dari server
-  if (
-      req.mode === "navigate" ||
-      req.destination === "document"
-  ) {
+    // Halaman HTML selalu mencoba dari internet terlebih dahulu
+    if (
+        event.request.mode === "navigate" ||
+        event.request.destination === "document"
+    ) {
 
-      event.respondWith(
-          fetch(req)
-            .then(res => res)
-            .catch(() => caches.match("/index.html"))
-      );
+        event.respondWith(
 
-      return;
-  }
+            fetch(event.request)
+                .then(response => {
 
-  // CSS, JS, Font, Audio, Gambar = cache first
-  event.respondWith(
-      caches.match(req)
-        .then(cacheRes => {
+                    const copy = response.clone();
 
-            if (cacheRes) {
-                return cacheRes;
+                    caches.open(STATIC_CACHE)
+                        .then(cache => cache.put(event.request, copy));
+
+                    return response;
+
+                })
+                .catch(() => caches.match("./index.html"))
+
+        );
+
+        return;
+
+    }
+
+    // Cache First untuk file statis
+    event.respondWith(
+
+        caches.match(event.request).then(cacheResponse => {
+
+            if (cacheResponse) {
+                return cacheResponse;
             }
 
-            return fetch(req).then(networkRes => {
+            return fetch(event.request).then(networkResponse => {
 
-                const clone = networkRes.clone();
+                if (
+                    networkResponse &&
+                    networkResponse.status === 200 &&
+                    networkResponse.type === "basic"
+                ) {
 
-                caches.open(STATIC_CACHE)
-                  .then(cache => {
-                      cache.put(req, clone);
-                  });
+                    const copy = networkResponse.clone();
 
-                return networkRes;
+                    caches.open(STATIC_CACHE)
+                        .then(cache => cache.put(event.request, copy));
+
+                }
+
+                return networkResponse;
+
             });
 
         })
-  );
+
+    );
 
 });
