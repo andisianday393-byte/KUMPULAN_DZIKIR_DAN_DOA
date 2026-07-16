@@ -1,20 +1,25 @@
 {
-  "name": "Kumpulan Doa & Dzikir",
-  "short_name": "Doa & Dzikir",
-  "start_url": "index.html",
+  "name": "Kumpulan Dzikir & Doa",
+  "short_name": "Dzikir",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f0f4f8",
   "theme_color": "#319795",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "./assets/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "./assets/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
