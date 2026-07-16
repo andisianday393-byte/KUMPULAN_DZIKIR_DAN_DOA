@@ -1,0 +1,191 @@
+/* ===========================
+   TOP BAR
+=========================== */
+
+.top-bar{
+    position:relative;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    gap: 12px;
+}
+
+/* ===========================
+   SEARCH BOX
+=========================== */
+
+.search-box{
+    flex:1;
+    transition:
+        transform .35s ease,
+        opacity .35s ease;
+}
+
+.search-box.hide{
+    transform:translateX(-120%);
+    opacity:0;
+    pointer-events:none;
+}
+
+
+/* ===========================
+   HEADER DRAWER
+=========================== */
+
+.header-drawer{
+    position:absolute;
+    top:50%;
+    right:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:20px; /* atur jarak antar tombol di sini */
+
+    white-space:nowrap;
+
+    opacity:0;
+    pointer-events:none;
+
+    transform:translate(120%,-50%);
+    transition:
+        transform .40s cubic-bezier(.22,1,.36,1),
+        opacity .30s ease;
+}
+
+
+.header-icon-btn i,
+.drawer-btn i{
+    font-size:16px;
+}
+
+.header-drawer.open{
+    opacity:1;
+    pointer-events:auto;
+    transform:translate(0,-50%);
+}
+
+/* Animasi isi drawer */
+
+.header-drawer>*{
+    opacity:0;
+    transform:translateX(18px);
+
+    transition:
+        transform .35s ease,
+        opacity .35s ease;
+
+    pointer-events:none;
+}
+
+.header-drawer.open>*{
+    opacity:1;
+    transform:translateX(0);
+
+    pointer-events:auto;
+}
+
+.header-drawer.open>*:nth-child(1){
+    transition-delay:.05s;
+}
+
+.header-drawer.open>*:nth-child(2){
+    transition-delay:.10s;
+}
+
+.header-drawer.open>*:nth-child(3){
+    transition-delay:.15s;
+}
+
+.header-drawer.open>*:nth-child(4){
+    transition-delay:.20s;
+}
+
+/* ===========================
+   HEADER ICON
+=========================== */
+
+.header-icon-btn,
+.drawer-btn{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    min-height:30px;
+    max-width:30px;
+    max-height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex:0 0 30px;
+    aspect-ratio:1/1;
+
+    border:none;
+    border-radius:50%;
+
+    background:#fff;
+    color:#319795;
+
+    cursor:pointer;
+
+    transition:transform .25s;
+}
+
+.header-icon-btn:hover{
+    transform:scale(1.05);
+}
+
+.header-icon-btn i{
+    font-size:16px;
+}
+
+/* ===========================
+   HEADER TITLE
+=========================== */
+
+.header-title{
+    transition:
+        opacity .35s,
+        transform .35s;
+}
+
+.header-title.hide{
+    opacity:0;
+    transform:translateX(-20px);
+    pointer-events:none;
+}
+
+.header-actions{
+    position:relative;
+    display:flex;
+    align-items:center;
+   }
+
+.header-drawer{
+    position:absolute;
+    top:50%;
+    right:72px; /* sesuaikan dengan ukuran tombol */
+    transform:translateY(-50%) translateX(20px);
+
+    display:flex;
+    align-items:center;
+    gap:42px;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.35s ease;
+}
+
+.header-drawer.open{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(-50%) translateX(0);
+}
+
+[data-theme="dark"] .drawer-btn.open{
+    background:#1a202c;
+    color:#4fd1c5;
+}
+
