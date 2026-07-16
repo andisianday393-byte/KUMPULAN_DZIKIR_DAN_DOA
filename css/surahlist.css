@@ -1,0 +1,55 @@
+/* --- CSS untuk Daftar Surah --- */
+
+.surah-list {
+    list-style: none;
+    padding: 0;
+    margin: 0px 0;
+}
+
+.surah-list li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text-color); /* Menggunakan variabel warna teks utama */
+    border-bottom: 2px solid #e2e8f0; /* Menggunakan warna border standar Anda */
+    transition: all 0.2s ease;
+}
+
+.surah-list li a:hover {
+    background-color: var(--icon-bg); /* Menggunakan warna background icon agar seragam */
+}
+
+.surah-name {
+    font-weight: 600;
+    margin-left: 10px;
+    flex-grow: 1;
+    font-size: 0.95rem;
+}
+
+/* Badge Meta (untuk nomor surah/info) */
+.meta {
+    font-size: 0.7rem !important;
+    color: var(--header-bg) !important; /* Menggunakan warna primary header */
+    background: var(--icon-bg) !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    display: inline-block;
+    font-weight: bold;
+}
+
+/* --- Penyesuaian Dark Mode --- */
+
+[data-theme="dark"] .surah-list li a {
+    border-bottom: 1px solid #4a5568; /* Border lebih gelap untuk dark mode */
+}
+
+[data-theme="dark"] .surah-list li a:hover {
+    background-color: #374151; /* Warna hover yang pas dengan kartu dark mode */
+}
+
+[data-theme="dark"] .meta {
+    background: #4fd1c5 !important;
+    color: #1a202c !important;
+}
+

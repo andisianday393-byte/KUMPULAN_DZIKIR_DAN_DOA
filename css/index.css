@@ -1,0 +1,875 @@
+@font-face{
+    font-family:"Amiri";
+    src:url("../fonts/Amiri-Regular.ttf") format("truetype");
+    font-weight:400;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:"Amiri";
+    src:url("../fonts/Amiri-Bold.ttf") format("truetype");
+    font-weight:700;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:"Poppins";
+    src:url("../fonts/Poppins-Light.ttf") format("truetype");
+    font-weight:300;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:"Poppins";
+    src:url("../fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight:400;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:"Poppins";
+    src:url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+    font-weight:600;
+    font-style:normal;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;             /* ✅ Hapus margin */
+    padding: 0;            /* ✅ Hapus padding */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================
+   2. CSS VARIABLES (THEMING)
+   ============================================ */
+/* Light Mode (default) */
+:root {
+    --bg-color: #f0f4f8;
+    --text-color: #2d3748;
+    --header-bg: #319795;
+    --header-text: white;
+    --menu-bg: white;
+    --menu-text: #2d3748;
+    --menu-hover-border: #319795;
+    --menu-shadow: rgba(0,0,0,0.05);
+    --menu-hover-shadow: rgba(0,0,0,0.1);
+    --icon-bg: #e6fffa;
+    --icon-color: #319795;
+    --footer-text: #a0aec0;
+    --toggle-bg: #e2e8f0;
+    --toggle-circle: white;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --header-bg: #2c7a7b;
+    --header-text: white;
+    --menu-bg: #2d3748;
+    --menu-text: #e2e8f0;
+    --menu-hover-border: #4fd1c5;
+    --menu-shadow: rgba(0,0,0,0.3);
+    --menu-hover-shadow: rgba(0,0,0,0.5);
+    --icon-bg: #2c7a7b;
+    --icon-color: #4fd1c5;
+    --footer-text: #718096;
+    --toggle-bg: #4fd1c5;
+    --toggle-circle: #1a202c;
+}
+
+/* ============================================
+   3. HEADER & TOP BAR
+   ============================================ */
+/* ============================================
+   3. HEADER & TOP BAR
+   ============================================ */
+.header-wrapper {
+    background: var(--header-bg);
+    padding: 9px 30px;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 99999;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    /* Tambahan */
+    opacity: 0;
+    transform: translateY(-100px);
+}
+.header-wrapper.show-header{
+    animation:headerDown 1.2s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes headerDown{
+    from{
+        opacity:0;
+        transform:translateY(-100px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 0 auto;
+    border: none;
+    outline: none;
+}
+
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: #1a202c;
+    color: #4fd1c5;
+    border: 0px solid #4fd1c5;
+}
+
+.toggle-icon {
+    font-size: 18px;
+    transition: transform .3s ease;
+}
+
+/* ============================================
+   4. HERO SECTION (KUBAH)
+   ============================================ */
+.hero-text {
+    position: relative;
+    text-align: center;
+    color: var(--header-text);
+
+    margin: 55px auto 8px; /* tambahkan jarak atas */
+
+    padding: 30px;
+    background: var(--header-bg);
+    border-radius: 15px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.hero-text h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 600;
+}
+
+.hero-text p {
+    margin: 5px 0 0;
+    color: var(--header-text);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   5. PRAYER BOX (JADWAL SHALAT)
+   ============================================ */
+/* 1. Container yang lebih ramping */
+.prayer-box {
+    background: var(--menu-bg);
+    border-radius: 16px;
+    padding: 8px 12px; /* Dibuat lebih tipis */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin: 5px auto;
+    max-width: 420px; /* Lebar dibatasi agar tidak terlalu lebar di layar besar */
+    width: 90%;
+}
+
+/* 2. Header (Waktu & Info) */
+.prayer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.06);
+    padding-bottom: 8px;
+}
+
+#currentTime {
+    font-size: 1.1rem; /* Sedikit diperkecil */
+    font-weight: 700;
+    color: var(--header-bg);
+    margin-right: 10px;
+}
+
+#nextPrayer {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #718096;
+    margin-left: 10px;
+}
+
+#locationName {
+    font-size: 0.65rem;
+    color: #a0aec0;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+/* 3. Grid Waktu yang jauh lebih ringkas */
+.prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px; /* Celah minimal */
+}
+
+.prayer-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+    border-right: 2px solid rgba(0,0,0,0.06);
+}
+.prayer-grid div:last-child {
+    border-right: none;
+}
+.prayer-grid b {
+    font-size: 0.55rem; /* Font label diperkecil */
+    text-transform: uppercase;
+    color: #a0aec0;
+    margin-bottom: 1px;
+}
+
+.prayer-grid span {
+    font-size: 0.68rem; /* Font waktu diperkecil agar tidak berdesakan */
+    font-weight: 600;
+    color: var(--text-color);
+    font-variant-numeric: tabular-nums; /* Menjaga angka tetap rapi */
+}
+
+/* Dark Mode - Prayer Box */
+[data-theme="dark"] .prayer-box {
+    background: #2d3748;
+    border: 0px solid #4fd1c5;
+}
+
+[data-theme="dark"] .prayer-header {
+    background: #1a202c;
+    border-bottom: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .prayer-grid div {
+    border-right: 1px solid #4a5568;
+}
+
+[data-theme="dark"] .prayer-grid div:last-child {
+    border-right: none;
+}
+
+[data-theme="dark"] #nextPrayer,
+[data-theme="dark"] #locationName,
+[data-theme="dark"] #currentTime {
+    color: #4fd1c5;
+}
+
+[data-theme="dark"] #locationName {
+    opacity: 0.8;
+}
+
+/* ============================================
+   6. MENU GRID (PILIHAN DOA & DZIKIR)
+   ============================================ */
+.container{
+    margin-top:30px;
+    margin-bottom:20px;
+    position:relative;
+    z-index:1;
+
+    opacity:0;
+    transform:scale(.6);
+}
+
+
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: -5px auto 0;
+}
+
+.menu-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 19px;
+    background: var(--header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    transition: all .2s ease;
+}
+
+.menu-icon:hover {
+    border-color: var(--menu-hover-border);
+    box-shadow: 0 6px 12px var(--menu-hover-shadow);
+    transform: translateY(-2px);
+}
+
+.menu-item:hover .menu-icon {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(49, 151, 149, 0.5);
+}
+
+.menu-text {
+    color: var(--menu-text);
+    font-weight: 600;
+    font-size: 0.65rem;
+    text-align: center;
+}
+.hadith-slider{
+    opacity:0;
+    transform:translate3d(0,40px,0);
+    will-change:transform,opacity;
+}
+
+.hadith-slider.show-menu{
+    animation:hadithUp 1.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes hadithUp{
+    from{
+        opacity:0;
+        transform:translate3d(0,40px,0);
+    }
+
+    to{
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.hadith-slider{
+    width:100%;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    padding:0 12px;
+    margin-bottom: 70px;
+}
+
+.hadith-track{
+    display:flex;
+    gap:20px;
+    transition:transform 1.4s cubic-bezier(.22,1,.36,1);
+    will-change:transform;
+}
+
+.hadith-card{
+    flex:0 0 calc(100vw - 40px);
+    max-width:420px;
+
+    padding:20px;
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #319795,
+        #2c7a7b
+    );
+
+    color:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.hadith-badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.2);
+    font-size:.7rem;
+    margin-bottom:10px;
+}
+
+.hadith-card h3{
+    font-size:.9rem;
+    margin-bottom:10px;
+}
+
+.hadith-card p{
+    font-size:.85rem;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.hadith-card span{
+    font-size:.75rem;
+    opacity:.9;
+}
+
+[data-theme="dark"] .hadith-card{
+    background:linear-gradient(
+        135deg,
+        #234e52,
+        #1a202c
+    );
+}
+/* ============================================
+   7. FOOTER MENU (NAVIGASI BAWAH)
+   ============================================ */
+.footer-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 10px 10px 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,.15);
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 7px;
+    font-weight: 600;
+    margin-bottom: -5px;
+}
+
+.footer-menu i {
+    font-size: 18px;
+}
+
+[data-theme="dark"] .footer-menu {
+    background: var(--header-bg);
+}
+#countdownPrayer{
+    font-size:0.65rem;
+    font-weight:600;
+    color:#319795;
+    margin-top:2px;
+}
+
+[data-theme="dark"] #countdownPrayer{
+    color:#4fd1c5;
+}
+#nextPrayer{
+    font-size:0.75rem;
+    font-weight:600;
+    color:var(--header-bg);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-top:10px;
+}
+
+[data-theme="dark"] #nextPrayer{
+    color:#4fd1c5;
+}
+/* Smooth Dark Mode */
+*,
+*::before,
+*::after{
+    transition:
+        background-color .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+/* Animasi tombol */
+.theme-toggle{
+    transition:
+        background-color .35s ease,
+        color .35s ease,
+        transform .35s ease;
+}
+
+.theme-toggle:active{
+    transform: scale(.9);
+}
+
+.toggle-icon{
+    transition:
+        transform .5s ease,
+        color .35s ease;
+}
+
+/* Putar icon saat ganti mode */
+
+/* Hapus transisi global yang kasar */
+/* HTML dan body cukup definisikan background-color saja */
+html, body {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s ease;
+}
+
+/* Gunakan :root untuk transisi variabel agar semua elemen yang menggunakan variabel ikut smooth */
+:root {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.5s ease;
+}
+
+/* Transisi pada elemen spesifik agar tidak berat */
+.header-wrapper, .prayer-box, .hadith-card, .footer-menu {
+    transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.5s ease, 
+                border-color 0.5s ease;
+}
+#theme-overlay{
+position:fixed;
+inset:0;
+z-index:999999;
+pointer-events:none;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#1a202c;
+
+transform:scale(0);
+opacity:0;
+
+transition:
+    transform .7s cubic-bezier(.22,1,.36,1),
+    opacity .4s ease;
+
+}
+
+#theme-overlay.active{
+transform:scale(3);
+opacity:1;
+}
+
+#theme-logo{
+width:90px;
+height:90px;
+border-radius:20px;
+
+transform:scale(.7);
+transition:transform .4s ease;
+
+}
+
+#theme-overlay.active #theme-logo{
+transform:scale(1);
+}
+/* Footer awal tersembunyi di bawah */
+.footer-menu{
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+/* Animasi footer naik dari bawah */
+.footer-menu.show-footer{
+    animation: footerUp 1.3s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes footerUp{
+    0%{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.prayer-box{
+    position:relative;
+    z-index:10;
+    overflow:hidden;
+}
+.drawer-wrapper{
+    width:100%;
+    max-width:500px;
+    margin:10px auto 20px;
+    padding:0 15px;
+}
+
+.drawer-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    cursor:pointer;
+    color:var(--text-color);
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.drawer-toggle i{
+    font-size:.4rem;
+    transition:.35s;
+}
+
+.drawer-line{
+    height:1px;
+    width:100%;
+    background:rgba(0,0,0,.12);
+}
+
+[data-theme="dark"] .drawer-line{
+    background:rgba(255,255,255,.12);
+}
+
+.extra-drawer{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+
+    width:100%;
+    max-width:500px;
+    margin:0 auto;
+
+    overflow:hidden;
+    max-height:0;
+
+    opacity:0;
+
+    transition:
+        max-height .45s ease,
+        opacity .35s ease,
+        margin-bottom .35s ease;
+}
+
+.extra-drawer.open{
+    max-height:300px;
+    opacity:1;
+    margin-bottom:16px;
+}
+
+.drawer-toggle{
+    margin-top:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--text-color);
+}
+
+.drawer-toggle.active i{
+    transform:rotate(180deg);
+}
+
+.drawer-toggle i{
+    transition:.35s;
+}
+.more-section{
+    width:100%;
+    margin-top:15px;
+}
+
+.more-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+
+    color:#a0aec0;
+    font-size:0.65rem; /* sama dengan .menu-text */
+    font-weight:600;   /* sama dengan .menu-text */
+    font-family:'Poppins', sans-serif;
+
+    margin-bottom:10px;
+}
+
+#moreIcon{
+    transition:transform .35s ease;
+}
+
+.more-toggle.active #moreIcon{
+    transform:rotate(180deg);
+}
+
+/* Garis tipis */
+.more-divider{
+    width:100%;
+    max-width:500px;
+    margin-top:-5px;
+    margin-bottom: 5px;
+
+    border-top:1px solid rgba(0,0,0,.15);
+
+    transition:all .35s ease;
+}
+
+[data-theme="dark"] .more-divider{
+    border-color:rgba(255,255,255,.15);
+}
+
+.more-menu{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .45s ease;
+}
+
+.more-menu.show{
+    max-height:300px;
+}
+
+.more-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+
+    width:100%;
+    max-width:500px;
+    margin:2px auto 10px;
+}
+
+.hadith-slider{
+    width:100%;
+    overflow:hidden;
+    padding:0;
+    margin-bottom:70px;
+    display:block;
+}
+
+.hadith-track{
+    display:flex;
+    gap:20px;
+    align-items:stretch;
+}
+/* HERO */
+.hero-text{
+    opacity:0;
+    transform:translateY(50px) scale(.85);
+    will-change:transform,opacity;
+}
+
+.hero-text.show-hero{
+    animation:smoothRise 1.8s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* PRAYER */
+.prayer-box{
+    opacity:0;
+    transform:translateY(50px) scale(.85);
+    will-change:transform,opacity;
+}
+
+.prayer-box.show-prayer{
+    animation:smoothRise 1.8s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* MENU */
+.container{
+    opacity:0;
+    transform:translateY(50px) scale(.85);
+    will-change:transform,opacity;
+}
+
+.container.show-menu{
+    animation:smoothRise 1.8s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+/* ANIMASI BERSAMA */
+.hero-text,
+.prayer-box,
+.container{
+    opacity: 0;
+    transform: translateY(50px) scale(.85);
+    will-change: transform;
+}
+
+.hero-text.show-hero,
+.prayer-box.show-prayer,
+.container.show-menu{
+    opacity: 1;
+    animation: smoothRise 2s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes smoothRise{
+    from{
+        transform: translateY(50px) scale(.85);
+    }
+
+    to{
+        transform: translateY(0) scale(1);
+    }
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.setting-btn i{
+    font-size: 1.1rem;
+    transition:.3s;
+}
+
+.setting-btn:hover i{
+    transform:rotate(90deg);
+}
+
+.help-icon{
+    font-size:1.1rem; /* Ubah sesuai kebutuhan */
+}

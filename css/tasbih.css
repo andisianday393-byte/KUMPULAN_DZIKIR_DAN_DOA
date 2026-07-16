@@ -1,0 +1,481 @@
+.tasbih-status{
+    text-align:center;
+    min-height:24px;
+    margin-bottom:2px;
+    font-size:16px;
+    font-weight:700;
+    color:#16a34a;
+    opacity:0;
+    transform:translateY(-5px);
+    transition:.3s;
+}
+
+.tasbih-status.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.circle-wrap{
+    position:relative;
+    width:180px;
+    height:180px;
+    margin:auto;
+}
+
+.progress-ring{
+    transform:rotate(-90deg);
+}
+
+.ring-bg{
+    fill:none;
+    stroke:#e5e7eb;
+    stroke-width:10;
+}
+
+[data-theme="dark"] .ring-bg{
+    stroke:#374151;
+}
+
+.ring-progress{
+    fill:none;
+    stroke:#22c55e;
+    stroke-width:10;
+    stroke-linecap:round;
+
+    stroke-dasharray:471;
+    stroke-dashoffset:471;
+
+    transition:.3s;
+}
+
+.circle-content{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.tasbih-count{
+    font-size:42px;
+    font-weight:bold;
+    color:#319795;
+}
+
+.tasbih-percent{
+    font-size:20px;
+    color:#888;
+}
+
+.tasbih-progress{
+    font-size: 25px;
+    margin:-5px 0 -40px;
+  
+    text-align:center;
+    font-weight:600;
+}
+
+.tasbih-actions{
+    position: relative;
+    margin-top: 25px;
+}
+
+.tasbih-btn{
+    display: block;
+    width: 100%;
+    height: 70px;
+
+    margin: 0 auto;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #319795;
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.tasbih-reset{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:70px;
+    height:34px;
+
+    margin-left:auto;
+    margin-bottom:20px;
+
+    border:none;
+    border-radius:18px;
+
+    background:#e5e7eb;
+    color:#374151;
+
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.tasbih-reset:hover{
+    background:#dcdcdc;
+}
+
+[data-theme="dark"] .tasbih-reset{
+    background:#374151;
+    color:#fff;
+}
+.tasbih-finish{
+    color:#22c55e;
+}
+
+.tasbih-popup{
+    display:flex;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    padding-top:300px;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.tasbih-popup.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.tasbih-box{
+    width:320px;
+    background:#FFFDF8;
+    padding:16px;
+    border:3px solid #319795;
+    border-radius:40px;
+
+    transform:translateX(80px) scale(.1);
+    opacity:0;
+
+    transition:
+        transform .8s cubic-bezier(.22,1,.36,1),
+        opacity .8s ease;
+}
+
+.tasbih-popup.show .tasbih-box{
+    transform:translateX(0) scale(.6);
+    opacity:1;
+}
+[data-theme="dark"] .tasbih-box{
+    background:#1a202c;
+}
+
+.tasbih-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    font-size: 1.5rem;
+}
+.tasbih-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    padding:2px 8px;
+
+    border-radius:999px;
+
+    background:#319795;
+    color:#fff;
+
+    font-size:.7rem;
+    font-weight:600;
+
+    cursor:pointer;
+    user-select:none;
+    line-height: 2;
+    transition:.25s;
+}
+
+.tasbih-link:hover{
+    transform:translateY(-1px);
+    opacity:.9;
+}
+
+.tasbih-link i{
+    font-size:.9rem;
+}
+
+[data-theme="dark"] .tasbih-link{
+    background:#319795;
+}
+    
+.close-tasbih-btn{
+    width:50px;
+    height:50px;
+    font-size: 25px;
+    border:none;
+    border-radius:50%;
+    margin-top: 10px;
+    background:#ef4444;
+    color:#FFFDF8;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+    transition:.25s;
+}
+
+.close-tasbih-btn:hover{
+    background:#666;
+    color:#fff;
+    transform:scale(0.5);
+}
+
+.close-tasbih-btn:active{
+    transform:scale(.95);
+}
+
+[data-theme="dark"] .close-tasbih-btn{
+    background:#374151;
+    color:#e5e7eb;
+}
+
+[data-theme="dark"] .close-tasbih-btn:hover{
+    background:#ef4444;
+    color:#fff;
+}
+.active-dzikir-box{
+    display:block;
+    position:fixed;
+    top:50px;
+    left:10px;
+    right:10px;
+    z-index:9998;
+
+    background:#fff;
+    border:2px solid #319795;
+    border-radius:20px;
+    padding:14px;
+
+    opacity:0;
+    transform:translateY(-30px);
+    transition:transform 1s ease, opacity 1s ease;
+
+    pointer-events:none;
+    visibility:hidden;
+}
+
+.active-dzikir-box.show{
+    opacity:1;
+    transform:translateY(0);
+    visibility:visible;
+    pointer-events:auto;
+}
+
+.active-target-text{
+    text-align:center;
+    font-weight:600;
+    color:#319795;
+    margin-bottom:4px;
+}
+
+[data-theme="dark"] .active-dzikir-box{
+    background:#1a202c;
+    border-color:#319795;
+}
+
+[data-theme="dark"] .active-arabic{
+    color:#fff;
+}
+
+.tasbih-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:5px;
+}
+
+.tasbih-select-wrap{
+    position:relative;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+}
+
+#tasbihSelectBtn{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+
+    width:80px;
+    height:34px;
+    padding:0 10px;
+}
+
+.tasbih-menu{
+    position:absolute;
+    bottom:42px;
+
+    width:80px;
+
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+
+    display:none;
+    z-index:20;
+}
+
+[data-theme="dark"] .tasbih-menu{
+    background:#4B5563;
+}
+
+.tasbih-menu button{
+    width:100%;
+    border:none;
+    background:transparent;
+    padding:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+[data-theme="dark"] .tasbih-menu button{
+    color:#e5e7eb;
+}  
+.tasbih-menu button:hover{
+    background:#319795;
+    color:#fff;
+}
+  body.blur-background .container,
+body.blur-background .top-header{
+    filter: blur(5px);
+    transition: filter .3s ease;
+}
+
+body.blur-background #activeDzikirBox,
+body.blur-background #tasbihPopup{
+    filter: none;
+}
+
+/* ===========================
+   PILIH LAFAL
+=========================== */
+
+.arabic-select-wrap{
+    position:relative;
+    display:none;
+    flex-direction:column;
+    align-items:flex-start;   /* dari center menjadi flex-start */
+    width:110px;
+    margin-bottom:-1px;
+}
+
+.arabic-select-wrap small{
+    margin-bottom:4px;
+    margin-left:2px;
+    font-size:12px;
+    font-weight:600;
+    color:#666;
+}
+
+[data-theme="dark"] .arabic-select-wrap small{
+    color:#d1d5db;
+}
+
+#arabicSelectBtn{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+
+    width:110px;
+    height:34px;
+    padding:0 10px;
+}
+
+#arabicMenu{
+    position:absolute;
+    bottom:42px;
+
+    width:110px;
+
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+
+    display:none;
+    z-index:20;
+}
+
+[data-theme="dark"] #arabicMenu{
+    background:#4B5563;
+}
+
+#arabicMenu button{
+    width:100%;
+    border:none;
+    background:transparent;
+    padding:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+[data-theme="dark"] #arabicMenu button{
+    color:#e5e7eb;
+}
+
+#arabicMenu button:hover{
+    background:#319795;
+    color:#fff;
+}
+
+.arabic-multiline{
+    white-space: pre-line;
+    line-height: 2;
+}
+
+.active-arabic{
+    direction: rtl;
+    white-space: pre-line;
+    text-align:center;
+    font-size:1.6rem;
+    line-height:2;
+    padding:4px 0;
+    margin-top:0px;
+}
+
+.active-arabic.compact{
+    margin-top:-55px;
+}
+
+.active-arabic.option{
+    margin-top:5px;
+}
+
+.active-arabic.option.istigfar{
+    margin-top:-50px;
+}
+.arabic-istighfar{
+    white-space: pre-line;
+    line-height: 1.8;      /* lebih rapat */
+    margin-top: -40px;
+    margin-bottom: 15px;
+    letter-spacing: 0;
+    word-spacing: 0;
+}
