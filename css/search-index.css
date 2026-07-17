@@ -1,3 +1,18 @@
+.top-bar {
+    display: flex;
+    align-items: center;
+    overflow: visible; /* Penting! */
+}
+
+.search-box {
+    flex: 1;
+    position: relative;
+    overflow: visible; /* Penting! */
+    border: none;
+    outline: none;
+}
+
+  
 .search-box {
     flex: 1;
     position: relative;
@@ -139,3 +154,4 @@
 [data-theme="dark"] .suggestion-item b{
     color:#4fd1c5;
 }
+  
