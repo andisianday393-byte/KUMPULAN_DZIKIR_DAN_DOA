@@ -131,10 +131,6 @@
     transition:transform .25s;
 }
 
-.header-icon-btn:hover{
-    transform:scale(1);
-}
-
 .header-icon-btn i{
     font-size:16px;
 }
