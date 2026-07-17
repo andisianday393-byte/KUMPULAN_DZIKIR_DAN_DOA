@@ -639,6 +639,30 @@ async function loadHadith() {
 }
 
 loadHadith();
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Mencegah browser menampilkan prompt otomatis
+    e.preventDefault();
+    // Simpan event agar bisa dipicu nanti
+    deferredPrompt = e;
+    
+    // Tampilkan tombol instal kustom Anda di sini
+    // Contoh: document.getElementById('btnInstal').style.display = 'block';
+});
+
+function installApp() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt(); // Menampilkan dialog instalasi browser
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User menerima instalasi');
+            }
+            deferredPrompt = null; // Reset prompt setelah digunakan
+        });
+    }
+}
+
 </script>
 <script src="js/index-drawer.js"></script>
 <script src="js/search-index.js"></script>
