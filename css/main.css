@@ -684,7 +684,7 @@ button::-moz-focus-inner{
     border:none;
     padding:7px 14px;
     border-radius:18px;
-    background:var(--primary);
+    background:#319795;
     color:#fff;
     cursor:pointer;
     font-size:13px;
